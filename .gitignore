@@ -1,0 +1,11 @@
+# Локальные настройки компьютера (путь к Google Drive и т.п.)
+remotion.local.json
+
+# Медиа проектов живут на Google Drive, не в git
+*/public/**/*.mp4
+*/public/**/*.mov
+*/public/**/*.wav
+*/public/**/*.mp3
+*/public/**/*.m4a
+*/out/
+node_modules/
