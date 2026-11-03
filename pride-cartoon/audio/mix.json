@@ -1,0 +1,7 @@
+{
+ "vo_gain": 1.5,
+ "music_under_voice": 0.07,
+ "music_no_voice": 0.22,
+ "duck_ramp_s": 0.3,
+ "music_fade_out_s": 3.0
+}
