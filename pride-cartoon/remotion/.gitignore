@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+.env
+out
+
+# Медиа копируются скриптом `npm run sync` из ../audio, ../assets, ../clips — в git не дублируем
+public/audio
+public/assets
+public/clips
