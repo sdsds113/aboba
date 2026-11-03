@@ -1,0 +1,116 @@
+[
+ {
+  "id": "L01",
+  "src": "generated/voice/L01.mp3",
+  "start": 0.26,
+  "speechEnd": 2.57
+ },
+ {
+  "id": "L02",
+  "src": "generated/voice/L02.mp3",
+  "start": 2.82,
+  "speechEnd": 6.349
+ },
+ {
+  "id": "L03",
+  "src": "generated/voice/L03.mp3",
+  "start": 15.36,
+  "speechEnd": 18.158
+ },
+ {
+  "id": "L04",
+  "src": "generated/voice/L04.mp3",
+  "start": 21.95,
+  "speechEnd": 23.424
+ },
+ {
+  "id": "L05",
+  "src": "generated/voice/L05.mp3",
+  "start": 23.52,
+  "speechEnd": 31.703
+ },
+ {
+  "id": "L06",
+  "src": "generated/voice/L06.mp3",
+  "start": 31.76,
+  "speechEnd": 37.704
+ },
+ {
+  "id": "L07",
+  "src": "generated/voice/L07.mp3",
+  "start": 39.7,
+  "speechEnd": 41.534
+ },
+ {
+  "id": "L08",
+  "src": "generated/voice/L08.mp3",
+  "start": 41.7,
+  "speechEnd": 45.462
+ },
+ {
+  "id": "L09",
+  "src": "generated/voice/L09.mp3",
+  "start": 45.55,
+  "speechEnd": 49.892
+ },
+ {
+  "id": "L10",
+  "src": "generated/voice/L10.mp3",
+  "start": 50.0,
+  "speechEnd": 53.274
+ },
+ {
+  "id": "L11",
+  "src": "generated/voice/L11.mp3",
+  "start": 53.4,
+  "speechEnd": 56.128
+ },
+ {
+  "id": "L12",
+  "src": "generated/voice/L12.mp3",
+  "start": 56.3,
+  "speechEnd": 59.446
+ },
+ {
+  "id": "L13",
+  "src": "generated/voice/L13.mp3",
+  "start": 59.5,
+  "speechEnd": 62.925
+ },
+ {
+  "id": "L14",
+  "src": "generated/voice/L14.mp3",
+  "start": 63.2,
+  "speechEnd": 64.976
+ },
+ {
+  "id": "L15",
+  "src": "generated/voice/L15.mp3",
+  "start": 65.15,
+  "speechEnd": 67.426
+ },
+ {
+  "id": "L16",
+  "src": "generated/voice/L16.mp3",
+  "start": 67.6,
+  "speechEnd": 70.108
+ },
+ {
+  "id": "L17",
+  "src": "generated/voice/L17.mp3",
+  "start": 70.25,
+  "speechEnd": 74.708
+ },
+ {
+  "id": "L18",
+  "src": "generated/voice/L18.mp3",
+  "start": 74.75,
+  "speechEnd": 78.813
+ },
+ {
+  "id": "L19",
+  "src": "generated/voice/L19.mp3",
+  "start": 81.0,
+  "speechEnd": 85.04
+ }
+]

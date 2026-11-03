@@ -191,6 +191,13 @@ function render(name, only) {
   if (todo.length === 0) fail(only ? `В render.json нет композиции ${only}` : 'render.json пуст');
   checkFonts(dir);
 
+  // Проект может требовать подготовку медиа (например, очистку исходника ffmpeg) — <проект>/prepare.mjs.
+  if (fs.existsSync(path.join(dir, 'prepare.mjs'))) {
+    console.log('\n▶ node prepare.mjs');
+    const p = spawnSync(process.execPath, ['prepare.mjs'], {cwd: dir, stdio: 'inherit'});
+    if (p.status !== 0) fail(`prepare.mjs завершился с кодом ${p.status}`);
+  }
+
   const results = [];
   for (const job of todo) {
     const out = path.join('out', job.output);

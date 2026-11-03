@@ -1,0 +1,10 @@
+node_modules
+out
+.env
+# Исходник и производные от него кадры/видео делаются локально (prepare.mjs)
+public/source.mp4
+public/source_clean.mp4
+public/generated/page79.png
+public/references/
+public/fonts/
+public/generated/

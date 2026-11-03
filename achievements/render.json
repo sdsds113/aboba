@@ -1,0 +1,9 @@
+{
+  "jobs": [
+    {
+      "composition": "Achievements",
+      "output": "achievements.mp4",
+      "flags": ["--codec=h264", "--crf=18", "--pixel-format=yuv420p", "--audio-bitrate=320k"]
+    }
+  ]
+}

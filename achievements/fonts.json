@@ -1,0 +1,7 @@
+{
+  "fonts": [
+    {"family": "Styrene A LC", "file": "StyreneALC-Bold.otf", "weight": "700", "style": "normal"},
+    {"family": "Styrene B LC", "file": "StyreneBLC-Regular.otf", "weight": "400", "style": "normal"},
+    {"family": "Styrene B LC", "file": "StyreneBLC-Bold.otf", "weight": "700", "style": "normal"}
+  ]
+}
