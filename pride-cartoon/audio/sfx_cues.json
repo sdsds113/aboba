@@ -1,0 +1,112 @@
+[
+ {
+  "sfx": "door_open",
+  "t": 14.06,
+  "vol": 0.6
+ },
+ {
+  "sfx": "group_laugh",
+  "t": 21.54,
+  "vol": 0.35
+ },
+ {
+  "sfx": "rain_night",
+  "t": 23.9,
+  "vol": 0.35
+ },
+ {
+  "sfx": "paper_flutter",
+  "t": 30.0,
+  "vol": 0.5
+ },
+ {
+  "sfx": "crowd_cheer",
+  "t": 32.84,
+  "vol": 0.3
+ },
+ {
+  "sfx": "swoosh_soft",
+  "t": 36.01,
+  "vol": 0.5
+ },
+ {
+  "sfx": "page_tear",
+  "t": 42.7,
+  "vol": 0.8
+ },
+ {
+  "sfx": "paper_flutter",
+  "t": 42.84,
+  "vol": 0.4
+ },
+ {
+  "sfx": "frame_hang",
+  "t": 45.95,
+  "vol": 0.7
+ },
+ {
+  "sfx": "whoosh_hit",
+  "t": 47.12,
+  "vol": 0.7
+ },
+ {
+  "sfx": "whoosh_hit",
+  "t": 47.74,
+  "vol": 0.7
+ },
+ {
+  "sfx": "whoosh_hit",
+  "t": 48.32,
+  "vol": 0.8
+ },
+ {
+  "sfx": "group_laugh",
+  "t": 58.5,
+  "vol": 0.35
+ },
+ {
+  "sfx": "star_twinkle",
+  "t": 92.86,
+  "vol": 0.7
+ },
+ {
+  "sfx": "magic_sparkle",
+  "t": 96.16,
+  "vol": 0.6
+ },
+ {
+  "sfx": "magic_sparkle",
+  "t": 83.79,
+  "vol": 0.35
+ },
+ {
+  "sfx": "crowd_cheer",
+  "t": 124.97,
+  "vol": 0.3
+ },
+ {
+  "sfx": "candles_blow",
+  "t": 128.27,
+  "vol": 0.6
+ },
+ {
+  "sfx": "confetti_pop",
+  "t": 129.5,
+  "vol": 0.7
+ },
+ {
+  "sfx": "crowd_cheer",
+  "t": 129.65,
+  "vol": 0.45
+ },
+ {
+  "sfx": "camera_flash",
+  "t": 132.01,
+  "vol": 0.8
+ },
+ {
+  "sfx": "frame_hang",
+  "t": 133.71,
+  "vol": 0.7
+ }
+]
