@@ -9,3 +9,6 @@ remotion.local.json
 */public/**/*.m4a
 */out/
 node_modules/
+
+# Фирменные шрифты — только локально, лицензия не позволяет публиковать
+*/public/fonts/

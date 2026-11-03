@@ -10,7 +10,12 @@
 //   renders/  готовые рендеры: <имя>_v01.mp4, <имя>_v02.mp4, ...
 //
 // driveRoot задаётся один раз в remotion.local.json в корне репозитория (файл не коммитится):
-//   { "driveRoot": "G:\\Мой диск\\Remotion" }
+//   { "driveRoot": "G:\\Мой диск\\Remotion", "fontsDir": "D:\\Шрифты" }
+//
+// Фирменные шрифты живут только на компьютере пользователя (не в git и не на Drive).
+// <проект>/fonts.json перечисляет нужные файлы; pull копирует их в <проект>/public/fonts/
+// из fontsDir (с подпапками) и из системных папок шрифтов Windows. render не стартует,
+// если какого-то файла нет.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -78,6 +83,66 @@ function copyTree(src, dst) {
   return {copied, skipped};
 }
 
+function fontList(dir) {
+  const p = path.join(dir, 'fonts.json');
+  if (!fs.existsSync(p)) return [];
+  return JSON.parse(fs.readFileSync(p, 'utf8')).fonts ?? [];
+}
+
+function findFile(roots, fileName) {
+  const want = fileName.toLowerCase();
+  const stack = roots.filter((r) => r && fs.existsSync(r));
+  while (stack.length) {
+    const d = stack.pop();
+    let entries;
+    try {
+      entries = fs.readdirSync(d, {withFileTypes: true});
+    } catch {
+      continue;
+    }
+    for (const e of entries) {
+      const full = path.join(d, e.name);
+      if (e.isDirectory()) stack.push(full);
+      else if (e.name.toLowerCase() === want) return full;
+    }
+  }
+  return null;
+}
+
+function pullFonts(cfg, dir) {
+  const fonts = fontList(dir);
+  if (fonts.length === 0) return;
+  const roots = [
+    cfg.fontsDir,
+    process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA, 'Microsoft', 'Windows', 'Fonts'),
+    process.env.WINDIR && path.join(process.env.WINDIR, 'Fonts'),
+  ];
+  const dst = path.join(dir, 'public', 'fonts');
+  fs.mkdirSync(dst, {recursive: true});
+  const missing = [];
+  for (const f of fonts) {
+    const target = path.join(dst, f.file);
+    const src = findFile(roots, f.file);
+    if (!src) {
+      if (!fs.existsSync(target)) missing.push(f.file);
+      continue;
+    }
+    fs.copyFileSync(src, target);
+    console.log(`  ↓ fonts/${f.file}  (${f.family} ${f.weight ?? ''} ${f.style ?? ''})`);
+  }
+  if (missing.length) {
+    fail(`Не найдены шрифты: ${missing.join(', ')}. Положи их в fontsDir (${cfg.fontsDir ?? 'не задан в remotion.local.json'}) или установи в Windows.`);
+  }
+  console.log(`✔ шрифты: ${fonts.length} файл(ов) в public/fonts`);
+}
+
+function checkFonts(dir) {
+  const missing = fontList(dir).filter((f) => !fs.existsSync(path.join(dir, 'public', 'fonts', f.file)));
+  if (missing.length) {
+    fail(`В public/fonts нет: ${missing.map((f) => f.file).join(', ')}. Сначала выполни pull — без фирменных шрифтов не рендерим.`);
+  }
+}
+
 function pull(name) {
   const cfg = config();
   const dir = projectDir(name);
@@ -85,6 +150,7 @@ function pull(name) {
   if (!fs.existsSync(src)) fail(`На Drive нет папки ${src}. Создай её и положи туда медиа проекта.`);
   const r = copyTree(src, path.join(dir, 'public'));
   console.log(`✔ pull ${name}: скопировано ${r.copied}, без изменений ${r.skipped}`);
+  pullFonts(cfg, dir);
 }
 
 // Следующая версия: edit.mp4 → edit_v03.mp4, если в renders уже есть v01 и v02.
@@ -123,6 +189,7 @@ function render(name, only) {
   const {jobs} = JSON.parse(fs.readFileSync(jobsPath, 'utf8'));
   const todo = jobs.filter((j) => !only || j.composition === only);
   if (todo.length === 0) fail(only ? `В render.json нет композиции ${only}` : 'render.json пуст');
+  checkFonts(dir);
 
   const results = [];
   for (const job of todo) {
