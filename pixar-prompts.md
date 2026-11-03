@@ -57,6 +57,30 @@ Transform the person in the reference photo into a 3D animated movie character i
 Transform the person in the reference photo into a 3D animated movie character in the style of a modern Pixar film, keeping the face clearly recognizable. A woman in her late 30s with long straight blonde hair with slightly darker roots, parted near the center and falling past her shoulders, bright blue eyes, a subtle calm closed-lip smile, gentle confident expression. She wears a fitted dark chocolate-brown long-sleeve top, a thin long silver lariat necklace, a silver bracelet and a ring. She sits on a teal upholstered chair at a round light wood table, hands resting on top of a phone. Background: tall light wood wall panels, soft window light from the right, moody shallow depth of field. Stylized proportions, slightly larger expressive eyes, soft skin shading, high detail, 3D render, vertical portrait 2:3.
 ```
 
+## 6. Мужчина с бородой на красном стуле в зале (фото 6)
+
+```
+Transform the person in the reference photo into a 3D animated movie character in the style of a modern Pixar film, keeping the face clearly recognizable. A man in his 30s with short light brown hair with a soft fringe swept forward, blue-grey eyes, a full short brown beard and mustache, a friendly open slight smile, looking at the camera over his shoulder. He wears a navy blue suit jacket over a white open-collar shirt and a large chunky silver wristwatch. He sits sideways on a bright red wooden chair with a curved backrest, his arm resting on it. Background: a presentation hall with rows of red chairs, a big glowing red screen on the left, warm wooden slat wall on the right, a few blurred audience members from behind. Shallow depth of field, warm cinematic lighting, stylized proportions, slightly larger expressive eyes, soft skin shading, high detail, 3D render, horizontal 3:2, no text on the screen.
+```
+
+## 7. Мужчина в круглых очках с густой бородой (фото 7)
+
+```
+Transform the person in the reference photo into a 3D animated movie character in the style of a modern Pixar film, keeping the face clearly recognizable. A man around 40 with short dark brown textured hair brushed up, slightly receding at the temples, round thin dark metal-frame glasses, warm hazel eyes, a full thick dark beard with grey streaks on the chin, a big warm smile showing teeth. He wears a black blazer with grey contrast trim on the lapels over a plain white t-shirt. Background: a light grey wall with a large dark screen above showing a blurred red image, a hint of a light wooden chair on the right. Soft bright lighting, stylized proportions, slightly larger expressive eyes, soft skin shading, high detail, 3D render, vertical portrait 2:3, no text on the screen.
+```
+
+## 8. Спикер в очках с микрофоном (фото 8)
+
+```
+Transform the person in the reference photo into a 3D animated movie character in the style of a modern Pixar film, keeping the face clearly recognizable. A man around 40 with short dark hair and a receding hairline, rectangular black-framed glasses, light stubble beard and mustache, focused engaged expression, speaking on stage. He holds a microphone in his right hand near his mouth and a presentation clicker in his left hand, gesturing toward the audience; a ring on his finger. He wears a navy blue suit with a white shirt, no tie, and a black belt. Background: white perforated wall panels and a large dark-blue LED screen above with thin glowing white lines. Bright even stage lighting, stylized proportions, slightly larger expressive eyes, soft skin shading, high detail, 3D render, horizontal 3:2, no text.
+```
+
+## 9. Спикер с красным платком в кармане (фото 9)
+
+```
+Transform the person in the reference photo into a 3D animated movie character in the style of a modern Pixar film, keeping the face clearly recognizable. A man in his 40s with a fully shaved bald head, light blue-grey eyes, clean-shaven round face, slight smile while speaking confidently into a handheld microphone in his right hand. He wears a black suit jacket, a white shirt with small dark buttons and open collar, and a bright red folded pocket square. Background: a big presentation screen with blurred red graphics and a white wall below. Bright stage lighting, stylized proportions, slightly larger expressive eyes, soft skin shading, high detail, 3D render, horizontal 3:2, no text on the screen.
+```
+
 ---
 
 ## Варианты
