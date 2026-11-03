@@ -38,12 +38,12 @@ G = [
   img=f"Wide establishing shot at early dawn: {LOC['RED_EXT']}, standing on a quiet street with a few trees, soft pink-gold morning sky, light mist, one window already glowing warm. Low camera, slightly heroic angle.",
   vid="Single continuous shot, 8 seconds. Slow cinematic push-in toward the big red house at dawn. Mist drifts, a few leaves fall, windows light up warm one after another, a bird flies across the frame. Calm, magical, opening-of-a-movie feeling."),
 
- dict(id="G02", scene="2. Синий домик", ingr=["BLUE_EXT","BLUE_INT","BOSS"],
+ dict(id="G02", scene="2. Синий домик", ingr=["BLUE_EXT","BLUE_INT","BOSS","GLASSES","BLONDE"],
   cuts=[("S02-01",5.8,9.0,0.0,"Наша началась с маленького синего домика.","Синий домик снаружи, кран вниз к крыльцу",{"type":"year","text":"2014","note":"год-заглушка, уточнить"}),
-        ("S02-02",9.0,13.8,3.2,"Нас было совсем немного. Несколько столов, одна большая идея —","Внутри: три стола, коробки; Босс прикалывает на пробковую доску набросок домика",None)],
+        ("S02-02",9.0,13.8,3.2,"Нас было совсем немного. Несколько столов, одна большая идея —","Внутри: три стола, коробки; Босс прикалывает на доску набросок домика, за двумя столами Глассес и Блонд поднимают головы и улыбаются",{"type":"lower_third_double","note":"GLASSES + BLONDE, две плашки"})],
   img=f"Morning, gentle crane-high view of {LOC['BLUE_EXT']}. Sunlight, a bicycle leaning on the porch, a small potted plant by the door. Cozy, humble, hopeful beginning.",
   vid=("0-3.2s: slow crane down from the treetops to the porch of the small sky-blue wooden house, morning sun, birds. "
-       f"CUT TO 3.2-8s: {LOC['BLUE_INT']}. {ch('BOSS')} pins a hand-drawn sketch of a little house (simple lines, no words) onto the cork board, steps back and looks at it with a quiet confident smile. Slow dolly sideways past the three empty desks.")),
+       f"CUT TO 3.2-8s: {LOC['BLUE_INT']}. {ch('BOSS')} pins a hand-drawn sketch of a little house (simple lines, no words) onto the cork board, steps back and looks at it with a quiet confident smile. Slow dolly sideways past the desks: at two of them sit {ch('GLASSES')} and {ch('BLONDE')}, who look up from their work and smile at her.")),
 
  dict(id="G03", scene="2–3. Начало / новые люди", ingr=["BLUE_INT","BOSS","SMILE"],
   cuts=[("S02-03",13.8,16.8,0.3,"и человек, который в неё поверил.","Крупно: Босс у окна, свет на лице, решительная улыбка",{"type":"lower_third","name":"Имя Фамилия","role":"Руководитель","note":"имя именинницы"}),

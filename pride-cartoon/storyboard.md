@@ -93,12 +93,12 @@ Single continuous shot, 8 seconds. Slow cinematic push-in toward the big red hou
 
 ### G02 · 2. Синий домик · 0:04.71–0:11.60
 
-**Ингредиенты:** BLUE_EXT, BLUE_INT, BOSS
+**Ингредиенты:** BLUE_EXT, BLUE_INT, BOSS, GLASSES, BLONDE
 
 | План | Таймлайн | Дл. | Голос | Что в кадре | Текст (Remotion) |
 |---|---|---|---|---|---|
 | S02-01 | 0:04.71–0:07.40 | 2.7 с | «Наша началась с маленького синего домика.» | Синий домик снаружи, кран вниз к крыльцу | 2014 |
-| S02-02 | 0:07.40–0:11.60 | 4.2 с | «Нас было совсем немного. Несколько столов, одна большая идея —» | Внутри: три стола, коробки; Босс прикалывает на пробковую доску набросок домика | — |
+| S02-02 | 0:07.40–0:11.60 | 4.2 с | «Нас было совсем немного. Несколько столов, одна большая идея —» | Внутри: три стола, коробки; Босс прикалывает на доску набросок домика, за двумя столами Глассес и Блонд поднимают головы и улыбаются | GLASSES + BLONDE, две плашки |
 
 **Стартовый кадр (статика):**
 ```
@@ -106,7 +106,7 @@ Morning, gentle crane-high view of a small cozy one-storey wooden house painted 
 ```
 **Анимация (Flow, 8 с):**
 ```
-0-3.2s: slow crane down from the treetops to the porch of the small sky-blue wooden house, morning sun, birds. CUT TO 3.2-8s: the interior of the small blue house (one cozy room with three old wooden desks, a desk lamp, cardboard boxes, a cork board with blank paper sketches, warm light through small white-framed windows). BOSS (a woman in her 40s with dark hair in a sleek low bun, warm brown eyes, gentle smile, cream tweed jacket with black piping, a big black bow on the chest and black round buttons) pins a hand-drawn sketch of a little house (simple lines, no words) onto the cork board, steps back and looks at it with a quiet confident smile. Slow dolly sideways past the three empty desks. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices.
+0-3.2s: slow crane down from the treetops to the porch of the small sky-blue wooden house, morning sun, birds. CUT TO 3.2-8s: the interior of the small blue house (one cozy room with three old wooden desks, a desk lamp, cardboard boxes, a cork board with blank paper sketches, warm light through small white-framed windows). BOSS (a woman in her 40s with dark hair in a sleek low bun, warm brown eyes, gentle smile, cream tweed jacket with black piping, a big black bow on the chest and black round buttons) pins a hand-drawn sketch of a little house (simple lines, no words) onto the cork board, steps back and looks at it with a quiet confident smile. Slow dolly sideways past the desks: at two of them sit GLASSES (a man with voluminous swept-back brown hair, rectangular dark-framed glasses, light stubble and a short goatee, black suit jacket, white open-collar shirt) and BLONDE (a woman with long straight blonde hair, blue eyes, calm smile, fitted dark chocolate-brown long-sleeve top, thin long silver necklace), who look up from their work and smile at her. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices.
 ```
 
 ### G03 · 2–3. Начало / новые люди · 0:11.60–0:16.63
