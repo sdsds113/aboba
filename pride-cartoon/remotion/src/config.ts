@@ -16,16 +16,8 @@ export const PEOPLE: Record<string, { name: string; role: string }> = {
   BALD: { name: "Имя Фамилия", role: "Департамент" },
 };
 
-/** Кто на каком плане получает плашку (две — слева и справа) */
-export const LOWER_THIRDS: Record<string, string[]> = {
-  "S02-02": ["GLASSES", "BLONDE"],
-  "S02-03": ["BOSS"],
-  "S03-01": ["SMILE"],
-  "S03-02": ["VEST"],
-  "S03-03": ["ROUND"],
-  "S03-04": ["SPEAKER"],
-  "S03-05": ["BALD", "BEARD"],
-};
+/** Плашки с именами отключены по просьбе заказчика. Чтобы вернуть: { "S02-03": ["BOSS"], ... } */
+export const LOWER_THIRDS: Record<string, string[]> = {};
 
 /** Название в начале (S01-01). null — не показывать */
 export const OPENING_TITLE: string | null = "Наш дом";
