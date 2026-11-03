@@ -37,7 +37,7 @@ copyDir(path.join(root, "assets"), path.join(pub, "assets"), (f) => f.endsWith("
 copyDir(path.join(root, "assets/processed"), path.join(pub, "assets/processed"), (f) => f.endsWith(".png"));
 
 // клипы: ../clips/S01-01.mp4 … S09-05.mp4 (один файл на план)
-const clips = copyDir(path.join(root, "clips"), path.join(pub, "clips"), (f) => /^S\d\d-\d\d\.mp4$/i.test(f));
+const clips = copyDir(path.join(root, "clips"), path.join(pub, "clips"), (f) => /^(S\d\d-\d\d|G\d\d)\.mp4$/i.test(f));
 
 // данные
 for (const f of ["timeline.json", "photo_wall_layout.json"]) copy(path.join(root, f), path.join(data, f));

@@ -189,6 +189,12 @@ for s in T["shots"]:
     s["gen"] = s["id"]
     s["src"] = f"clips/{s['id']}.mp4"
     s["clip_in"] = round(max(0.0, min(0.3, CLIP_LEN - 0.1 - s["dur"])), 2)
+SC = json.load(open(f"{D}/scene_clips.json")) if os.path.exists(f"{D}/scene_clips.json") else {}
+for g, info in SC.items():
+    if g.startswith("_"): continue
+    for s in T["shots"]:
+        if s["id"] in info["shots"]:
+            s["gen"] = g; s["src"] = info["file"]; s["clip_in"] = info["shots"][s["id"]]
 json.dump(T, open(f"{D}/timeline.json", "w"), ensure_ascii=False, indent=1)
 
 def fmt(t): return f"{int(t//60)}:{t%60:05.2f}"

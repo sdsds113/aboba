@@ -1,0 +1,478 @@
+{
+ "G01": {
+  "cuts": [
+   "S01-01"
+  ],
+  "durs": [
+   4.71
+  ],
+  "frames": [
+   "G01.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 6,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. Single continuous shot, no cuts. Keep every character's face, hairstyle, glasses, outfit and the location exactly as in the first frame. Slow cinematic push-in toward the big red house at dawn. Mist drifts, a few leaves fall, windows light up warm one after another, a bird flies across the frame. Calm, magical, opening-of-a-movie feeling. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G02": {
+  "cuts": [
+   "S02-01",
+   "S02-02"
+  ],
+  "durs": [
+   2.69,
+   4.2
+  ],
+  "frames": [
+   "G02.png",
+   "G02_last_fixed.png"
+  ],
+  "generate": [
+   "G02_last_fixed.png"
+  ],
+  "model": "kling-video-v3_0",
+  "duration": 9,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 3.1 seconds): slow crane down from the treetops to the porch of the small sky-blue wooden house, morning sun, birds. Shot 2 (about 4.7 seconds): the interior of the small blue house (one cozy room with three old wooden desks, a desk lamp, cardboard boxes, a cork board with blank paper sketches, warm light through small white-framed windows). BOSS (a woman in her 40s with dark hair in a sleek low bun, warm brown eyes, gentle smile, cream tweed jacket with black piping, a big black bow on the chest and black round buttons) pins a hand-drawn sketch of a little house (simple lines, no words) onto the cork board, steps back and looks at it with a quiet confident smile. Slow dolly sideways past the desks: at two of them sit GLASSES (a man with voluminous swept-back brown hair, rectangular dark-framed glasses, light stubble and a short goatee, black suit jacket, white open-collar shirt) and BLONDE (a woman with long straight blonde hair, blue eyes, calm smile, fitted dark chocolate-brown long-sleeve top, thin long silver necklace), who look up from their work and smile at her. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G03": {
+  "cuts": [
+   "S02-03",
+   "S03-01"
+  ],
+  "durs": [
+   2.33,
+   2.7
+  ],
+  "frames": [
+   "G03.png",
+   "G03_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 7,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 2.8 seconds): close-up of BOSS by the window, she slowly turns her head from the window toward camera, a confident warm smile forms, dust particles glow in the sunbeam. Shot 2 (about 3.2 seconds): medium shot of the front door of the blue house from inside. The door swings open, bright daylight floods in, SMILE (a cheerful man with short blond-brown hair, round face and a big toothy grin, brown blazer over a black t-shirt) stands in the doorway holding a cardboard box with a red tumbler cup on top, grinning widely; BOSS steps into frame from the left and welcomes him with an open hand gesture. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G04": {
+  "cuts": [
+   "S03-02",
+   "S03-03",
+   "S03-04"
+  ],
+  "durs": [
+   1.77,
+   1.12,
+   0.9
+  ],
+  "frames": [
+   "G04.png",
+   "G04_k_round.png",
+   "G04_k_speaker.png"
+  ],
+  "generate": [
+   "G04_k_round.png",
+   "G04_k_speaker.png"
+  ],
+  "model": "kling-video-v4_0",
+  "duration": 6,
+  "est_cost": 90,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 3 shots with hard cuts, in the order of the reference frames. Shot 1 (about 2.2 seconds): Three character-introduction shots in the same blue-house doorway, quick cuts. 0-2s: VEST (a man with short dark side-parted hair, strong eyebrows, short beard, intense serious gaze, dark brown waistcoat over a white shirt) stands in the doorway with arms crossed, slowly raises one eyebrow, then gives a tiny approving nod. Shot 2 (about 1.6 seconds): ROUND (a man with short dark textured hair, round thin metal-frame glasses, thick dark beard with grey streaks, black blazer with grey lapel trim, white t-shirt) steps in carrying a tall wobbly stack of books, stops, pushes his round glasses up with one finger and beams. Shot 3 (about 1.4 seconds): SPEAKER (a man with short dark hair and a receding hairline, rectangular black glasses, stubble, navy suit, white shirt) walks in mid-gesture, passionately explaining something with a presentation clicker in his hand, eyes bright (mouth closed, expressive hands only). 6.5-8s: hold on SPEAKER. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G05": {
+  "cuts": [
+   "S03-05",
+   "S03-06"
+  ],
+  "durs": [
+   1.12,
+   2.36
+  ],
+  "frames": [
+   "G05.png",
+   "G05_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 5,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 1.6 seconds): BALD and BEARD get stuck side by side in the narrow doorway, look at each other, then both burst out laughing. Shot 2 (about 2.8 seconds): wide shot slowly pulling back: the whole team of nine crammed into the small cozy blue room around one wooden table, laughing together, boxes everywhere, warm daylight. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G06": {
+  "cuts": [
+   "S04-01"
+  ],
+  "durs": [
+   4.32
+  ],
+  "frames": [
+   "G06.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 6,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. Single continuous shot, no cuts. Keep every character's face, hairstyle, glasses, outfit and the location exactly as in the first frame. Camera starts outside the rain-streaked window at night and slowly pushes through the glass into the room: desk lamps, stacks of paper, coffee mugs; GLASSES rubs his tired eyes under his glasses, BLONDE keeps working. Quiet late-night mood, blue-and-amber light. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G07": {
+  "cuts": [
+   "S04-02",
+   "S04-03",
+   "S04-04",
+   "S04-05"
+  ],
+  "durs": [
+   1.64,
+   1.35,
+   1.63,
+   1.58
+  ],
+  "frames": [
+   "G07.png",
+   "G07_plan2.png",
+   "G07_k_hands.png",
+   "G07_last.png"
+  ],
+  "generate": [
+   "G07_k_hands.png"
+  ],
+  "model": "kling-video-v4_0",
+  "duration": 9,
+  "est_cost": 90,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 4 shots with hard cuts, in the order of the reference frames. Shot 1 (about 2.1 seconds): VEST and SPEAKER argue in front of the whiteboard with big passionate hand gestures (no talking, mouths closed, expressive faces). Shot 2 (about 1.8 seconds): BLONDE (a woman with long straight blonde hair, blue eyes, calm smile, fitted dark chocolate-brown long-sleeve top, thin long silver necklace) crumples a sheet of paper and tosses it over her shoulder; SMILE (a cheerful man with short blond-brown hair, round face and a big toothy grin, brown blazer over a black t-shirt) catches it, unfolds it, they look at each other and laugh. Shot 3 (about 2.1 seconds): top-down close-up of the wooden table: hands in different sleeves (cream tweed with black trim, navy suit, brown blazer, black blazer, white shirt) stack one on top of another. Shot 4 (about 2.0 seconds): dawn light bursts through the window, the tired team cheers, high-fives and hugs. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G08": {
+  "cuts": [
+   "S05-01",
+   "S05-02"
+  ],
+  "durs": [
+   1.89,
+   2.4
+  ],
+  "frames": [
+   "G08.png",
+   "G08_plan2_start.png",
+   "G08_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v4_0",
+  "duration": 6,
+  "est_cost": 90,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 2.3 seconds): the overstuffed little blue house wobbles, a window pops open and a stack of papers flutters out, the roof lifts a little and settles back. Playful. Shot 2 (about 2.9 seconds): wide tracking shot: the team walks up a path carrying cardboard boxes and potted plants toward a large modern two-storey house painted deep red, big warm-lit windows, dark walnut wood details and black metal frames; BOSS (a woman in her 40s with dark hair in a sleek low bun, warm brown eyes, gentle smile, cream tweed jacket with black piping, a big black bow on the chest and black round buttons) walks first, reaches the big doors and swings them open, warm golden light pours out onto everyone. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G09": {
+  "cuts": [
+   "S05-03",
+   "S06-01"
+  ],
+  "durs": [
+   2.75,
+   2.76
+  ],
+  "frames": [
+   "G09.png",
+   "G09_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 7,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 3.2 seconds): crane shot rising up and back, revealing the huge bright interior of the red house, people unpacking boxes, someone climbs a ladder to hang a pendant lamp, plants placed, sunlight. Shot 2 (about 3.2 seconds): LOCKED-OFF static camera, close-up of a tear-off wall calendar hanging on a walnut wall: a large completely blank cream page, nothing printed on it. Only soft light shifts slightly; the calendar itself does not move. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G10": {
+  "status": "done"
+ },
+ "G11": {
+  "cuts": [
+   "S06-07",
+   "S06-08"
+  ],
+  "durs": [
+   4.73,
+   2.09
+  ],
+  "frames": [
+   "G11.png",
+   "G11_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 9,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 5.2 seconds): slow lateral dolly along the shelf of trophies and the monitor with rising bar charts, then a smooth rack focus to the background where the team shares a warm laugh over coffee; the trophies blur away. Shot 2 (about 2.5 seconds): SPEAKER (a man with short dark hair and a receding hairline, rectangular black glasses, stubble, navy suit, white shirt) trips on a step while carrying a tall stack of folders; BEARD (a man with light-brown hair with a soft forward fringe, blue-grey eyes, full short brown beard, navy suit jacket, white open shirt, chunky silver watch) and BLONDE (a woman with long straight blonde hair, blue eyes, calm smile, fitted dark chocolate-brown long-sleeve top, thin long silver necklace) instantly reach out their hands and catch him and the folders; relieved smiles. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G12": {
+  "cuts": [
+   "S06-09",
+   "S06-10",
+   "S06-11"
+  ],
+  "durs": [
+   2.42,
+   1.86,
+   1.42
+  ],
+  "frames": [
+   "G12.png",
+   "G12_k_round_alone.png",
+   "G12_last.png"
+  ],
+  "generate": [
+   "G12_k_round_alone.png"
+  ],
+  "model": "kling-video-v4_0",
+  "duration": 8,
+  "est_cost": 90,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 3 shots with hard cuts, in the order of the reference frames. Shot 1 (about 2.9 seconds): SMILE pops the striped party hat onto BALD's head; BALD sees himself in a glass partition reflection and bursts out laughing at himself, SMILE laughs too. Shot 2 (about 2.3 seconds): evening, warm desk lamp: ROUND (a man with short dark textured hair, round thin metal-frame glasses, thick dark beard with grey streaks, black blazer with grey lapel trim, white t-shirt) sits alone at his desk, head in his hands, exhausted; in the background doorway VEST (a man with short dark side-parted hair, strong eyebrows, short beard, intense serious gaze, dark brown waistcoat over a white shirt) stops and notices him. Shot 3 (about 1.9 seconds): VEST sits down next to ROUND and puts a hand on his shoulder; GLASSES (a man with voluminous swept-back brown hair, rectangular dark-framed glasses, light stubble and a short goatee, black suit jacket, white open-collar shirt) arrives with two steaming mugs of tea; ROUND looks up and smiles. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G13": {
+  "cuts": [
+   "S06-12"
+  ],
+  "durs": [
+   3.45
+  ],
+  "frames": [
+   "G13.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 5,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. Single continuous shot, no cuts. Keep every character's face, hairstyle, glasses, outfit and the location exactly as in the first frame. Slow dolly along the long table as everyone sits down, passes plates and bread to each other, someone pours tea, friendly laughter, warm pendant light, cozy evening mood. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G14": {
+  "cuts": [
+   "S07-01",
+   "S07-02"
+  ],
+  "durs": [
+   4.64,
+   1.96
+  ],
+  "frames": [
+   "G14.png",
+   "G14_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 8,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 5.1 seconds): slow push-in as BOSS walks confidently toward camera through the red house; team members at their desks look up and turn toward her with smiles; warm backlight, gentle lens flare. Shot 2 (about 2.4 seconds): low-angle shot circling around BOSS as the whole team gathers around her in a circle, everyone looking at her, inspired. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G15": {
+  "cuts": [
+   "S07-03",
+   "S07-04"
+  ],
+  "durs": [
+   1.93,
+   2.74
+  ],
+  "frames": [
+   "G15.png",
+   "G15_k_speaker_confident.png"
+  ],
+  "generate": [
+   "G15_k_speaker_confident.png"
+  ],
+  "model": "kling-video-v3_0",
+  "duration": 6,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 2.4 seconds): BOSS hands the big rolled blueprint with a red ribbon to SPEAKER; he takes it carefully, surprised by its weight. Shot 2 (about 3.2 seconds): close-up of SPEAKER: doubt in his eyes, he glances at BOSS (over-the-shoulder, BOSS out of focus) — she gives a calm reassuring nod — his face changes, he smiles, straightens his shoulders and grips the blueprint with confidence. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G16": {
+  "cuts": [
+   "S07-05",
+   "S07-06"
+  ],
+  "durs": [
+   2.64,
+   2.71
+  ],
+  "frames": [
+   "G16.png",
+   "G16_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 7,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 3.1 seconds): BOSS guides BEARD to the sunlit desk by the window; he sits down, looks around, it fits him perfectly, he smiles; sunlight warms the frame. Shot 2 (about 3.2 seconds): over-the-shoulder: BOSS leans behind ROUND (a man with short dark textured hair, round thin metal-frame glasses, thick dark beard with grey streaks, black blazer with grey lapel trim, white t-shirt) looking at his drawing tablet full of bright abstract colorful shapes (no text); she nods proudly, he turns and smiles back. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G17": {
+  "cuts": [
+   "S07-07",
+   "S07-08"
+  ],
+  "durs": [
+   2.53,
+   2.65
+  ],
+  "frames": [
+   "G17.png",
+   "G17_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 7,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 3.0 seconds): time-lapse-like magical growth: the tiny sprout grows into a small blooming tree with little white flowers, leaves unfurling, warm light. Shot 2 (about 3.1 seconds): slow lateral dolly across the faces of the team members standing side by side, all looking slightly off-camera toward someone they love and respect, warm grateful smiles. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G18": {
+  "cuts": [
+   "S07-09",
+   "S07-10"
+  ],
+  "durs": [
+   2.83,
+   2.12
+  ],
+  "frames": [
+   "G18.png",
+   "G18_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 7,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 3.3 seconds): close-up of BOSS, deeply touched, her eyes glisten, she places her hand on her heart and smiles warmly. Shot 2 (about 2.6 seconds): night exterior: a large modern two-storey house painted deep red, big warm-lit windows, dark walnut wood details and black metal frames with all windows glowing; camera slowly tilts up from the roof to the starry sky where one bright star twinkles and gently flares. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G19": {
+  "cuts": [
+   "S08-01",
+   "S08-02"
+  ],
+  "durs": [
+   2.24,
+   2.51
+  ],
+  "frames": [
+   "G19.png",
+   "G19_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 6,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 2.7 seconds): SMILE turns to look directly into the camera, breaks the fourth wall, shrugs with a mischievous grin and raised eyebrows; BALD next to him nods along. Shot 2 (about 3.0 seconds): magical transformation of an office desk: papers fly up and turn into colorful confetti, the lines of a bar chart on the monitor stretch out of the screen and become glowing string-light garlands across the room, balloons pop into existence. Joyful. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G20": {
+  "cuts": [
+   "S08-03",
+   "S08-04"
+  ],
+  "durs": [
+   3.1,
+   3.21
+  ],
+  "frames": [
+   "G20.png",
+   "G20_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 8,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 3.6 seconds): GLASSES and his child self standing side by side push their glasses up their noses at exactly the same moment, notice each other and grin. Shot 2 (about 3.7 seconds): the children versions of the team (kids with the same hairstyles, glasses and outfit colors as the adults) run laughing through the festively decorated red house holding balloons; tracking shot at kid height. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G21": {
+  "cuts": [
+   "S08-05",
+   "S08-06"
+  ],
+  "durs": [
+   2.95,
+   3.14
+  ],
+  "frames": [
+   "G21.png",
+   "G21_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 8,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 3.4 seconds): slow circular camera move around the circle of adults and kids holding hands, BOSS in the center laughing, string lights twinkling. Shot 2 (about 3.6 seconds): warm nostalgic cozy home with vintage furniture and soft golden lamp light: a 6-year-old girl with dark hair, brown eyes and a big black bow in her hair runs toward two adults (seen only from the waist down, faces out of frame) who lift her up into a hug. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G22": {
+  "cuts": [
+   "S08-07",
+   "S08-08"
+  ],
+  "durs": [
+   0.77,
+   4.57
+  ],
+  "frames": [
+   "G22.png",
+   "G22_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 7,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 1.2 seconds): close-up of the little girl smiling. Shot 2 (about 5.0 seconds): the same smile on adult BOSS (a woman in her 40s with dark hair in a sleek low bun, warm brown eyes, gentle smile, cream tweed jacket with black piping, a big black bow on the chest and black round buttons); camera pulls back as she and the team spread a large white tablecloth with a red ornamental folk pattern over the long table; team members bring a big homemade pie and teapots. Warm, traditional, family feeling. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G23": {
+  "cuts": [
+   "S08-09"
+  ],
+  "durs": [
+   4.08
+  ],
+  "frames": [
+   "G23.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 5,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. Single continuous shot, no cuts. Keep every character's face, hairstyle, glasses, outfit and the location exactly as in the first frame. The team gently gathers into a group hug around BOSS, she laughs softly with happy tears; slow push-in; warm pendant light, soft bokeh of string lights. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G24": {
+  "cuts": [
+   "S09-01",
+   "S09-02"
+  ],
+  "durs": [
+   3.85,
+   2.1
+  ],
+  "frames": [
+   "G24.png",
+   "G24_last.png"
+  ],
+  "generate": [],
+  "model": "kling-video-v3_0",
+  "duration": 8,
+  "est_cost": 48,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 2 shots with hard cuts, in the order of the reference frames. Shot 1 (about 4.3 seconds): dusk, gentle snowfall; the windows of the red house light up warm one after another until the whole house glows. Shot 2 (about 2.6 seconds): inside, the festive long table full of people; SMILE (a cheerful man with short blond-brown hair, round face and a big toothy grin, brown blazer over a black t-shirt) and BLONDE (a woman with long straight blonde hair, blue eyes, calm smile, fitted dark chocolate-brown long-sleeve top, thin long silver necklace) carry in a big birthday cake with plain candles (no numbers), everyone cheers. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ },
+ "G25": {
+  "cuts": [
+   "S09-03",
+   "S09-04",
+   "S09-05"
+  ],
+  "durs": [
+   1.52,
+   1.54,
+   2.96
+  ],
+  "frames": [
+   "G25.png",
+   "G25_k_candles.png",
+   "G25_last.png"
+  ],
+  "generate": [
+   "G25_k_candles.png"
+  ],
+  "model": "kling-video-v4_0",
+  "duration": 8,
+  "est_cost": 90,
+  "prompt": "Pixar-style 3D animated film. The same characters and locations as in the reference frames: keep every face, hairstyle, glasses, beard, outfit and the 3D Pixar look identical in every shot. 3 shots with hard cuts, in the order of the reference frames. Shot 1 (about 2.0 seconds): close-up of the little blue house model on the shelf; slow rack focus to the celebrating team behind it. Shot 2 (about 2.0 seconds): close-up of BOSS (a woman in her 40s with dark hair in a sleek low bun, warm brown eyes, gentle smile, cream tweed jacket with black piping, a big black bow on the chest and black round buttons) blowing out the birthday candles, team faces leaning in around her, smiling. Shot 3 (about 3.4 seconds): wide: a burst of confetti, everyone throws their arms up and cheers, a bright camera flash at 7.5s. Style: Pixar-style 3D animated feature film, cinematic camera work, weighted natural character acting, subtle secondary motion in hair and fabric, film look, 16:9. Characters never talk: mouths stay closed except for smiles and laughter. No text, letters, numbers or logos ever appear on screen. Audio: soft ambience only, no music, no voices. Characters never speak: mouths closed except smiles and laughter. No text, letters or logos."
+ }
+}
