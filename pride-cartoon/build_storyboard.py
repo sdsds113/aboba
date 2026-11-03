@@ -239,6 +239,21 @@ PLATES = [
 
 for i,g in enumerate(G): g["id"]=f"G{i+1:02d}"
 
+# ---- перевод таймингов v1 -> финальная озвучка (паузы подрезаны, голос ускорен) ----
+WA=json.load(open(f"{D}/audio/timewarp.json"))["anchors"]
+TOTAL=json.load(open(f"{D}/audio/offsets.json"))["total"]
+def warp(t):
+    for (x0,y0),(x1,y1) in zip(WA,WA[1:]):
+        if x0<=t<=x1: return round(y0 if x1==x0 else y0+(t-x0)*(y1-y0)/(x1-x0),2)
+    return round(WA[-1][1],2)
+for g in G:
+    nc=[]
+    for (sid,a_,b_,cin,vo,desc,ov) in g["cuts"]:
+        if ov and "in" in ov: ov=dict(ov,**{"in":warp(ov["in"]),"out":warp(ov["out"])})
+        nc.append((sid,warp(a_),warp(b_),cin,vo,desc,ov))
+    g["cuts"]=nc
+for r in REMOTION_ONLY: r["tl_in"],r["tl_out"]=warp(r["tl_in"]),warp(r["tl_out"])
+
 def fmt(t): return f"{int(t//60)}:{t%60:05.2f}"
 
 # ---------- timeline.json ----------
@@ -254,14 +269,14 @@ for x,y in zip(shots,shots[1:]):
 for g in G:
     for (sid,a,b,cin,*_) in g["cuts"]: assert cin+(b-a)<=8.0+1e-6, (sid, cin+(b-a))
 offsets=json.load(open(f"{D}/audio/offsets.json"))
-json.dump(dict(fps=24,width=1920,height=1080,duration=163.0,voiceover="audio/voiceover_full.mp3",vo_offsets=offsets,shots=shots),
+json.dump(dict(fps=24,width=1920,height=1080,duration=TOTAL,voiceover="audio/voiceover_full.mp3",vo_offsets=offsets,shots=shots),
           open(f"{D}/timeline.json","w"),ensure_ascii=False,indent=1)
 
 # ---------- storyboard.md ----------
 L=[]
 w=L.append
 w("# Раскадровка и промпты для Google Flow\n")
-w(f"Ролик 16:9, **2:43** (163 с). Озвучка: `audio/voiceover_full.mp3`. Генераций во Flow: **{len(G)}**. Планов на монтаже: **{len(shots)}** (из них {len(REMOTION_ONLY)} собирает Remotion).\n")
+w(f"Ролик 16:9, **{fmt(TOTAL)[:4]}** ({TOTAL:.0f} с). Озвучка: `audio/voiceover_full.mp3`. Генераций во Flow: **{len(G)}**. Планов на монтаже: **{len(shots)}** (из них {len(REMOTION_ONLY)} собирает Remotion).\n")
 w("## Как работать\n")
 w("1. **Сначала плейты-референсы** (раздел «Подготовка»): 4 локации и лист детских версий. Генерируйте во Flow как изображения (Nano Banana) и сохраняйте: дальше они идут как ингредиенты.")
 w(f"2. **Для каждой генерации G01–G{len(G):02d}:**")
