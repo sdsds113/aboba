@@ -1,0 +1,67 @@
+{
+ "canvas": [
+  1920,
+  1080
+ ],
+ "wall": "assets/P01_photo_wall.png",
+ "frame": "assets/processed/E03_photo_frame.png",
+ "frame_png_size": [
+  1536,
+  1024
+ ],
+ "frame_hole_px": [
+  365,
+  312,
+  1160,
+  779
+ ],
+ "plaque": "assets/E04_year_plaque.png",
+ "note": "slot = где рисовать ВЕСЬ PNG рамки (left, top, width; height = width*1024/1536). Отверстие = slot + frame_hole_px*k, k = width/1536. Фото вставлять ПОД рамку с objectFit cover.",
+ "slots": [
+  {
+   "id": 1,
+   "left": 110,
+   "top": 70,
+   "width": 560,
+   "photo_from": "S02-02",
+   "label": "2014",
+   "plaque_offset_y": 8
+  },
+  {
+   "id": 2,
+   "left": 680,
+   "top": 70,
+   "width": 560,
+   "photo_from": "S03-06",
+   "label": "2019",
+   "plaque_offset_y": 8
+  },
+  {
+   "id": 3,
+   "left": 1250,
+   "top": 70,
+   "width": 560,
+   "photo_from": "S05-02",
+   "label": "2024",
+   "plaque_offset_y": 8
+  },
+  {
+   "id": 4,
+   "left": 70,
+   "top": 560,
+   "width": 520,
+   "photo_from": "S06-03",
+   "label": "2026",
+   "appears": "S06-02, середина плана, опускается сверху с покачиванием"
+  },
+  {
+   "id": 5,
+   "left": 1330,
+   "top": 560,
+   "width": 520,
+   "photo_from": "S09-05 (последний кадр)",
+   "label": "сегодня",
+   "appears": "S09-06, стоп-кадр улетает в этот слот"
+  }
+ ]
+}
