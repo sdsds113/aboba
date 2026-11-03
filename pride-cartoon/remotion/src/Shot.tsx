@@ -23,7 +23,7 @@ export const Placeholder: React.FC<{ shot: Shot }> = ({ shot }) => {
       }}
     >
       <div style={{ fontSize: 34, fontWeight: 800, letterSpacing: 3, color: "rgba(255,255,255,0.45)" }}>
-        {shot.gen ?? "REMOTION"} · {shot.id}
+        {shot.id}
       </div>
       <div style={{ fontSize: 44, fontWeight: 700, lineHeight: 1.25, maxWidth: 1400 }}>{shot.desc}</div>
     </AbsoluteFill>
