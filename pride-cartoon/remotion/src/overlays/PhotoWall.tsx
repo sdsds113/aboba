@@ -177,7 +177,7 @@ export const FinalWall: React.FC<{ length: number }> = ({ length }) => {
             border: `${8 * p}px solid ${theme.colorCream}`,
           }}
         >
-          <ShotStill shot={fin} at={1} />
+          <ShotStill shot={fin} at={0.95} />
         </div>
       ) : null}
 
