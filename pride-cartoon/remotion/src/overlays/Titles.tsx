@@ -134,17 +134,18 @@ export const PunchWord: React.FC<{ text: string }> = ({ text }) => {
   return (
     <AbsoluteFill
       style={{
-        justifyContent: "center",
+        justifyContent: "flex-end",
         alignItems: "center",
-        background: "radial-gradient(ellipse at 50% 55%, rgba(0,0,0,0.42), rgba(0,0,0,0) 60%)",
+        paddingBottom: 70,
+        background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 38%)",
       }}
     >
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
-          gap: 4,
+          gap: 28,
           scale,
           translate: `${shake}px 0px`,
           opacity: interpolate(frame, [0, 2], [0, 1], clamp),
@@ -152,7 +153,7 @@ export const PunchWord: React.FC<{ text: string }> = ({ text }) => {
       >
         <Img
           src={asset(EMBLEM[text] ?? "E07_emblem_family.png")}
-          style={{ height: 340, filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.45))" }}
+          style={{ height: 230, filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.45))" }}
         />
         <div
           style={{

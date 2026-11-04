@@ -102,7 +102,9 @@ export const GuidingStar: React.FC<{ length: number }> = ({ length }) => {
       style={{
         position: "absolute",
         left: STAR.x - STAR.size / 2,
-        top: STAR.y - STAR.size / 2,
+        top:
+          interpolate(frame / fps, STAR.track.map((p) => p[0]), STAR.track.map((p) => p[1]), clamp) -
+          STAR.size / 2,
         width: STAR.size,
         height: STAR.size,
         mixBlendMode: "screen",

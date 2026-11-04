@@ -28,8 +28,13 @@ export const END_CARD = { title: "С днём рождения!", subtitle: "Т�
 /** Календарь S06-01: годы до/после */
 export const CALENDAR = { from: "2025", to: "2026", tearAt: 0.45 };
 
-/** Звезда S07-10: центр (px) и размер */
-export const STAR = { x: 960, y: 250, size: 300, appearAt: 0.35 };
+/** Звезда S07-10: следует за звездой в клипе G18 (камера наклоняется). track: [сек от начала плана, y px] */
+export const STAR = {
+  x: 1252,
+  track: [[0, 64], [0.6, 96], [1.2, 121], [1.8, 136], [2.2, 140]] as [number, number][],
+  size: 240,
+  appearAt: 0.2,
+};
 
 /** Гирлянда: на каких планах висит */
 export const STRING_LIGHTS_SHOTS = [

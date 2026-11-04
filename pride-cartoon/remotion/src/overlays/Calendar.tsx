@@ -34,7 +34,7 @@ const Year: React.FC<{ text: string; k: number; local?: boolean }> = ({ text, k,
 /** S06-01: отрывной календарь поверх размытого плана. «2025» отрывается, под ним «2026» */
 export const Calendar: React.FC<{ length: number }> = ({ length }) => {
   const frame = useCurrentFrame();
-  const size = 756;
+  const size = 1080; // перекрывает календарь из клипа G09 целиком
   const k = size / SRC;
   const tear = Math.round(length * CALENDAR.tearAt);
   const fly = interpolate(frame, [tear, tear + 16], [0, 1], { ...clamp, easing: Easing.in(Easing.quad) });
