@@ -41,8 +41,9 @@ export const STRING_LIGHTS_SHOTS = [
   "S08-02", "S08-03", "S08-04", "S08-05", "S08-08", "S08-09", "S09-02", "S09-03", "S09-04", "S09-05",
 ];
 
-/** Звуковые эффекты (22 шт.): выключены по просьбе заказчика — перебивали голос */
-export const SFX_ENABLED = false;
+/** Звуковые эффекты: включены; групповой смех убран по просьбе заказчика */
+export const SFX_ENABLED = true;
+export const SFX_EXCLUDE: string[] = ["group_laugh"];
 
 /** Единый «кинолук» поверх клипов */
 export const LOOK = {
