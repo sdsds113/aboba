@@ -3,6 +3,7 @@ import React from "react";
 import { interpolate, Sequence, staticFile } from "remotion";
 import cues from "./data/sfx_cues.json";
 import mix from "./data/mix.json";
+import { SFX_ENABLED } from "./config";
 import { f, FPS, TOTAL_FRAMES, VOICE_INTERVALS } from "./timeline";
 
 /** громкость музыки: тише под голосом, плавные переходы, затухание в конце */
@@ -31,7 +32,7 @@ export const Sound: React.FC = () => {
     <>
       <Audio src={staticFile("audio/voiceover_full.mp3")} volume={mix.vo_gain} name="Голос диктора" />
       <Audio src={staticFile("audio/music.mp3")} volume={musicVolume} name="Музыка" />
-      {cues.map((c, i) => (
+      {SFX_ENABLED && cues.map((c, i) => (
         <Sequence key={i} from={f(c.t)} name={`SFX ${c.sfx}`} layout="none">
           <Audio src={staticFile(`audio/sfx/${c.sfx}.mp3`)} volume={c.vol} />
         </Sequence>

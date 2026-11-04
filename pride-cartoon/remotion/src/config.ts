@@ -1,7 +1,7 @@
 // Всё, что может понадобиться подкрутить руками, — здесь.
 
 /** Ручная правка точки входа в клип Flow (сек), если нужный момент в клипе оказался не там: { "S03-02": 0.6 } */
-export const CLIP_IN_OVERRIDES: Record<string, number> = {};
+export const CLIP_IN_OVERRIDES: Record<string, number> = { "S04-05": 5.45 };
 
 /** Имена и роли для плашек. Заглушки — заменить на реальные. */
 export const PEOPLE: Record<string, { name: string; role: string }> = {
@@ -20,7 +20,7 @@ export const PEOPLE: Record<string, { name: string; role: string }> = {
 export const LOWER_THIRDS: Record<string, string[]> = {};
 
 /** Название в начале (S01-01). null — не показывать */
-export const OPENING_TITLE: string | null = "Наш дом";
+export const OPENING_TITLE: string | null = null;
 
 /** Финальная плашка */
 export const END_CARD = { title: "С днём рождения!", subtitle: "Твоя команда" };
@@ -40,6 +40,9 @@ export const STAR = {
 export const STRING_LIGHTS_SHOTS = [
   "S08-02", "S08-03", "S08-04", "S08-05", "S08-08", "S08-09", "S09-02", "S09-03", "S09-04", "S09-05",
 ];
+
+/** Звуковые эффекты (22 шт.): выключены по просьбе заказчика — перебивали голос */
+export const SFX_ENABLED = false;
 
 /** Единый «кинолук» поверх клипов */
 export const LOOK = {

@@ -37,13 +37,13 @@ copyDir(path.join(root, "assets"), path.join(pub, "assets"), (f) => f.endsWith("
 copyDir(path.join(root, "assets/processed"), path.join(pub, "assets/processed"), (f) => f.endsWith(".png"));
 
 // клипы: ../clips/S01-01.mp4 … S09-05.mp4 (один файл на план)
-const clips = copyDir(path.join(root, "clips"), path.join(pub, "clips"), (f) => /^(S\d\d-\d\d|G\d\d)\.mp4$/i.test(f));
+const clips = copyDir(path.join(root, "clips"), path.join(pub, "clips"), (f) => /^(S\d\d-\d\d|G\d\d[a-z]?)\.mp4$/i.test(f));
 
 // данные
 for (const f of ["timeline.json", "photo_wall_layout.json"]) copy(path.join(root, f), path.join(data, f));
 for (const f of ["offsets.json", "sfx_cues.json", "mix.json"]) copy(path.join(root, "audio", f), path.join(data, f));
 fs.writeFileSync(
   path.join(data, "available.json"),
-  JSON.stringify({ clips: clips.map((c) => c.replace(/\.mp4$/i, "").toUpperCase()).sort() }, null, 1),
+  JSON.stringify({ clips: clips.map((c) => c.replace(/\.mp4$/i, "")).sort() }, null, 1),
 );
 console.log(`sync: ${clips.length} клипов найдено`, clips.join(", "));
