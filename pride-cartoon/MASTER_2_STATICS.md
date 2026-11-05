@@ -12,7 +12,7 @@
 |---|---|---|
 | **2000-е, Секвойя** (коллекторское агентство) | синий домик, начало: «Нас было совсем немного» | Нино + Маша |
 | **Восточный** (региональный банк) | синий домик: «в доме стали появляться новые люди», трудности, бессонные ночи | + Лёша, Витя, Антон, Миша |
-| **2019, Альфа** | переезд в красный дом | + Серёжа (школьный друг Нино, встречает её в новом доме) |
+| **2019, Альфа** | переезд в красный дом | + Серёжа (школьный друг Нино) и Кудряшов (знакомый ещё по Восточному, но в команду пришёл в Альфе): оба встречают её в новом доме |
 | **2021** | красный дом | + Таня |
 | **2026** | календарь 2025 → 2026: «Наша семья — тоже» | + Женя (самый новый, ниже и плотнее) |
 
@@ -105,9 +105,9 @@ Dawn light bursts through the small white-framed windows of the cozy sky-blue wo
 Wide tracking shot on a sunny day: exactly SIX people walk up a path carrying cardboard boxes and potted plants toward the large modern two-storey deep red house from the location reference (big warm-lit windows, dark walnut wood details, black metal frames). NINO (cream tweed jacket, black bow, dark low bun) walks first; behind her MASHA, LESHA, VITYA, ANTON and MISHA, each exactly as in their references. Excited, hopeful mood. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
 ```
 
-**G08_last_v2** (Нино открывает двери, внутри встречает Серёжа, школьный друг). Рефы: NINO, SERGEY, L03/L04.
+**G08_last_v2** (Нино открывает двери, внутри её встречают Серёжа, школьный друг, и Кудряшов, знакомый по Восточному). Рефы: NINO, SERGEY, KUDRYASHOV, L03/L04.
 ```
-Medium shot at the big open doors of the large deep red house, warm golden light pouring out. NINO (the birthday woman: dark hair in a sleek low bun, cream tweed jacket with black piping, big black bow) has just swung the doors open; inside, SERGEY (short dark hair with a receding hairline, rectangular black glasses, stubble, navy suit, white shirt) greets her with open arms and a big warm smile like an old school friend; she laughs and steps toward the hug. Behind them the spacious walnut-and-red interior. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+Medium shot at the big open doors of the large deep red house, warm golden light pouring out. NINO (the birthday woman: dark hair in a sleek low bun, cream tweed jacket with black piping, big black bow) has just swung the doors open; inside, SERGEY (short dark hair with a receding hairline, rectangular black glasses, stubble, navy suit, white shirt) greets her with open arms and a big warm smile like an old school friend; next to him KUDRYASHOV (bald, light blue eyes, clean-shaven round face, black suit, white shirt, red pocket square) waves hello with a familiar friendly grin, like an old acquaintance finally joining; she laughs and steps toward the hug. Behind them the spacious walnut-and-red interior. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
 ```
 
 ### Красный дом, 2026, вся команда (10 человек)
@@ -236,6 +236,5 @@ Wide shot, medium distance so every face is large and recognizable: a burst of c
 
 ## 6. Уточнить у Антона
 
-- **Кудряшов:** когда он пришёл в команду? Сейчас он только в красном доме (колпак, «почему мультик»). Если он был ещё в Восточном, добавлю его в G05_last и G07_last.
 - **Год перехода в Восточный:** нужен для таблички и стены с фото. Если не важен, оставлю «Восточный» без года.
 - **Можно ли писать названия** «Секвойя / Восточный / Альфа» на табличках? Сейчас там только годы.
