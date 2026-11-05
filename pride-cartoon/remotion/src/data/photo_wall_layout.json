@@ -24,7 +24,7 @@
    "top": 70,
    "width": 560,
    "photo_from": "S02-02",
-   "label": "2014",
+   "label": "Секвойя",
    "plaque_offset_y": 8
   },
   {
@@ -33,7 +33,7 @@
    "top": 70,
    "width": 560,
    "photo_from": "S03-06",
-   "label": "2019",
+   "label": "2012",
    "plaque_offset_y": 8
   },
   {
@@ -41,8 +41,8 @@
    "left": 1250,
    "top": 70,
    "width": 560,
-   "photo_from": "S05-02",
-   "label": "2024",
+   "photo_from": "S05-03",
+   "label": "2019",
    "plaque_offset_y": 8
   },
   {
@@ -50,8 +50,8 @@
    "left": 70,
    "top": 560,
    "width": 520,
-   "photo_from": "S06-03",
-   "label": "2026",
+   "photo_from": "S07-05",
+   "label": "2021",
    "appears": "S06-02, середина плана, опускается сверху с покачиванием"
   },
   {

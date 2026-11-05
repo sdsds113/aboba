@@ -34,7 +34,7 @@ const ShotLayer: React.FC<{ shot: Shot }> = ({ shot }) => {
           <OpeningTitle text={OPENING_TITLE} length={f((o.out ?? 1) - (o.in ?? 0))} />
         </Sequence>
       ) : null}
-      {o?.type === "year" && o.text ? <YearSign year={o.text} length={len} /> : null}
+      {o?.type === "year" && o.text ? <YearSign year={o.text} sub={o.sub} length={len} /> : null}
       {o?.type === "calendar" ? <Calendar length={len} /> : null}
       {o?.type === "punch_word" && o.text ? <PunchWord text={o.text} /> : null}
       {o?.type === "big_title" && o.text ? <BigTitle text={o.text} /> : null}

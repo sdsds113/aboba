@@ -13,6 +13,7 @@ export const f = (sec: number) => Math.round(sec * FPS);
 export type Overlay = {
   type: string;
   text?: string;
+  sub?: string;
   note?: string;
   in?: number;
   out?: number;

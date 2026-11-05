@@ -28,7 +28,7 @@ export const OpeningTitle: React.FC<{ text: string; length: number }> = ({ text,
 };
 
 /** Деревянная табличка E05 с годом, спускается на верёвках в левый верхний угол */
-export const YearSign: React.FC<{ year: string; length: number }> = ({ year, length }) => {
+export const YearSign: React.FC<{ year: string; sub?: string; length: number }> = ({ year, sub, length }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const drop = spring({ frame, fps, config: { damping: 14, stiffness: 120 } });
@@ -60,13 +60,14 @@ export const YearSign: React.FC<{ year: string; length: number }> = ({ year, len
           textAlign: "center",
           fontFamily: theme.fontDisplay,
           fontWeight: 900,
-          fontSize: 120,
+          fontSize: sub ? 96 : 120,
           lineHeight: 1,
           color: theme.colorCream,
           textShadow: "0 3px 0 rgba(60,25,10,0.65), 0 6px 14px rgba(0,0,0,0.45)",
         }}
       >
         {year}
+        {sub ? <div style={{ fontSize: 44, fontWeight: 800, marginTop: 4, letterSpacing: 1 }}>{sub}</div> : null}
       </div>
     </div>
   );
