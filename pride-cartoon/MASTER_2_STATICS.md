@@ -1,0 +1,241 @@
+# Мастер-файл 2. Новая статика: правильная хронология и новый состав
+
+Генерировать в ChatGPT (GPT-Image 2): 16:9, 2K, без текста. Имена файлов оставляйте как в заголовках: тогда я сразу оживлю их в Kling и пересоберу ролик без лишних вопросов.
+
+Сначала сделайте мастер-файл 1: нужны портреты Вити, Жени, Тани и лист `TEAM_LINEUP.png`.
+
+---
+
+## 1. Хронология (цепочка, которую мы рассказываем)
+
+| Эпоха | Где в мультике | Кто в кадре |
+|---|---|---|
+| **2000-е, Секвойя** (коллекторское агентство) | синий домик, начало: «Нас было совсем немного» | Нино + Маша |
+| **Восточный** (региональный банк) | синий домик: «в доме стали появляться новые люди», трудности, бессонные ночи | + Лёша, Витя, Антон, Миша |
+| **2019, Альфа** | переезд в красный дом | + Серёжа (школьный друг Нино, встречает её в новом доме) |
+| **2021** | красный дом | + Таня |
+| **2026** | календарь 2025 → 2026: «Наша семья — тоже» | + Женя (самый новый, ниже и плотнее) |
+
+**Главное правило:** Серёжи, Тани и Жени нет ни в одной сцене синего домика. В красном доме вся команда (10 человек).
+
+**Что поменяю на монтаже сам, без генераций:**
+- годы на табличках: S02-01 `2014` станет «2000-е», S05-02 `2024` станет `2019`;
+- стена с фотографиями (S06-02): рамки по эпохам «2000-е → Восточный → 2019 → 2021 → 2026»; в рамке 2026 будет кадр с Женей.
+
+## 2. Коды персонажей (вставлены в промпты)
+
+| Код | Описание в промптах |
+|---|---|
+| NINO | the birthday woman: 40s, dark hair in a sleek low bun, warm brown eyes, cream tweed jacket with black piping, big black bow on the chest |
+| MASHA | long straight blonde hair, blue eyes, fitted chocolate-brown top, thin long silver necklace |
+| LESHA | short dark side-parted hair, strong eyebrows, short beard, dark brown waistcoat over a white shirt |
+| VITYA | face, hair and outfit exactly as in his new reference portrait |
+| ANTON | short dark textured hair, round thin metal-frame glasses, thick dark beard with grey streaks, black blazer with grey lapel trim, white t-shirt |
+| MISHA | short blond-brown hair, round face, big toothy grin, brown blazer over a black t-shirt |
+| SERGEY | short dark hair with a receding hairline, rectangular black glasses, stubble, navy suit, white shirt |
+| KUDRYASHOV | bald, light blue eyes, clean-shaven round face, black suit, white shirt, red pocket square |
+| TANYA | shoulder-length wavy golden-blonde hair with a side part, hazel-brown eyes, black blazer over a white t-shirt |
+| ZHENYA | face exactly as in his new reference portrait; shorter and a bit stockier than the other men |
+
+**Референсы:**
+- **персонажи:** портреты из папки «Мультяшные для прайда»;
+- **групповые сцены:** `TEAM_LINEUP.png`;
+- **локации:** `L01_BLUE_EXT`, `L02_BLUE_INT`, `L03_RED_EXT`, `L04_RED_INT` (папка «Мультик для прайда — Изображения storyboard»).
+
+**Стиль.** Уже вписан в конец каждого промпта (строка `STYLE`). Если GPT начинает отходить от стиля, вставьте эту строку ещё раз отдельно:
+
+```
+STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+---
+
+## 3. Не перегенерировать (в кадре нет Вити и Жени, состав правильный)
+
+`G01`, `G02` (домик снаружи), `G03`, `G03_last`, `G04` (Лёша), `G04_k_round` (Антон), `G07_plan2` (Маша и Миша), `G08` (домик качается), `G09`, `G09_last`, `G12_start_v2`, `G12_k_round_alone`, `G16_last`, `G17` (росток), `G18`, `G18_last`, `G19`, `G19_last`, `G21_last`, `G22`, `G24`.
+
+## 4. Перегенерировать: 33 кадра
+
+### Синий домик, эпоха Секвойи и Восточного
+
+**G02_last_v2** (Нино и Маша, «Нас было совсем немного»). Рефы: NINO, MASHA, L02.
+```
+Interior of the small sky-blue wooden house exactly as in the location reference: one cozy room with three old wooden desks, a desk lamp, cardboard boxes, a cork board with blank paper sketches, warm morning light through small white-framed windows. NINO (the birthday woman: 40s, dark hair in a sleek low bun, warm brown eyes, cream tweed jacket with black piping, big black bow on the chest) pins a simple hand-drawn sketch of a little house (lines only, no words) onto the cork board and looks at it with a quiet confident smile. At the nearest desk MASHA (long straight blonde hair, blue eyes, fitted chocolate-brown top, thin long silver necklace) looks up from her papers and smiles at her. The other two desks are still empty. Humble, hopeful beginning, palette of sky blue, warm wood and cream. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G04_k_vitya** (Витя: «…и своей правдой»; заменяет Серёжу). Рефы: VITYA, L02.
+```
+Medium shot in the doorway of the small sky-blue wooden house, bright daylight behind, the cozy room with wooden desks and boxes as in the location reference. VITYA (face, hair and outfit exactly as in his reference portrait) walks in mid-gesture, passionately explaining an idea with expressive open hands, eyes bright and convinced, mouth closed in an eager half-smile. Pixar character-introduction framing, palette of sky blue, warm wood and cream. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G05_start_v3** («Такие разные…»: Витя и Миша застряли в двери, вид с улицы). Рефы: VITYA, MISHA, L01.
+```
+Medium shot from OUTSIDE the small sky-blue wooden house, camera on the porch looking at the open front door, exactly the house from the location reference (porch steps with a wooden railing, hydrangeas, white picket fence). Two men try to squeeze through the narrow doorway at the same time and are stuck shoulder to shoulder in the door frame: on the left VITYA (face, hair and outfit exactly as in his reference portrait), on the right MISHA (short blond-brown hair, round face, big toothy grin, brown blazer over a black t-shirt). They are wedged tightly, turning their heads to look at each other with comic surprise, mouths closed. Warm morning sunlight, soft rim light, palette of sky blue, warm wood and cream. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G05_last_v2** (команда Восточного за одним столом, 6 человек). Рефы: NINO, MASHA, LESHA, VITYA, ANTON, MISHA, L02.
+```
+Wide shot inside the small cozy sky-blue wooden house as in the location reference: exactly SIX people crammed around one old wooden table, boxes everywhere, warm daylight, all laughing together: NINO (the birthday woman: dark hair in a sleek low bun, cream tweed jacket with black piping, big black bow) in the center, MASHA (long straight blonde hair, chocolate-brown top, silver necklace), LESHA (short dark side-parted hair, short beard, dark brown waistcoat over a white shirt), VITYA (exactly as in his reference portrait), ANTON (round thin metal-frame glasses, thick dark beard with grey streaks, black blazer, white t-shirt), MISHA (short blond-brown hair, round face, big grin, brown blazer over a black t-shirt). Nobody else in the room. Every face clearly visible, nobody hidden behind anyone. Palette of sky blue, warm wood and cream. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G06_v2** (бессонные ночи: Витя и Маша). Рефы: VITYA, MASHA, L02.
+```
+Night, view through a rain-streaked small white-framed window into the cozy sky-blue wooden house: desk lamps, stacks of paper, coffee mugs. VITYA (exactly as in his reference portrait) rubs his tired eyes at his desk, MASHA (long straight blonde hair, chocolate-brown top, silver necklace) keeps working, focused, a pencil in her hand. Quiet late-night mood, blue-and-amber light, raindrops on the glass in the foreground. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G07_v2** (спорят Лёша и Витя). Рефы: LESHA, VITYA, L02.
+```
+Medium shot inside the cozy sky-blue wooden house, in front of a whiteboard covered with abstract arrows and boxes (no words, no numbers). LESHA (short dark side-parted hair, strong eyebrows, short beard, dark brown waistcoat over a white shirt) and VITYA (exactly as in his reference portrait) argue passionately with big hand gestures, expressive faces, mouths closed, leaning toward each other; evening lamp light. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G07_k_hands_v2** (руки команды Восточного одна на другой). Рефы: VITYA (для рукава), L02.
+```
+Top-down close-up of an old wooden table in a cozy room: six hands stacked one on top of another in the middle, each in a different sleeve: cream tweed with black trim, chocolate-brown fitted sleeve with a thin silver bracelet, white shirt sleeve under a dark brown waistcoat edge, black blazer sleeve with grey trim, brown blazer sleeve, and the sleeve of VITYA's outfit from his reference portrait. Papers and coffee mugs around, warm dawn light. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, subsurface-scattering skin, detailed fabric, cinematic 16:9, shallow depth of field, filmic color grading, soft volumetric light. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G07_last_v2** (рассвет, справились: 6 человек). Рефы: NINO, MASHA, LESHA, VITYA, ANTON, MISHA, L02.
+```
+Dawn light bursts through the small white-framed windows of the cozy sky-blue wooden house; the tired but happy team of exactly SIX cheers, high-fives and hugs: NINO (cream tweed jacket, black bow, dark low bun), MASHA (long straight blonde hair, chocolate-brown top), LESHA (dark brown waistcoat, short beard), VITYA (exactly as in his reference portrait), ANTON (round glasses, thick grey-streaked beard, black blazer), MISHA (round face, big grin, brown blazer). Crumpled papers, empty mugs, golden morning rays. Every face clearly visible. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+### Переезд в красный дом, 2019
+
+**G08_plan2_start_v2** (шестеро несут коробки к красному дому). Рефы: NINO, MASHA, LESHA, VITYA, ANTON, MISHA, L03.
+```
+Wide tracking shot on a sunny day: exactly SIX people walk up a path carrying cardboard boxes and potted plants toward the large modern two-storey deep red house from the location reference (big warm-lit windows, dark walnut wood details, black metal frames). NINO (cream tweed jacket, black bow, dark low bun) walks first; behind her MASHA, LESHA, VITYA, ANTON and MISHA, each exactly as in their references. Excited, hopeful mood. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G08_last_v2** (Нино открывает двери, внутри встречает Серёжа, школьный друг). Рефы: NINO, SERGEY, L03/L04.
+```
+Medium shot at the big open doors of the large deep red house, warm golden light pouring out. NINO (the birthday woman: dark hair in a sleek low bun, cream tweed jacket with black piping, big black bow) has just swung the doors open; inside, SERGEY (short dark hair with a receding hairline, rectangular black glasses, stubble, navy suit, white shirt) greets her with open arms and a big warm smile like an old school friend; she laughs and steps toward the hug. Behind them the spacious walnut-and-red interior. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+### Красный дом, 2026, вся команда (10 человек)
+
+Во все кадры этого раздела прикладывать `TEAM_LINEUP.png` и `L04_RED_INT`. Если лицо Вити или Жени уплывает, приложите дополнительно его портрет.
+
+**G10_start_v2 / G10_k1_clan_v2 / G10_k2_dynasty_v2** («Семья? Клан? Династия?»). Делать три кадра подряд в одном чате: GPT удержит одинаковые лица.
+```
+Formal "family portrait" in the big red house interior (walnut slat walls, glossy deep red accent wall, black pendant lights): all TEN team members from the lineup reference pose together, NINO (cream tweed jacket, black bow) seated in the center in an armchair, the others standing and sitting around her; ZHENYA, the newest member (shorter and a bit stockier), stands at the front edge, slightly shy, MISHA has a friendly hand on his shoulder. Everyone smiles warmly at the camera, every face clearly visible, nobody hidden. Classic family-portrait symmetry. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+Затем в том же чате два сообщения:
+- `Same ten people, same faces. Now a "clan" version: everyone crosses arms and gives a tough mock-serious look, low heroic camera angle, dramatic side light, NINO stands in the center.`
+- `Same ten people, same faces. Now a "dynasty" version: a grand royal-style portrait, NINO seated on a high-backed velvet chair in the center, everyone standing in a dignified pose around her, warm golden light, a framed blank painting on the wall behind.`
+
+**G11_v2** (полка с наградами, команда на фоне). Рефы: TEAM_LINEUP, L04.
+```
+Foreground: a walnut shelf with a few abstract golden trophies and a monitor showing rising colorful bar charts (no numbers, no words), in sharp focus. Background, softly but recognizably visible: the team from the lineup reference shares a warm laugh over coffee around a high table, TANYA (wavy golden-blonde hair, black blazer) and ZHENYA (shorter, stockier) among them. Big windows, warm afternoon light. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G11b_start_v2** («Подхватить. Помочь»: Серёжа спотыкается, Таня и Женя ловят). Рефы: SERGEY, TANYA, ZHENYA, L04.
+```
+Medium shot on a short wooden staircase in the big red house: SERGEY (receding hairline, rectangular black glasses, stubble, navy suit) trips on a step while carrying a tall stack of folders; TANYA (shoulder-length wavy golden-blonde hair, hazel-brown eyes, black blazer over a white t-shirt) and ZHENYA (exactly as in his reference portrait, shorter and a bit stockier) instantly reach out and catch him and the folders mid-fall; surprised then relieved faces, mouths closed. Walnut slat walls, red accent wall, warm light. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G12_last_v2** (поддержка: Лёша рядом с Антоном, Витя приносит чай). Рефы: LESHA, ANTON, VITYA, L04.
+```
+Evening, warm desk lamp in the big red house: LESHA (dark brown waistcoat over a white shirt, short beard) sits next to the tired ANTON (round thin metal-frame glasses, thick dark beard with grey streaks, black blazer) and rests a supportive hand on his shoulder; VITYA (exactly as in his reference portrait) arrives with two steaming mugs of tea and offers one to Anton, who looks up with a grateful smile. Cozy, caring mood. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G13_v2** («Снова сесть за один стол»). Рефы: TEAM_LINEUP, L04.
+```
+Wide shot along the long wooden table in the big red house in the warm evening: all TEN team members from the lineup reference sit down together, passing plates and bread, someone pours tea, NINO (cream tweed jacket, black bow) at the head of the table laughing. Black cylindrical pendant lights glow above, plants, big dark windows. Every face visible, nobody hidden. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G14_v2** (Нино идёт через дом, все оборачиваются). Рефы: NINO, TEAM_LINEUP, L04.
+```
+NINO (the birthday woman: dark hair in a sleek low bun, cream tweed jacket with black piping, big black bow) walks confidently toward the camera through the big red house; on both sides team members from the lineup reference look up from their desks and turn toward her with smiles; warm backlight, gentle lens flare. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G14_last_v2** (все в кругу вокруг Нино). Рефы: NINO, TEAM_LINEUP, L04.
+```
+Low-angle shot: all TEN team members from the lineup reference stand in a close circle around NINO (cream tweed jacket, black bow) in the big red house, everyone looking at her, inspired and smiling; pendant lights and the walnut ceiling above. Every face visible. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G15_v2** («Доверить большие задачи»: Нино передаёт Вите чертёж). Рефы: NINO, VITYA, L04.
+```
+Medium shot in the big red house: NINO (dark low bun, cream tweed jacket with black piping, big black bow) hands a big rolled blueprint tied with a red ribbon to VITYA (exactly as in his reference portrait); he takes it carefully with both hands, surprised by its weight, eyebrows raised. Warm window light, walnut walls. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G15_k_vitya_confident** (Витя уверенно сжимает чертёж). Рефы: VITYA, NINO, L04.
+```
+Close-up over NINO's shoulder (her cream tweed shoulder and dark bun softly out of focus in the foreground): VITYA (exactly as in his reference portrait) holds the rolled blueprint with the red ribbon, his face changes from doubt to confidence: a determined smile, shoulders straightened, a firm grip on the blueprint. Warm light. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G16_v2** («Находить для каждого своё место»: Нино подводит Таню к столу у окна). Рефы: NINO, TANYA, L04.
+```
+Medium shot in the big red house: NINO (dark low bun, cream tweed jacket, big black bow) guides TANYA (shoulder-length wavy golden-blonde hair, hazel-brown eyes, black blazer over a white t-shirt) to a sunlit walnut desk by a big window with a green plant; Tanya sits down, looks around, it fits her perfectly, she smiles; sunlight warms the frame. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G17_last_v2** (лица команды в ряд). Рефы: TEAM_LINEUP, L04.
+```
+Medium-wide shot: the nine team members from the lineup reference (everyone except NINO) stand side by side in a row in the big red house, all looking slightly off-camera toward someone they love and respect, warm grateful smiles; soft warm backlight, string-light bokeh. Every face clearly visible. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+### Детство, сцена 8
+
+**P02_kids_v2** (лист детских версий, 10 детей; сначала его, он нужен для G20 и G21). Рефы: TEAM_LINEUP.
+```
+Character lineup sheet on a plain light grey background: TEN children aged about 6–8, each a child version of one of the ten characters in the lineup reference — same face shape, eye color, hairstyle and hair color, round glasses for the child ANTON, rectangular glasses for the child SERGEY, miniature versions of the same outfits (cream tweed jacket with a black bow for the girl version of NINO). No beards on children; the child version of ZHENYA is a bit shorter and chubbier. Full body, standing in a row, friendly poses, every face clearly visible. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, filmic color grading. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G20_v2** (Витя и он же ребёнок делают одинаковый жест). Рефы: VITYA, P02_kids_v2, L04.
+```
+Medium shot in the festively decorated big red house: VITYA (exactly as in his reference portrait) and his 7-year-old child self (from the kids lineup) stand side by side and scratch the back of their heads with exactly the same embarrassed grin at the same moment, then notice each other. Balloons and string lights in the background. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G20_last_v2** (дети бегут по дому). Рефы: P02_kids_v2, L04.
+```
+Tracking shot at kid height: the ten children from the kids lineup reference run laughing through the festively decorated big red house holding colorful balloons, string lights, confetti on the floor, warm light. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G21_v2** (взрослые и дети в кругу, Нино в центре). Рефы: TEAM_LINEUP, P02_kids_v2, L04.
+```
+Wide shot in the festively decorated big red house: the ten adults from the lineup reference and the ten children from the kids lineup hold hands in one big circle, each child next to their adult self; NINO (cream tweed jacket, black bow) in the center laughing; string lights twinkling above. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G22_last_v2** (стелят скатерть, несут пирог). Рефы: NINO, TEAM_LINEUP, L04.
+```
+Wide shot in the big red house: NINO (cream tweed jacket, black bow, warm smile) and the team from the lineup reference spread a large white tablecloth with a red ornamental folk pattern over the long wooden table; TANYA and ZHENYA bring a big homemade pie, MISHA carries teapots. Warm, traditional, family feeling, pendant lights. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G23_v2** (общие объятия). Рефы: NINO, TEAM_LINEUP, L04.
+```
+Medium-wide shot: all ten team members from the lineup reference gently gather into a group hug around NINO (cream tweed jacket, black bow), she laughs softly with happy tears; warm pendant light, soft bokeh of string lights. Every face visible. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+### Финал
+
+**G24_last_v2** (Миша и Маша вносят торт). Рефы: MISHA, MASHA, TEAM_LINEUP, L04.
+```
+Inside the big red house at dusk: the festive long table full of the team from the lineup reference; MISHA (round face, big grin, brown blazer) and MASHA (long straight blonde hair, chocolate-brown top) carry in a big birthday cake with plain candles (no numbers), everyone cheers, NINO (cream tweed jacket, black bow) at the head of the table with hands to her cheeks. String lights, warm glow. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G25_v2** (модель синего домика на полке, команда за ней). Рефы: TEAM_LINEUP, L01, L04.
+```
+Close-up of a small model of the sky-blue wooden house (as in the blue house reference) standing on a walnut shelf in the foreground, in sharp focus; behind it, in soft but recognizable focus, the celebrating team from the lineup reference around the festive table with string lights. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G25_k_candles_v2** (Нино задувает свечи). Рефы: NINO, TEAM_LINEUP, L04.
+```
+Close-up of NINO (dark low bun, cream tweed jacket with black piping, big black bow) blowing out the plain birthday candles on a big cake; around her the faces of the team from the lineup reference lean in, smiling, close and clearly recognizable (VITYA, TANYA and ZHENYA among the nearest). Warm candlelight. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+**G25_last_v2** (конфетти, все ликуют; это финальный стоп-кадр). Рефы: NINO, TEAM_LINEUP, L04.
+```
+Wide shot, medium distance so every face is large and recognizable: a burst of confetti in the big red house, all ten team members from the lineup reference throw their arms up and cheer around NINO (cream tweed jacket, black bow) in the center, festive table with the cake, string lights. Nobody hidden, nobody turned away. STYLE: still frame from a modern Pixar-style 3D animated feature film, soft rounded forms, large expressive eyes, subsurface-scattering skin, detailed hair and fabric, cinematic 16:9, 35mm anamorphic look, shallow depth of field, filmic color grading, soft volumetric light. Every character keeps the face, hairstyle, glasses, facial hair and outfit EXACTLY as in their reference. Absolutely no text, letters, numbers, logos, signs or captions anywhere.
+```
+
+---
+
+## 5. Что дальше
+
+1. Вы генерируете портреты (файл 1), потом кадры из этого файла и кладёте их в папку.
+2. Я проверяю лица, пересчитываю стоимость Kling по каждой сцене и согласую её с вами. Оживляю только после вашего «да».
+3. Обновляю годы и стену с фотографиями в Remotion и пересобираю ролик.
+
+## 6. Уточнить у Антона
+
+- **Кудряшов:** когда он пришёл в команду? Сейчас он только в красном доме (колпак, «почему мультик»). Если он был ещё в Восточном, добавлю его в G05_last и G07_last.
+- **Год перехода в Восточный:** нужен для таблички и стены с фото. Если не важен, оставлю «Восточный» без года.
+- **Можно ли писать названия** «Секвойя / Восточный / Альфа» на табличках? Сейчас там только годы.
