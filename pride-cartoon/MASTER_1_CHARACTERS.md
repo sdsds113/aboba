@@ -11,7 +11,7 @@
 | **LESHA** | Лёша Египко | `ЕГИПКО ЛЁША.jpg` | ничего |
 | **ANTON** | Антон Юрченко | `АНТОН ЮРЧЕНКО.jpg` | ничего |
 | **MISHA** | Миша Бугров | `БУГРОВ МИША.jpg` | ничего |
-| **SERGEY** | Серёжа Евграшин | `ЕВГРАШИН СЕРГЕЙ.jpg` | ничего |
+| **SERGEY** | Серёжа Евграшин | `ЕВГРАШИН СЕРГЕЙ.jpg` | ничего (у него тоже прямоугольные очки: отличаем по залысинам и тёмно-синему костюму, у Жени поло и круглое лицо) |
 | **KUDRYASHOV** | Кудряшов | `КУДРЯШОВ.jpg` | ничего (место в истории уточнить, см. файл 2) |
 | **VITYA** | Витя Забалуев | фото `ЗАБАЛУЕВ ВИТЯ.jpg` | **перегенерировать**, сохранить как `ЗАБАЛУЕВ ВИТЯ_pixar.png` |
 | **ZHENYA** | Женя Винокуров | фото `ВИНОКУРОВ ЖЕНЯ.webp` | **перегенерировать**, сохранить как `ВИНОКУРОВ ЖЕНЯ_pixar.png` |
@@ -37,11 +37,11 @@ Image 1 (and any other photos of this man) = the IDENTITY reference. Images with
 
 Turn the man from the photo into a 3D animated character in exactly the same style as the style references: modern Pixar-style 3D animated feature film, soft rounded forms, subsurface-scattering skin, detailed hair and fabric, slightly enlarged expressive eyes, cinematic soft key light, filmic color grading.
 
-LIKENESS IS THE TOP PRIORITY. Keep his real facial structure recognizable at first glance: exact face shape and jawline, forehead height and hairline, nose shape and size, eye shape, eye color and eyelids, eyebrow shape and thickness, mouth and lip shape, ears, facial hair exactly as in the photo (or clean-shaven if he is), skin tone, real age. Same hairstyle, hair color and hair length as in the photo. Do not make him younger, slimmer or more generic; do not beautify. Stylize only the rendering, not his anatomy — the caricature level must be as gentle as in the style references.
+LIKENESS IS THE TOP PRIORITY. Keep his real facial structure recognizable at first glance: broad slightly square face with full cheeks, strong jaw, straight medium nose, light blue-grey eyes with slightly heavy upper lids, straight light-brown eyebrows, short light-brown hair with a short straight fringe and slightly higher temples, short neat darker-brown beard and moustache, open friendly smile, real age (mid-30s), sturdy broad-shouldered build. Exactly as in the photo. Do not make him younger, slimmer or more generic; do not beautify. Stylize only the rendering, not his anatomy — the caricature level must be as gentle as in the style references.
 
-Outfit: the same type of clothes as in the photo, adapted to a smart business look that fits the team (suit jacket or blazer, shirt), same colors as in the photo.
+Outfit: a plain bright red hoodie with a lime-green hood lining and lime-green drawstrings, exactly like in the photo but WITHOUT any print, letters or logo on it.
 
-Waist-up portrait, three-quarter view, warm friendly confident smile with closed lips, soft warm neutral background with gentle bokeh in deep red and walnut tones. No text, letters, numbers or logos anywhere.
+Waist-up portrait, three-quarter view, arms crossed like in the photo, warm friendly confident smile, soft warm neutral background with gentle bokeh in deep red and walnut tones. No text, letters, numbers or logos anywhere.
 ```
 
 ### ZHENYA — Женя Винокуров (ниже ростом и чуть плотнее остальных)
@@ -51,11 +51,11 @@ Image 1 (and any other photos of this man) = the IDENTITY reference. Images with
 
 Turn the man from the photo into a 3D animated character in exactly the same style as the style references: modern Pixar-style 3D animated feature film, soft rounded forms, subsurface-scattering skin, detailed hair and fabric, slightly enlarged expressive eyes, cinematic soft key light, filmic color grading.
 
-LIKENESS IS THE TOP PRIORITY. Keep his real facial structure recognizable at first glance: exact face shape and fullness of the cheeks, jawline, hairline, nose shape and size, eye shape and color, eyebrows, mouth and lips, ears, facial hair exactly as in the photo, skin tone, real age. Same hairstyle and hair color as in the photo. Body type: a bit shorter and slightly stockier than average — a solid, sturdy, friendly build (not exaggerated, not cartoon-fat). Do not make him younger, slimmer or more generic; do not beautify. Stylize only the rendering, not his anatomy.
+LIKENESS IS THE TOP PRIORITY. Keep his real facial structure recognizable at first glance: round full face with soft cheeks, short neck, straight nose, dark brown eyes, dark eyebrows, dark brown hair swept up and back with short sides, thin rectangular black-framed glasses, clean-shaven, calm sly closed-mouth half-smile, real age (mid-30s). Exactly as in the photo. Body type: a bit shorter and slightly stockier than average — a solid, sturdy, friendly build (not exaggerated, not cartoon-fat). Do not make him younger, slimmer or more generic; do not beautify. Stylize only the rendering, not his anatomy.
 
-Outfit: the same type of clothes as in the photo, adapted to a smart business look that fits the team, same colors as in the photo.
+Outfit: dark navy polo shirt with thin blue trim, dark jeans, black smartwatch, exactly as in the photo, no logos.
 
-Waist-up portrait, three-quarter view, warm friendly smile with closed lips, soft warm neutral background with gentle bokeh in deep red and walnut tones. No text, letters, numbers or logos anywhere.
+Waist-up portrait, three-quarter view, relaxed pose with his chin resting on his fist like in the photo, calm sly half-smile, soft warm neutral background with gentle bokeh in deep red and walnut tones. No text, letters, numbers or logos anywhere.
 ```
 
 ### TANYA — Таня Трофимова (новый персонаж, в команде с 2021 года)
