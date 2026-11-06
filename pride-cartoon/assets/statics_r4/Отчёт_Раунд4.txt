@@ -1,0 +1,102 @@
+﻿НИНО — СТАТИКА РАУНД 4
+20 PNG, 2048×1152, 16:9. Built-in image_gen; финальный Lanczos resize разрешён пользователем.
+Основа правок: готовые PNG ROUND4_pack.zip. Видео не использовалось как источник кадров.
+Озвучка, монтаж, анимация, чужие сцены не изменялись. Сдача папкой, без изменения репозитория.
+
+ПОПЫТКИ:
+G02g_ext_r4.png — 1
+G02_last_r4.png — 1
+G03g_r4.png — 1
+G04_k_vova_r4.png — 2
+G05_last_r4.png — 1
+G07_k_hands_r4.png — 1
+G07_last_r4.png — 1
+G08_plan2_start_r4.png — 1
+G08_last_r4.png — 2
+G09_r4.png — 1
+PHOTO_2023_r4.png — 1
+PHOTO_2025_r4.png — 1
+P02_kids_r4.png — 1
+G20_last_r4.png — 1
+G21_r4.png — 1
+G23_r4.png — 8
+G18_r4.png — 1
+PRIDE_lions_r4.png — 4
+PRIDE_team_r4.png — 1
+PRIDE_nino_r4.png — 1
+
+ОГРАНИЧЕНИЯ:
+Нативные результаты преимущественно 1672×941, увеличение до 2048×1152 выполнено с разрешения пользователя.
+В точечных правках возможны небольшие изменения микротекстур; они не являются побитовым композитом.
+Три вызова львиного кадра отклонены инструментом на стадии output, четвёртый вызов с простым описанием успешно дал нужный кадр. Платный API не использовался.
+Подробные проверки, промпты, выбранные попытки и особенности каждого кадра — в reports/*.json.
+
+G02g_ext_r4.png
+Native output is 1672x941 and was resized with explicit permission; no native 2K claim.
+
+G02_last_r4.png
+Not native 2048x1152: final is an explicitly authorized Lanczos upscale from 1672x941.
+Model edit retains scene and faces visually but is not pixel-identical; small texture/detail drift and slight background geometry drift remain.
+
+G03g_r4.png
+Not native 2048x1152: final is an explicitly authorized Lanczos upscale from 1672x941.
+Model edit is visually close but not pixel-identical: minor face, bow and fabric texture drift.
+
+G04_k_vova_r4.png
+Native output is 1672x941 and was resized to 2048x1152 with explicit permission; no native 2K claim.
+Figure is a little smaller in frame and a stepping knee is now visible; face/outfit/smile and pocket-square gesture visually preserved with minor generative detail drift.
+
+G05_last_r4.png
+Slight global pixel/texture changes from image generation; visually same six characters, poses, room and warm light preserved.
+Kudryashov leans in behind Nino; body partly occluded naturally, face and red pocket square visible.
+Native output was 1672x941, final 2048x1152 obtained by explicitly authorized resize, not native 2K.
+
+G07_k_hands_r4.png
+Native generation was 1672x941, not 2048x1152; final is scaled and is not claimed as native 2K.
+New top hand naturally occludes portions of the previous top hands; AI edit is not pixel-identical outside insertion boundary.
+
+G07_last_r4.png
+Minor face/texture and scale drift due to image generation; original six remain recognizable in same poses and original scene.
+Kudryashov's arm near Nino is partly occluded by her raised arm, both added fists visible.
+Native output was 1672x941, final 2048x1152 obtained by explicitly authorized resize, not native 2K.
+
+G08_plan2_start_r4.png
+Native generation was 1672x941; final is scaled to 2048x1152 and is not claimed as native 2K.
+The six original identities, outfits and carried objects remain recognizable, but faces and bodies shift slightly to fit the added seventh person; not a pixel-identical composite.
+Walking is implied by group context; the source and result retain a largely frontal posed snapshot framing.
+
+PHOTO_2023_r4.png
+Native tool output is 1672x941, not requested 2048x1152; final is ordinary upscaled delivery.
+The native aspect ratio differs very slightly from exact 16:9; exact-dimension resize causes negligible ~0.05% aspect adjustment.
+Newcomers' smiles are warm and relatively confident rather than distinctly shy.
+
+PHOTO_2025_r4.png
+Native tool output is 1672x941, not requested 2048x1152; final is ordinary upscaled delivery.
+The native aspect ratio differs very slightly from exact 16:9; exact-dimension resize causes negligible ~0.05% aspect adjustment.
+
+P02_kids_r4.png
+Native generation 1672x941 rescaled to2048x1152; no new optical detail.
+Minor generative microtexture variations versus r3 source; core identities, poses and composition retained.
+
+G20_last_r4.png
+Native generation 1672x941 rescaled to2048x1152; no new optical detail.
+Minor generative microtexture variations versus r3 source; core identities, poses and composition retained.
+
+G21_r4.png
+Native generation 1672x941 rescaled to2048x1152; no new optical detail.
+Minor generative microtexture variations versus r3 source; core identities, poses and composition retained.
+
+G23_r4.png
+Small generative facial/microtexture differences. Final upscaled with user permission.
+Native output 1672x941, resized with authorized Pillow Lanczos to 2048x1152.
+Small generative differences in central facial surface; warm smile is calmer than earlier laughing smile.
+
+G18_r4.png
+Native output 1672x941, resized.
+Small normal eye catchlights remain; cheeks and eyelids dry.
+
+PRIDE_team_r4.png
+The wedge is shallower than the lion shot; all10 faces remain large and clear.
+
+PRIDE_nino_r4.png
+Background team intentionally soft focus; no material defects observed.
