@@ -1,6 +1,7 @@
 # Промты: образы Юлианы Неверовой и фоны (ролик для «Хрустальной гарнитуры»)
 
 ## Как использовать
+- **Формат ролика 16:9 (1920×1080).** Все образы и фоны генерировать в горизонтальном кадре; HeyGen: aspect_ratio 16:9, 1080p. Формат уточнить в положении ХГ.
 - Во всех образах нужна референсная фотография Юлианы (HeyGen `create_prompt_avatar`, до 3 референсов, либо image-to-image в Kling).
 - Генерировать по одному образу, начать с образа 1, проверить сходство лица, затем остальные.
 - Логотип Альфа-Банка и фразу «НЕ ЗА ЧТО КРАСНЕТЬ!» у ИИ не заказывать: генераторы искажают кириллицу. Рисуем сами в Remotion.
@@ -13,28 +14,28 @@
 
 ### Образ 1. Деловой костюм, крупный план (кадры 1, 3)
 ```
-Use the woman from the reference photo: keep her exact face, blue eyes, eyebrows, lips, skin tone and long dark brown wavy hair. Close-up portrait, framed from the chest up, facing the camera. She wears a tailored dark navy business blazer over a white blouse, collar closed, minimal gold earrings. Warm, friendly, confident smile, soft eye contact. Bright modern office background, softly blurred, accents of red and white. Soft key light, natural skin texture, photorealistic, 4K, shallow depth of field. No text, no logos.
+Use the woman from the reference photo: keep her exact face, blue eyes, eyebrows, lips, skin tone and long dark brown wavy hair. Close-up portrait, framed from the chest up, facing the camera. She wears a tailored dark navy business blazer over a white blouse, collar closed, minimal gold earrings. Warm, friendly, confident smile, soft eye contact. Bright modern office background, softly blurred, accents of red and white. Soft key light, natural skin texture, photorealistic, 4K, shallow depth of field. No text, no logos. Composition: 16:9 landscape frame, subject slightly left of center, empty space on the right for titles.
 ```
 
 ### Образ 2. Деловой костюм, в полный рост (кадры 2, 5, 6, 7, 8, 9)
 ```
-Use the woman from the reference photo: keep her exact face, blue eyes and long dark brown wavy hair. Full-body shot, standing straight, head to shoes visible, slight three-quarter turn, one hand relaxed and the other raised in an open explaining gesture. She wears the same dark navy tailored blazer, matching trousers, white blouse and low heels. Confident expert pose, calm friendly expression. Plain light-grey studio backdrop, even soft lighting, photorealistic, sharp, 4K. No text, no logos.
+Use the woman from the reference photo: keep her exact face, blue eyes and long dark brown wavy hair. Full-body shot, standing straight, head to shoes visible, slight three-quarter turn, one hand relaxed and the other raised in an open explaining gesture. She wears the same dark navy tailored blazer, matching trousers, white blouse and low heels. Confident expert pose, calm friendly expression. Plain light-grey studio backdrop, even soft lighting, photorealistic, sharp, 4K. No text, no logos. Composition: 16:9 landscape frame, subject on the left third, empty space on the right for holograms.
 ```
 Для удаления фона лучше однотонный: `plain light-grey studio backdrop` или чистый зелёный.
 
 ### Образ 3. Супергероиня (кадр 4)
 ```
-Use the woman from the reference photo: keep her exact face, blue eyes and long dark brown wavy hair, flowing as if in a light wind. Full-body heroic pose, legs apart, fists slightly clenched, chin up, determined and inspiring look. She wears an original superhero suit in red and white with a stylized abstract emblem on the chest (not any existing brand), a short red cape, fitted armor-style details, boots. Dramatic low-angle shot, cinematic rim light, glowing red sparks and embers in the air. Photorealistic, high detail, 4K. No text, no copyrighted characters.
+Use the woman from the reference photo: keep her exact face, blue eyes and long dark brown wavy hair, flowing as if in a light wind. Full-body heroic pose, legs apart, fists slightly clenched, chin up, determined and inspiring look. She wears an original superhero suit in red and white with a stylized abstract emblem on the chest (not any existing brand), a short red cape, fitted armor-style details, boots. Dramatic low-angle shot, cinematic rim light, glowing red sparks and embers in the air. Photorealistic, high detail, 4K. No text, no copyrighted characters. Composition: 16:9 landscape frame, subject centered, space around for an explosion effect.
 ```
 
 ### Образ 4. Вечернее платье (кадр 10)
 ```
-Use the woman from the reference photo: keep her exact face, blue eyes and long dark brown wavy hair styled in soft glamorous waves. Full-body shot, walking on a red carpet toward a stage, elegant and radiant, holding a small gold clutch. She wears an elegant floor-length deep red evening gown with a modest neckline, subtle sparkle, long train. Warm smile, proud look. Award-ceremony atmosphere, soft warm spotlights, photorealistic, cinematic, 4K. No text, no logos.
+Use the woman from the reference photo: keep her exact face, blue eyes and long dark brown wavy hair styled in soft glamorous waves. Full-body shot, walking on a red carpet toward a stage, elegant and radiant, holding a small gold clutch. She wears an elegant floor-length deep red evening gown with a modest neckline, subtle sparkle, long train. Warm smile, proud look. Award-ceremony atmosphere, soft warm spotlights, photorealistic, cinematic, 4K. No text, no logos. Composition: 16:9 landscape frame, subject centered, stage and red carpet visible around.
 ```
 
 ### Мужчина в смокинге (кадр 10, без реплик)
 ```
-A distinguished man around 50 years old, short grey-brown hair, neat stylish beard, kind confident expression. He wears a classic black tuxedo with a bow tie and a white shirt. Standing on an award stage, holding a framed certificate with both hands, ready to hand it over. Warm stage lighting, photorealistic, cinematic, 4K. A generic fictional person, no resemblance to any real individual.
+A distinguished man around 50 years old, short grey-brown hair, neat stylish beard, kind confident expression. He wears a classic black tuxedo with a bow tie and a white shirt. Standing on an award stage, holding a framed certificate with both hands, ready to hand it over. Warm stage lighting, photorealistic, cinematic, 4K. A generic fictional person, no resemblance to any real individual. Composition: 16:9 landscape frame, subject on the right third, space on the left for the heroine.
 ```
 
 ---
