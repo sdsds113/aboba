@@ -1,7 +1,7 @@
 // Всё, что может понадобиться подкрутить руками, — здесь.
 
 /** Ручная правка точки входа в клип Flow (сек), если нужный момент в клипе оказался не там: { "S03-02": 0.6 } */
-export const CLIP_IN_OVERRIDES: Record<string, number> = { "S04-05": 5.45 };
+export const CLIP_IN_OVERRIDES: Record<string, number> = {};
 
 /** Имена и роли для плашек. Заглушки — заменить на реальные. */
 export const PEOPLE: Record<string, { name: string; role: string }> = {

@@ -12,6 +12,7 @@ const [FW, FH] = layout.frame_png_size;
 const [HX0, HY0, HX1, HY1] = layout.frame_hole_px;
 
 const photoShot = (slot: Slot) => {
+  if (slot.photo_img) return null;
   const m = slot.photo_from.match(/S\d\d-\d\d/);
   return m ? shotById(m[0]) : null;
 };
@@ -47,7 +48,7 @@ const FramedPhoto: React.FC<{ slot: Slot; at?: number; rot?: number; dy?: number
         transformOrigin: `50% ${(0.02 * h) | 0}px`,
       }}
     >
-      {!hidePhoto && s ? (
+      {!hidePhoto && (s || slot.photo_img) ? (
         <div
           style={{
             position: "absolute",
@@ -56,10 +57,14 @@ const FramedPhoto: React.FC<{ slot: Slot; at?: number; rot?: number; dy?: number
             width: hole.width,
             height: hole.height,
             overflow: "hidden",
-            filter: slot.label && /20(14|19)/.test(slot.label) ? "sepia(0.15)" : undefined,
+            filter: slot.label && /20(07|14|19)/.test(slot.label) ? "sepia(0.15)" : undefined,
           }}
         >
-          <ShotStill shot={s} at={at} />
+          {slot.photo_img ? (
+            <Img src={asset(slot.photo_img)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          ) : s ? (
+            <ShotStill shot={s} at={at} />
+          ) : null}
         </div>
       ) : null}
       <Img
@@ -107,26 +112,32 @@ const Wall: React.FC<{ children: React.ReactNode; scale: number; x: number }> = 
   </AbsoluteFill>
 );
 
-/** S06-02: стена с фото разных лет, на середине плана вешают новое общее фото */
-export const PhotoWall: React.FC<{ length: number }> = ({ length }) => {
+/** S06-02: стена с фото разных лет; по ходу плана вешают фото 2023 и 2025 */
+const Hanging: React.FC<{ slot: Slot; at: number }> = ({ slot, at }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const hangAt = Math.round(length / 2);
-  const local = frame - hangAt;
+  const local = frame - at;
+  if (local < 0) return null;
   const drop = interpolate(local, [0, 8], [-160, 0], { ...clamp, easing: Easing.out(Easing.back(1.4)) });
+  return (
+    <FramedPhoto
+      slot={slot}
+      dy={drop}
+      rot={local > 6 ? swing(local - 6, fps, 5, 0.7, 0.5) : 0}
+      frameOpacity={interpolate(local, [0, 3], [0, 1], clamp)}
+    />
+  );
+};
+
+export const PhotoWall: React.FC<{ length: number }> = ({ length }) => {
+  const frame = useCurrentFrame();
   return (
     <Wall scale={interpolate(frame, [0, length], [1.06, 1.1])} x={interpolate(frame, [0, length], [30, -30])}>
       {layout.slots.slice(0, 3).map((s) => (
         <FramedPhoto key={s.id} slot={s} />
       ))}
-      {frame >= hangAt ? (
-        <FramedPhoto
-          slot={layout.slots[3]}
-          dy={drop}
-          rot={local > 6 ? swing(local - 6, fps, 5, 0.7, 0.5) : 0}
-          frameOpacity={interpolate(local, [0, 3], [0, 1], clamp)}
-        />
-      ) : null}
+      <Hanging slot={layout.slots[3]} at={Math.round(length * 0.3)} />
+      <Hanging slot={layout.slots[5]} at={Math.round(length * 0.6)} />
     </Wall>
   );
 };
@@ -160,8 +171,8 @@ export const FinalWall: React.FC<{ length: number }> = ({ length }) => {
   return (
     <AbsoluteFill style={{ backgroundColor: "black" }}>
       <Wall scale={camScale} x={0}>
-        {layout.slots.slice(0, 4).map((s) => (
-          <FramedPhoto key={s.id} slot={s} />
+        {[0, 1, 2, 3, 5].map((i) => (
+          <FramedPhoto key={layout.slots[i].id} slot={layout.slots[i]} />
         ))}
         {landed ? (
           <FramedPhoto slot={slot} at={1} rot={swing(frame - flyEnd, fps, 4, 0.7, 0.5)} frameOpacity={interpolate(frame, [flyEnd, flyEnd + 4], [0, 1], clamp)} />
