@@ -42,7 +42,7 @@ export const STRING_LIGHTS_SHOTS = [
 ];
 
 /** Звуковые эффекты: включены; групповой смех убран по просьбе заказчика */
-export const SFX_ENABLED = true;
+export const SFX_ENABLED = false; // только голос и музыка, без шумов (решение заказчика)
 export const SFX_EXCLUDE: string[] = ["group_laugh"];
 
 /** Единый «кинолук» поверх клипов */
