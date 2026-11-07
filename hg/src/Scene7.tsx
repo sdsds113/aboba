@@ -7,7 +7,7 @@ import { DISPLAY, INK, INK_2, Reveal } from "./premium";
 // Слова (30 fps): «тридцати» 31, «умных» 61, «курсов» 112, «ИИ-экзаменаторов» 151,
 // «голосовых» 188, «новый» 290. Клип HeyGen Avatar III 720p, звук без сдвига.
 
-export const SCENE7_LEN = 320;
+export const SCENE7_LEN = 318;
 
 const Count: React.FC<{ to: number; at: number; dur: number }> = ({ to, at, dur }) => {
   const frame = useCurrentFrame();
