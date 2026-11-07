@@ -2,6 +2,7 @@ import React from "react";
 import { Composition, Series } from "remotion";
 import { BalanceCard, CareCard, GameCard, TechCard } from "./Cards";
 import { SCENE4_LEN, Scene4 } from "./Scene4";
+import { SCENE1_LEN, Scene1 } from "./Scene1";
 
 const FPS = 30;
 const LEN = 7 * FPS; // 7 s each; trim in the edit to match the voice
@@ -32,6 +33,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="B3-Azart" component={GameCard} {...common} />
       <Composition id="B4-Zabota" component={CareCard} {...common} />
       <Composition id="AllCards" component={AllCards} {...common} durationInFrames={LEN * 4} />
+      <Composition id="Scene1-Znakomstvo" component={Scene1} {...common} durationInFrames={SCENE1_LEN} />
       <Composition id="Scene4-Missiya" component={Scene4} {...common} durationInFrames={SCENE4_LEN} />
     </>
   );
