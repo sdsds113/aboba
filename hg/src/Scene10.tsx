@@ -96,3 +96,29 @@ export const Scene10b: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+// Кадр 10а — вручение (клип из Flow/Kling, 4,96 с, без речи). Затем 10б.
+const HANDOVER = 148;
+
+export const Scene10a: React.FC = () => (
+  <AbsoluteFill style={{ backgroundColor: "#000" }}>
+    <OffthreadVideo
+      src={staticFile("scene10a_handover.mp4")}
+      muted
+      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+    />
+  </AbsoluteFill>
+);
+
+export const SCENE10_LEN = HANDOVER + SCENE10B_LEN;
+
+export const Scene10: React.FC = () => (
+  <AbsoluteFill>
+    <Sequence durationInFrames={HANDOVER}>
+      <Scene10a />
+    </Sequence>
+    <Sequence from={HANDOVER}>
+      <Scene10b />
+    </Sequence>
+  </AbsoluteFill>
+);
