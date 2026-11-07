@@ -7,6 +7,7 @@ import { SCENE2_LEN, Scene2 } from "./Scene2";
 import { SCENE3_LEN, Scene3 } from "./Scene3";
 import { SCENE5_LEN, Scene5 } from "./Scene5";
 import { SCENE6_LEN, Scene6 } from "./Scene6";
+import { SCENE7_LEN, Scene7 } from "./Scene7";
 import { MONTAGE_LEN, Montage } from "./Montage";
 
 const FPS = 30;
@@ -43,6 +44,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="Scene3-Balans" component={Scene3} {...common} durationInFrames={SCENE3_LEN} />
       <Composition id="Scene5-Cifry" component={Scene5} {...common} durationInFrames={SCENE5_LEN} />
       <Composition id="Scene6-TriKita" component={Scene6} {...common} durationInFrames={SCENE6_LEN} />
+      <Composition id="Scene7-35" component={Scene7} {...common} durationInFrames={SCENE7_LEN} />
       <Composition id="Montage" component={Montage} {...common} durationInFrames={MONTAGE_LEN} />
       <Composition id="Scene4-Missiya" component={Scene4} {...common} durationInFrames={SCENE4_LEN} />
     </>
