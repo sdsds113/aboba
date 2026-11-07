@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Audio, OffthreadVideo, Series, staticFile } from "remotion";
-import { DISPLAY, INK, INK_2, Reveal } from "./premium";
+import { DISPLAY, INK, INK_2, Reveal , K } from "./premium";
 
 // Кадр 6 «Три кита» (озвучка v2), три клипа HeyGen Avatar III 720p, звук совпадает без сдвига.
 // 6а: «За прошлый год… на трёх китах. Первый — технологии…» 18,12 с
@@ -127,13 +127,13 @@ export const Scene6c: React.FC = () => (
 
 export const Scene6: React.FC = () => (
   <Series>
-    <Series.Sequence durationInFrames={SCENE6A_LEN}>
+    <Series.Sequence durationInFrames={SCENE6A_LEN * K}>
       <Scene6a />
     </Series.Sequence>
-    <Series.Sequence durationInFrames={SCENE6B_LEN}>
+    <Series.Sequence durationInFrames={SCENE6B_LEN * K}>
       <Scene6b />
     </Series.Sequence>
-    <Series.Sequence durationInFrames={SCENE6C_LEN}>
+    <Series.Sequence durationInFrames={SCENE6C_LEN * K}>
       <Scene6c />
     </Series.Sequence>
   </Series>

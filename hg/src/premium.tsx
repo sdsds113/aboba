@@ -28,6 +28,12 @@ if (typeof document !== "undefined") {
     });
 }
 
+// Время: все тайминги в проекте записаны в кадрах 30 fps, рендер идёт в 60 fps.
+export const K = 2;
+export const FPS = 30 * K;
+/** Текущий кадр в единицах 30 fps (дробный) — для плавных анимаций на 60 fps. */
+export const useT = () => useCurrentFrame() / K;
+
 export const INK = "#1D1D1F"; // Apple-style near-black
 export const INK_2 = "#6E6E73"; // secondary grey
 
@@ -43,7 +49,7 @@ export const Reveal: React.FC<{
   children: React.ReactNode;
   style?: React.CSSProperties;
 }> = ({ at, dur = 26, rise = 18, outAt, outDur = 18, children, style }) => {
-  const frame = useCurrentFrame();
+  const frame = useT();
   const p = interpolate(frame, [at, at + dur], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",

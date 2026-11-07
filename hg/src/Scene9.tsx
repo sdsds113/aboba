@@ -1,6 +1,6 @@
 import React from "react";
-import { AbsoluteFill, Audio, Easing, OffthreadVideo, interpolate, staticFile, useCurrentFrame } from "remotion";
-import { DISPLAY, INK, INK_2, Reveal } from "./premium";
+import { AbsoluteFill, Audio, Easing, OffthreadVideo, interpolate, staticFile, } from "remotion";
+import { DISPLAY, INK, INK_2, Reveal, useT } from "./premium";
 
 // Кадр 9 (озвучка v2). «Это позволило нам увеличить срок жизни сотрудников в компании на один год
 // и десять месяцев. Что это даёт? Высокую экспертизу, рост KPI и искреннюю лояльность. Ведь довольный
@@ -17,7 +17,7 @@ const BIG: React.CSSProperties = { fontSize: 112, fontWeight: 600, letterSpacing
 const ITEM: React.CSSProperties = { fontSize: 60, fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1.18, color: INK };
 
 const ENps: React.FC = () => {
-  const frame = useCurrentFrame();
+  const frame = useT();
   const v = interpolate(frame, [458, 500], [92.2, 95.5], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",

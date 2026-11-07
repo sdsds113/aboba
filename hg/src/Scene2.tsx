@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Audio, OffthreadVideo, Sequence, staticFile } from "remotion";
-import { DISPLAY, INK, INK_2, Reveal } from "./premium";
+import { DISPLAY, INK, INK_2, Reveal , K } from "./premium";
 
 // Кадр 2. «Когда люди слышат слово «взыскание», они часто представляют себе железную
 // строгость и сухие скрипты. Но моя работа каждый день доказывает обратное.
@@ -61,7 +61,7 @@ export const Scene2: React.FC = () => (
       </div>
     </div>
 
-    <Sequence from={1}>
+    <Sequence from={K}>
       <Audio src={staticFile("vo_02.mp3")} />
     </Sequence>
   </AbsoluteFill>

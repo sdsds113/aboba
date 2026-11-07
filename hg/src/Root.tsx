@@ -13,47 +13,48 @@ import { SCENE9_LEN, Scene9 } from "./Scene9";
 import { SCENE10B_LEN, SCENE10_LEN, Scene10, Scene10b } from "./Scene10";
 import { MONTAGE_LEN, Montage } from "./Montage";
 
-const FPS = 30;
+import { K } from "./premium";
+const FPS = 30 * K;
 const LEN = 7 * FPS; // 7 s each; trim in the edit to match the voice
 
 const AllCards: React.FC = () => (
   <Series>
-    <Series.Sequence durationInFrames={LEN}>
+    <Series.Sequence durationInFrames={(LEN) * K}>
       <BalanceCard />
     </Series.Sequence>
-    <Series.Sequence durationInFrames={LEN}>
+    <Series.Sequence durationInFrames={(LEN) * K}>
       <TechCard />
     </Series.Sequence>
-    <Series.Sequence durationInFrames={LEN}>
+    <Series.Sequence durationInFrames={(LEN) * K}>
       <GameCard />
     </Series.Sequence>
-    <Series.Sequence durationInFrames={LEN}>
+    <Series.Sequence durationInFrames={(LEN) * K}>
       <CareCard />
     </Series.Sequence>
   </Series>
 );
 
 export const RemotionRoot: React.FC = () => {
-  const common = { fps: FPS, width: 1920, height: 1080, durationInFrames: LEN };
+  const common = { fps: FPS, width: 1920, height: 1080, durationInFrames: LEN * K };
   return (
     <>
       <Composition id="B1-Balans" component={BalanceCard} {...common} />
       <Composition id="B2-Tehnologii" component={TechCard} {...common} />
       <Composition id="B3-Azart" component={GameCard} {...common} />
       <Composition id="B4-Zabota" component={CareCard} {...common} />
-      <Composition id="AllCards" component={AllCards} {...common} durationInFrames={LEN * 4} />
-      <Composition id="Scene1-Znakomstvo" component={Scene1} {...common} durationInFrames={SCENE1_LEN} />
-      <Composition id="Scene2-Vzyskanie" component={Scene2} {...common} durationInFrames={SCENE2_LEN} />
-      <Composition id="Scene3-Balans" component={Scene3} {...common} durationInFrames={SCENE3_LEN} />
-      <Composition id="Scene5-Cifry" component={Scene5} {...common} durationInFrames={SCENE5_LEN} />
-      <Composition id="Scene6-TriKita" component={Scene6} {...common} durationInFrames={SCENE6_LEN} />
-      <Composition id="Scene7-35" component={Scene7} {...common} durationInFrames={SCENE7_LEN} />
-      <Composition id="Scene8-Effekt" component={Scene8} {...common} durationInFrames={SCENE8_LEN} />
-      <Composition id="Scene9-Lyudi" component={Scene9} {...common} durationInFrames={SCENE9_LEN} />
-      <Composition id="Scene10b-Final" component={Scene10b} {...common} durationInFrames={SCENE10B_LEN} />
-      <Composition id="Scene10-Final" component={Scene10} {...common} durationInFrames={SCENE10_LEN} />
-      <Composition id="Montage" component={Montage} {...common} durationInFrames={MONTAGE_LEN} />
-      <Composition id="Scene4-Missiya" component={Scene4} {...common} durationInFrames={SCENE4_LEN} />
+      <Composition id="AllCards" component={AllCards} {...common} durationInFrames={(LEN * 4) * K} />
+      <Composition id="Scene1-Znakomstvo" component={Scene1} {...common} durationInFrames={(SCENE1_LEN) * K} />
+      <Composition id="Scene2-Vzyskanie" component={Scene2} {...common} durationInFrames={(SCENE2_LEN) * K} />
+      <Composition id="Scene3-Balans" component={Scene3} {...common} durationInFrames={(SCENE3_LEN) * K} />
+      <Composition id="Scene5-Cifry" component={Scene5} {...common} durationInFrames={(SCENE5_LEN) * K} />
+      <Composition id="Scene6-TriKita" component={Scene6} {...common} durationInFrames={(SCENE6_LEN) * K} />
+      <Composition id="Scene7-35" component={Scene7} {...common} durationInFrames={(SCENE7_LEN) * K} />
+      <Composition id="Scene8-Effekt" component={Scene8} {...common} durationInFrames={(SCENE8_LEN) * K} />
+      <Composition id="Scene9-Lyudi" component={Scene9} {...common} durationInFrames={(SCENE9_LEN) * K} />
+      <Composition id="Scene10b-Final" component={Scene10b} {...common} durationInFrames={(SCENE10B_LEN) * K} />
+      <Composition id="Scene10-Final" component={Scene10} {...common} durationInFrames={(SCENE10_LEN) * K} />
+      <Composition id="Montage" component={Montage} {...common} durationInFrames={(MONTAGE_LEN) * K} />
+      <Composition id="Scene4-Missiya" component={Scene4} {...common} durationInFrames={(SCENE4_LEN) * K} />
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Audio, OffthreadVideo, Sequence, staticFile } from "remotion";
-import { DISPLAY, INK, Reveal } from "./premium";
+import { DISPLAY, INK, Reveal , K } from "./premium";
 
 // Кадр 3. «По ту сторону провода всегда человек со своей трудной историей. А по эту —
 // оператор, который должен сохранять баланс между интересами бизнеса и уважением к клиенту.»
@@ -35,7 +35,7 @@ export const Scene3: React.FC = () => (
         </Reveal>
       </div>
     </div>
-    <Sequence from={1}>
+    <Sequence from={K}>
       <Audio src={staticFile("vo_03.mp3")} />
     </Sequence>
   </AbsoluteFill>

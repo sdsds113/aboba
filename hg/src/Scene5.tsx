@@ -1,6 +1,6 @@
 import React from "react";
-import { AbsoluteFill, Audio, Easing, OffthreadVideo, interpolate, staticFile, useCurrentFrame } from "remotion";
-import { DISPLAY, INK, INK_2, Reveal } from "./premium";
+import { AbsoluteFill, Audio, Easing, OffthreadVideo, interpolate, staticFile, } from "remotion";
+import { DISPLAY, INK, INK_2, Reveal, useT } from "./premium";
 
 // Кадр 5 (озвучка v2). «За время работы в банке я обучила более полутора тысяч сотрудников
 // и провела свыше двухсот обучений. И главное — качество. Наша оценка VOE составила
@@ -21,7 +21,7 @@ const CountUp: React.FC<{ from: number; to: number; at: number; dur: number; suf
   suffix = "",
   decimals = 0,
 }) => {
-  const frame = useCurrentFrame();
+  const frame = useT();
   const v = interpolate(frame, [at, at + dur], [from, to], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -55,7 +55,7 @@ const LABEL: React.CSSProperties = {
 };
 
 export const Scene5: React.FC = () => {
-  const frame = useCurrentFrame();
+  const frame = useT();
   // первые две цифры мягко уходят перед блоком про качество
   const outP = interpolate(frame, [214, 238], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: APPLE });
   return (

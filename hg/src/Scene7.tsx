@@ -1,6 +1,6 @@
 import React from "react";
-import { AbsoluteFill, Audio, Easing, OffthreadVideo, interpolate, staticFile, useCurrentFrame } from "remotion";
-import { DISPLAY, INK, INK_2, Reveal } from "./premium";
+import { AbsoluteFill, Audio, Easing, OffthreadVideo, interpolate, staticFile, } from "remotion";
+import { DISPLAY, INK, INK_2, Reveal, useT } from "./premium";
 
 // Кадр 7 (озвучка v2). «Мы внедрили более тридцати пяти умных учебных единиц: от курсов и игр
 // до ИИ-экзаменаторов и голосовых роботов. Этот подход вывел нас на абсолютно новый уровень.»
@@ -10,7 +10,7 @@ import { DISPLAY, INK, INK_2, Reveal } from "./premium";
 export const SCENE7_LEN = 318;
 
 const Count: React.FC<{ to: number; at: number; dur: number }> = ({ to, at, dur }) => {
-  const frame = useCurrentFrame();
+  const frame = useT();
   const v = interpolate(frame, [at, at + dur], [0, to], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",

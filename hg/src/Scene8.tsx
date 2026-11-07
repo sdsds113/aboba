@@ -1,6 +1,6 @@
 import React from "react";
-import { AbsoluteFill, Audio, Easing, OffthreadVideo, interpolate, staticFile, useCurrentFrame } from "remotion";
-import { DISPLAY, INK, INK_2, Reveal } from "./premium";
+import { AbsoluteFill, Audio, Easing, OffthreadVideo, interpolate, staticFile, } from "remotion";
+import { DISPLAY, INK, INK_2, Reveal, useT } from "./premium";
 
 // Кадр 8 (озвучка v2). «Посмотрите на эти цифры за моей спиной. Это чистый бизнес-эффект от нашей
 // стратегии. Сбор увеличен на двадцать процентов, средний чек вырос на семнадцать процентов,
@@ -22,7 +22,7 @@ const Row: React.FC<{
   barTo: number;
   note?: string;
 }> = ({ label, at, from, to, sign, barFrom, barTo, note }) => {
-  const frame = useCurrentFrame();
+  const frame = useT();
   const p = interpolate(frame, [at + 6, at + 42], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -62,7 +62,7 @@ const Row: React.FC<{
 };
 
 export const Scene8: React.FC = () => {
-  const frame = useCurrentFrame();
+  const frame = useT();
   const wash = interpolate(frame, [80, 110], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   return (
     <AbsoluteFill style={{ backgroundColor: "#FFF" }}>
