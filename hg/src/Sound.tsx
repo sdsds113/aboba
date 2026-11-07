@@ -18,20 +18,20 @@ const Fx: React.FC<{ src: string; at: number; vol: number; dur?: number }> = ({ 
 );
 
 export const Sound: React.FC<{ s: Starts }> = ({ s }) => {
-  const speechEnd = s.s10b + 205; // конец последней фразы
+  const speechEnd = s.s10b + 205; // конец последней фразы, дальше финальный экран
   // музыка: тихо под голос, громче на вручении и после финальной фразы, уход в конце
   const musicVol = (f: number) => {
     const t = f / K;
-    const base = 0.11;
-    const lift = interpolate(t, [s.s10a - 6, s.s10a + 12, s.s10b - 6, s.s10b + 10], [base, 0.32, 0.32, base], {
+    const base = 0.075;
+    const lift = interpolate(t, [s.s10a - 6, s.s10a + 12, s.s10b - 6, s.s10b + 10], [base, 0.22, 0.22, base], {
       extrapolateLeft: "clamp",
       extrapolateRight: "clamp",
     });
-    const hero = interpolate(t, [s.s4, s.s4 + 10, s.s5 - 10, s.s5], [0, 0.07, 0.07, 0], {
+    const hero = interpolate(t, [s.s4, s.s4 + 10, s.s5 - 10, s.s5], [0, 0.05, 0.05, 0], {
       extrapolateLeft: "clamp",
       extrapolateRight: "clamp",
     });
-    const outro = interpolate(t, [speechEnd, speechEnd + 15], [0, 0.22], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+    const outro = interpolate(t, [speechEnd, speechEnd + 15], [0, 0.17], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
     const fade = interpolate(t, [s.end - 40, s.end], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
     return (Math.max(base, lift) + hero + outro) * fade;
   };
@@ -79,7 +79,7 @@ export const Sound: React.FC<{ s: Starts }> = ({ s }) => {
 
       {/* финал: аплодисменты на вручении, звон на слогане */}
       <Fx src="applause" at={s.s10a} vol={0.38} />
-      <Fx src="chime" at={s.s10b + 200} vol={0.45} />
+      <Fx src="chime" at={s.s10b + 208 + 20} vol={0.42} />
     </>
   );
 };

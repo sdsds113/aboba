@@ -10,7 +10,7 @@ import { SCENE6_LEN, Scene6 } from "./Scene6";
 import { SCENE7_LEN, Scene7 } from "./Scene7";
 import { SCENE8_LEN, Scene8 } from "./Scene8";
 import { SCENE9_LEN, Scene9 } from "./Scene9";
-import { SCENE10B_LEN, SCENE10_LEN, Scene10, Scene10b } from "./Scene10";
+import { SCENE10_LEN, Scene10 } from "./Scene10";
 import { MONTAGE_LEN, Montage } from "./Montage";
 
 import { K } from "./premium";
@@ -51,7 +51,6 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="Scene7-35" component={Scene7} {...common} durationInFrames={(SCENE7_LEN) * K} />
       <Composition id="Scene8-Effekt" component={Scene8} {...common} durationInFrames={(SCENE8_LEN) * K} />
       <Composition id="Scene9-Lyudi" component={Scene9} {...common} durationInFrames={(SCENE9_LEN) * K} />
-      <Composition id="Scene10b-Final" component={Scene10b} {...common} durationInFrames={(SCENE10B_LEN) * K} />
       <Composition id="Scene10-Final" component={Scene10} {...common} durationInFrames={(SCENE10_LEN) * K} />
       <Composition id="Montage" component={Montage} {...common} durationInFrames={(MONTAGE_LEN) * K} />
       <Composition id="Scene4-Missiya" component={Scene4} {...common} durationInFrames={(SCENE4_LEN) * K} />
