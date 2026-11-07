@@ -47,9 +47,9 @@ export const Sound: React.FC<{ s: Starts }> = ({ s }) => {
       ))}
 
       {/* сцена 4: огонь, нарастание и удар на «азарт» */}
-      <Fx src="fire" at={s.s4} vol={0.28} dur={228} />
-      <Fx src="riser" at={s.s4 + 106} vol={0.35} />
-      <Fx src="impact" at={s.s4 + 178} vol={0.5} />
+      <Fx src="fire" at={s.s4} vol={0.07} dur={228} />
+      <Fx src="riser" at={s.s4 + 106} vol={0.2} />
+      <Fx src="impact" at={s.s4 + 178} vol={0.24} />
 
       {/* сцена 5: цифры */}
       <Fx src="pop" at={s.s5 + 70} vol={0.3} />
@@ -78,7 +78,7 @@ export const Sound: React.FC<{ s: Starts }> = ({ s }) => {
       <Fx src="pop" at={s.s9 + 452} vol={0.3} />
 
       {/* финал: аплодисменты на вручении, звон на слогане */}
-      <Fx src="applause" at={s.s10a} vol={0.45} />
+      <Fx src="applause" at={s.s10a} vol={0.38} />
       <Fx src="chime" at={s.s10b + 200} vol={0.45} />
     </>
   );
