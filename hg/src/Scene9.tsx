@@ -13,7 +13,7 @@ import { DISPLAY, INK, INK_2, Reveal } from "./premium";
 export const SCENE9_LEN = 624;
 
 const LABEL: React.CSSProperties = { fontSize: 36, fontWeight: 400, letterSpacing: "-0.01em", color: INK_2 };
-const BIG: React.CSSProperties = { fontSize: 128, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1, color: INK };
+const BIG: React.CSSProperties = { fontSize: 112, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1, color: INK };
 const ITEM: React.CSSProperties = { fontSize: 60, fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1.18, color: INK };
 
 const ENps: React.FC = () => {
@@ -69,10 +69,10 @@ export const Scene9: React.FC = () => (
       {/* 3. Довольный сотрудник = довольный клиент */}
       <div style={{ position: "absolute", top: 400 }}>
         <Reveal at={334} dur={26} outAt={414} outDur={16}>
-          <div style={{ ...ITEM, fontSize: 76 }}>Довольный сотрудник</div>
+          <div style={{ ...ITEM, fontSize: 62 }}>Довольный сотрудник</div>
         </Reveal>
         <Reveal at={374} dur={26} outAt={414} outDur={16}>
-          <div style={{ ...ITEM, fontSize: 76, color: INK_2 }}>=&nbsp;довольный клиент</div>
+          <div style={{ ...ITEM, fontSize: 62, color: INK_2 }}>=&nbsp;довольный клиент</div>
         </Reveal>
       </div>
 
