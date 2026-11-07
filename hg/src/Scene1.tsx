@@ -24,9 +24,9 @@ export const Scene1: React.FC = () => (
           "linear-gradient(90deg, rgba(255,255,255,0) 52%, rgba(255,255,255,0.38) 70%, rgba(255,255,255,0.5) 100%)",
       }}
     />
-    <div style={{ position: "absolute", left: 1190, top: 438, width: 640, fontFamily: DISPLAY }}>
+    <div style={{ position: "absolute", left: 1170, top: 430, width: 700, fontFamily: DISPLAY }}>
       <Reveal at={46} dur={28}>
-        <div style={{ fontSize: 78, fontWeight: 600, letterSpacing: "-0.025em", lineHeight: 1.02, color: INK }}>
+        <div style={{ fontSize: 64, fontWeight: 600, letterSpacing: "-0.02em", lineHeight: 1.02, color: INK, whiteSpace: "nowrap" }}>
           Юлиана Неверова
         </div>
       </Reveal>
@@ -34,7 +34,7 @@ export const Scene1: React.FC = () => (
         <div
           style={{
             marginTop: 26,
-            fontSize: 31,
+            fontSize: 27,
             fontWeight: 400,
             letterSpacing: "-0.005em",
             lineHeight: 1.38,

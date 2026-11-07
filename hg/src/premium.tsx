@@ -1,21 +1,22 @@
 import React from "react";
 import { Easing, continueRender, delayRender, interpolate, staticFile, useCurrentFrame } from "remotion";
 
-// Premium style: Inter Tight (display cut, close to SF Pro), calm Apple-like reveals.
-export const DISPLAY = "InterTightLocal";
+// Premium style: корпоративный шрифт Альфа-Банка Styrene B LC, calm Apple-like reveals.
+// Файлы лежат в public/fonts/styrene (в git не хранятся — лицензия банка).
+export const DISPLAY = "StyreneB";
 
+// weight → файл. 600 (наш «полужирный» в титрах) берём из Medium: Bold у Styrene заметно тяжелее.
 const FILES: [string, string][] = [
-  ["fonts/intertight-cyrillic.woff2", "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116"],
-  ["fonts/intertight-latin.woff2", "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2190-2199, U+2212, U+2215, U+FEFF, U+FFFD"],
+  ["fonts/styrene/StyreneBLC-Light.otf", "300"],
+  ["fonts/styrene/StyreneBLC-Regular.otf", "400"],
+  ["fonts/styrene/StyreneBLC-Medium.otf", "500 600"],
+  ["fonts/styrene/StyreneBLC-Bold.otf", "700"],
 ];
 if (typeof document !== "undefined") {
-  const h = delayRender("Loading Inter Tight");
+  const h = delayRender("Loading Styrene");
   Promise.all(
-    FILES.map(([file, range]) => {
-      const face = new FontFace(DISPLAY, `url(${staticFile(file)}) format("woff2")`, {
-        weight: "300 700",
-        unicodeRange: range,
-      });
+    FILES.map(([file, weight]) => {
+      const face = new FontFace(DISPLAY, `url(${staticFile(file)}) format("opentype")`, { weight });
       document.fonts.add(face);
       return face.load();
     }),
