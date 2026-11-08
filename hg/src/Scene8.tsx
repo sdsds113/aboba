@@ -2,13 +2,15 @@ import React from "react";
 import { AbsoluteFill, Audio, Easing, OffthreadVideo, interpolate, staticFile, } from "remotion";
 import { DISPLAY, INK, INK_2, Reveal, useT } from "./premium";
 
-// Кадр 8 (озвучка v2). «Посмотрите на эти цифры за моей спиной. Это чистый бизнес-эффект от нашей
+// Кадр 8 (озвучка v3, перегенерирована в ElevenLabs). «Посмотрите на эти цифры. Это чистый бизнес-эффект от нашей
 // стратегии. Сбор увеличен на двадцать процентов, средний чек вырос на семнадцать процентов,
 // претензии снизились на тринадцать процентов, а отток снижен до трёх с половиной процентов.»
-// Слова (30 fps): «бизнес-эффект» 101, «Сбор» 168, «средний» 237, «претензии» 310, «отток» 390.
+// Слова (30 fps): «бизнес-эффект» 82, «сбор» 149, «средний» 221, «претензии» 299, «отток» 380.
 // Клип HeyGen Avatar III 720p, звук без сдвига. Она слева, справа ровная стена под график.
 
-export const SCENE8_LEN = 470;
+export const SCENE8_LEN = 468;
+// Появление строк графика (кадры 30 fps), под озвучку v3 без «за моей спиной».
+export const ROW_AT = [145, 217, 295, 376];
 
 const ease = Easing.bezier(0.25, 0.1, 0.25, 1);
 
@@ -63,7 +65,7 @@ const Row: React.FC<{
 
 export const Scene8: React.FC = () => {
   const frame = useT();
-  const wash = interpolate(frame, [80, 110], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
+  const wash = interpolate(frame, [60, 90], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   return (
     <AbsoluteFill style={{ backgroundColor: "#FFF" }}>
       <OffthreadVideo
@@ -80,18 +82,18 @@ export const Scene8: React.FC = () => {
         }}
       />
       <div style={{ position: "absolute", left: 1000, top: 150, width: 790, fontFamily: DISPLAY }}>
-        <Reveal at={96} dur={28}>
+        <Reveal at={76} dur={28}>
           <div style={{ fontSize: 64, fontWeight: 600, letterSpacing: "-0.03em", color: INK }}>Бизнес-эффект</div>
         </Reveal>
-        <Reveal at={128} dur={26} rise={10}>
+        <Reveal at={106} dur={26} rise={10}>
           <div style={{ fontSize: 32, fontWeight: 400, color: INK_2, marginTop: 8, marginBottom: 54 }}>
             от нашей стратегии
           </div>
         </Reveal>
-        <Row label="Сбор" at={164} from={0} to={20} sign="+" barFrom={0} barTo={1} />
-        <Row label="Средний чек" at={233} from={0} to={17} sign="+" barFrom={0} barTo={0.85} />
-        <Row label="Претензии" at={306} from={0} to={13} sign="−" barFrom={0} barTo={0.65} />
-        <Row label="Отток" note="было 5%" at={386} from={5} to={3.5} sign="" barFrom={1} barTo={0.7} />
+        <Row label="Сбор" at={ROW_AT[0]} from={0} to={20} sign="+" barFrom={0} barTo={1} />
+        <Row label="Средний чек" at={ROW_AT[1]} from={0} to={17} sign="+" barFrom={0} barTo={0.85} />
+        <Row label="Претензии" at={ROW_AT[2]} from={0} to={13} sign="−" barFrom={0} barTo={0.65} />
+        <Row label="Отток" note="было 5%" at={ROW_AT[3]} from={5} to={3.5} sign="" barFrom={1} barTo={0.7} />
       </div>
       <Audio src={staticFile("vo_08.mp3")} />
     </AbsoluteFill>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Audio, Sequence, interpolate, staticFile } from "remotion";
 import { K } from "./premium";
+import { ROW_AT } from "./Scene8";
 
 // Звуковой слой полного ролика: музыка и эффекты из ElevenLabs.
 // Все моменты — в кадрах 30 fps от начала ролика (см. starts в Montage).
@@ -69,7 +70,7 @@ export const Sound: React.FC<{ s: Starts }> = ({ s }) => {
       ))}
 
       {/* сцена 8: «под звук клика» на каждой метрике */}
-      {[164, 233, 306, 386].map((d) => (
+      {ROW_AT.map((d) => (
         <Fx key={d} src="tick" at={s.s8 + d + 6} vol={0.4} />
       ))}
 
