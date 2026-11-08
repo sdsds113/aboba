@@ -8,7 +8,7 @@ import { DISPLAY, INK, INK_2, Reveal, useT } from "./premium";
 // Слова (30 fps): «бизнес-эффект» 82, «сбор» 149, «средний» 221, «претензии» 299, «отток» 380.
 // Клип HeyGen Avatar III 720p, звук без сдвига. Она слева, справа ровная стена под график.
 
-export const SCENE8_LEN = 468;
+export const SCENE8_LEN = 466;
 // Появление строк графика (кадры 30 fps), под озвучку v3 без «за моей спиной».
 export const ROW_AT = [145, 217, 295, 376];
 
