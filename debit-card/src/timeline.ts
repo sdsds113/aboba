@@ -2,7 +2,8 @@
 // (сжатая версия, 2:14). В композиции к ним прибавляется LEAD_IN.
 
 export const FPS = 60;
-export const LEAD_IN = 0.5; // пауза перед первой фразой
+export const INTRO_S = 3.2; // заставка «Твоя первая карта»
+export const LEAD_IN = INTRO_S + 0.5; // заставка + пауза перед первой фразой
 export const VO_END = 134.2;
 export const TAIL = 2.3; // хвост после последней фразы
 export const DURATION_S = LEAD_IN + VO_END + TAIL;

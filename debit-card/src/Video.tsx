@@ -19,6 +19,7 @@ import {
   El,
   ELEMENTS,
   EXTRA_SFX,
+  INTRO_S,
   LEAD_IN,
   SCENES,
   TITLES,
@@ -95,8 +96,8 @@ const Background: React.FC = () => {
     <AbsoluteFill>
       {BG_RUNS.map((r, i) => {
         const fadeIn = i === 0 ? 1 : interpolate(t, [r.start - 0.05, r.start + 0.3], [0, 1], { ...clamp, easing: smooth });
-        if (t < r.start - 0.1 || t > r.end + 0.5) return null;
-        const local = t - r.start;
+        if ((i > 0 && t < r.start - 0.1) || t > r.end + 0.5) return null;
+        const local = Math.max(t, -LEAD_IN) - r.start + LEAD_IN;
         return (
           <AbsoluteFill key={i} style={{ opacity: fadeIn }}>
             <Img
@@ -349,6 +350,133 @@ const Subtitles: React.FC = () => {
   );
 };
 
+// Заставка: красный фон из ролика, по краям плавают 3D-элементы, слева название,
+// справа Макс машет рукой. Потом всё мягко уходит, и начинается первая сцена.
+// Лок-ап логотипов «СиВ + Альфа-Банк» (белый) появится сверху, когда будет файл.
+const LOGO_LOCKUP: string | null = null; // например "logo_siv_alfa_white.png"
+const INTRO_ITEMS: { src: string; x: number; y: number; size: number; at: number; rot: number }[] = [
+  { src: "el_01_card", x: -40, y: 700, size: 460, at: 0.05, rot: -14 },
+  { src: "el_08_coins_fall", x: 440, y: 780, size: 300, at: 0.2, rot: 8 },
+  { src: "el_02_sparkles", x: 860, y: 150, size: 240, at: 0.55, rot: 0 },
+  { src: "el_05_piggy", x: 790, y: 640, size: 300, at: 0.35, rot: -8 },
+];
+const Intro: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = frame / fps;
+  if (t > INTRO_S + 0.6) return null;
+  const out = interpolate(t, [INTRO_S - 0.35, INTRO_S + 0.25], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
+  const titleLines = ["Твоя первая", "карта"];
+  return (
+    <AbsoluteFill style={{ zIndex: 120 }}>
+      {INTRO_ITEMS.map((it, i) => {
+        const local = t - it.at;
+        const enter = spring({ frame: Math.round(local * fps), fps, config: { damping: 15, stiffness: 100, mass: 0.9 } });
+        const fl = Math.sin(local * 1.7 + i) * 9;
+        return (
+          <Img
+            key={it.src}
+            src={staticFile(`el/${it.src}.png`)}
+            style={{
+              position: "absolute",
+              left: it.x,
+              top: it.y,
+              width: it.size,
+              height: it.size,
+              opacity: Math.min(1, Math.max(0, local / 0.2)) * (1 - out),
+              scale: String((0.8 + 0.2 * enter) * (1 - 0.15 * out)),
+              translate: `0px ${fl + 40 * (1 - enter) - 60 * out}px`,
+              rotate: `${it.rot + Math.sin(local * 1.3 + i) * 2}deg`,
+            }}
+          />
+        );
+      })}
+
+      <div
+        style={{
+          position: "absolute",
+          left: 120,
+          top: 330,
+          width: 900,
+          // название по центру свободной части кадра, слева от Макса
+          textAlign: "center",
+          fontFamily: FONT,
+          fontWeight: 900,
+          fontSize: 132,
+          lineHeight: 1.0,
+          letterSpacing: "-0.02em",
+          color: "#FFFFFF",
+          textShadow: "0 18px 50px rgba(90, 0, 0, 0.35)",
+          opacity: 1 - out,
+          translate: `0px ${-30 * out}px`,
+        }}
+      >
+        {titleLines.map((line, li) => {
+          const p = interpolate(t, [0.35 + li * 0.18, 0.95 + li * 0.18], [0, 1], { ...clamp, easing: smooth });
+          return (
+            <div key={li} style={{ opacity: p, translate: `0px ${50 * (1 - p)}px`, scale: String(0.94 + 0.06 * p) }}>
+              {line}
+            </div>
+          );
+        })}
+        <div
+          style={{
+            margin: "34px auto 0",
+            width: interpolate(t, [1.0, 1.6], [0, 260], { ...clamp, easing: smooth }),
+            height: 10,
+            borderRadius: 5,
+            background: "#B6F03A",
+          }}
+        />
+      </div>
+
+      {LOGO_LOCKUP ? (
+        <Img
+          src={staticFile(LOGO_LOCKUP)}
+          style={{
+            position: "absolute",
+            left: 96,
+            top: 80,
+            width: 300,
+            opacity: interpolate(t, [0.9, 1.4], [0, 1], clamp) * (1 - out),
+          }}
+        />
+      ) : null}
+
+      <Img
+        src={staticFile("char/max_09_bye.png")}
+        style={{
+          position: "absolute",
+          left: 1035,
+          top: 236,
+          width: 884,
+          height: 884,
+          opacity: interpolate(t, [0.7, 0.95], [0, 1], clamp) * interpolate(t, [INTRO_S + 0.4, INTRO_S + 0.55], [1, 0], clamp),
+          translate: `0px ${interpolate(t, [0.7, 0.85, 1.1], [30, -14, 0], { ...clamp, easing: Easing.inOut(Easing.quad) }) + Math.sin(t * 1.6) * 3}px`,
+        }}
+      />
+    </AbsoluteFill>
+  );
+};
+
+const IntroAudio: React.FC = () => {
+  const { fps } = useVideoConfig();
+  const cue = (s: number, sfx: string, vol: number) => (
+    <Sequence key={sfx + s} from={Math.round(s * fps)} durationInFrames={fps * 3}>
+      <Audio src={staticFile(`sfx/${sfx}.mp3`)} volume={vol} />
+    </Sequence>
+  );
+  return (
+    <>
+      {cue(0.05, "whoosh_soft", 0.3)}
+      {cue(0.4, "pop_soft", 0.25)}
+      {cue(0.6, "sparkle", 0.25)}
+      {cue(0.75, "pop_soft_2", 0.25)}
+      {cue(INTRO_S - 0.3, "whoosh_slide", 0.25)}
+    </>
+  );
+};
+
 const AudioTrack: React.FC = () => {
   const { fps, durationInFrames } = useVideoConfig();
   const f = (s: number) => Math.round((s + LEAD_IN) * fps);
@@ -397,8 +525,10 @@ export const DebitCardVideo: React.FC = () => {
       ))}
       <Titles />
       {fontsReady ? <Subtitles /> : null}
+      <Intro />
       <FadeOut />
       <AudioTrack />
+      <IntroAudio />
     </AbsoluteFill>
   );
 };
