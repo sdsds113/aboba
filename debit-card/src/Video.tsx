@@ -54,6 +54,7 @@ const bgAt = (t: number): Bg => {
 // Подгружаем Styrene ALC до первого кадра
 const useFonts = () => {
   const [handle] = useState(() => delayRender("Styrene"));
+  const [ready, setReady] = useState(false);
   useEffect(() => {
     const faces = [
       ["StyreneALC-Medium.otf", "500"],
@@ -63,13 +64,16 @@ const useFonts = () => {
     Promise.all(faces.map((f) => f.load()))
       .then((loaded) => {
         loaded.forEach((f) => document.fonts.add(f));
+        setReady(true);
         continueRender(handle);
       })
       .catch((e) => {
         console.error(e);
+        setReady(true);
         continueRender(handle);
       });
   }, [handle]);
+  return ready;
 };
 
 // Склеиваем подряд идущие сцены с одинаковым значением ключа
@@ -275,90 +279,69 @@ const Titles: React.FC = () => {
   );
 };
 
-// Субтитры в духе Apple: стеклянная тёмная плашка под Максом, фраза в 1–2 строки
-// по центру. Ещё не сказанные слова еле видны, сказанное слово мягко поднимается
-// снизу, проявляется и становится резким. Размер плашки по всей фразе, без прыжков.
-const SUB_FONT_SIZE = 38;
-const WEAK = new Set(["в", "с", "и", "к", "а", "о", "у", "на", "за", "не", "ни", "по", "из", "от", "до", "или", "про", "под", "как", "где", "что", "чем", "это", "их"]);
-// Делим фразу на 1–2 ровные строки, предлоги и союзы не оставляем в конце строки
-const splitLines = (words: string[]): number[][] => {
-  const all = words.map((_, i) => i);
-  const len = (a: number, b: number) => words.slice(a, b).join(" ").length;
-  if (len(0, words.length) <= 26 || words.length < 2) return [all];
-  let best = 1;
-  let bestScore = Infinity;
-  for (let k = 1; k < words.length; k++) {
-    const last = words[k - 1].toLowerCase().replace(/[.,:;?!]/g, "");
-    const weakEnd = WEAK.has(last) && !/[.,:;?!]$/.test(words[k - 1]);
-    const score = Math.abs(len(0, k) - len(k, words.length)) + (weakEnd ? 100 : 0) - (/[,:;]$/.test(words[k - 1]) ? 4 : 0);
-    if (score < bestScore) {
-      bestScore = score;
-      best = k;
-    }
-  }
-  return [all.slice(0, best), all.slice(best)];
-};
-
+// Субтитры как в первой версии: тёмная плашка, текущее слово лаймовое,
+// сказанные белые, следующие приглушены. Стоят справа под Максом, в одну строку.
+const LIME = "#B6F03A";
 const Subtitles: React.FC = () => {
   const t = useT();
   return (
     <>
       {CAPTIONS.map((c, i) => {
-        const start = c[0].s - 0.2;
+        const start = c[0].s - 0.08;
         const nextStart = CAPTIONS[i + 1]?.[0].s ?? Infinity;
-        // фраза уходит раньше, чем начнёт появляться следующая
-        const end = Math.min(c[c.length - 1].e + 0.5, nextStart - 0.42);
-        if (t < start - 0.02 || t > end + 0.22) return null;
-        const appear = interpolate(t, [start, start + 0.26], [0, 1], { ...clamp, easing: smooth });
-        const leave = interpolate(t, [end, end + 0.2], [0, 1], { ...clamp, easing: Easing.in(Easing.quad) });
+        // фраза уходит раньше, чем появится следующая, без наложений
+        const end = Math.min(c[c.length - 1].e + 0.35, nextStart - 0.2);
+        if (t < start - 0.02 || t > end + 0.15) return null;
+        const appear = interpolate(t, [start, start + 0.16], [0, 1], { ...clamp, easing: smooth });
+        const leave = interpolate(t, [end, end + 0.12], [0, 1], clamp);
         return (
+          // зона под Максом: плашка центрируется в ней и не упирается в край кадра
           <div
             key={i}
             style={{
               position: "absolute",
-              left: 1477,
-              bottom: 44,
-              translate: `-50% ${16 * (1 - appear) - 10 * leave}px`,
-              scale: String(0.97 + 0.03 * appear),
-              opacity: appear * (1 - leave),
-              width: "max-content",
-              padding: "16px 30px 19px",
-              borderRadius: 26,
-              background: "rgba(18, 16, 24, 0.68)",
-              backdropFilter: "blur(18px) saturate(140%)",
-              boxShadow: "0 14px 34px rgba(0, 0, 0, 0.18)",
-              fontFamily: FONT,
-              fontWeight: 700,
-              fontSize: SUB_FONT_SIZE,
-              lineHeight: 1.22,
-              letterSpacing: "-0.005em",
-              color: "#FFFFFF",
-              textAlign: "center",
+              left: 1000,
+              width: 900,
+              bottom: 50,
+              display: "flex",
+              justifyContent: "center",
               zIndex: 150,
             }}
           >
-            {splitLines(c.map((w) => w.t)).map((line, li) => (
-              <div key={li} style={{ whiteSpace: "nowrap" }}>
-                {line.map((j, k) => {
-                  const w = c[j];
-                  const p = interpolate(t, [w.s - 0.08, w.s + 0.3], [0, 1], { ...clamp, easing: Easing.bezier(0.22, 1, 0.36, 1) });
-                  return (
-                    <span
-                      key={j}
-                      style={{
-                        display: "inline-block",
-                        marginRight: k < line.length - 1 ? "0.26em" : 0,
-                        opacity: 0.22 + 0.78 * p,
-                        translate: `0px ${0.42 * SUB_FONT_SIZE * (1 - p)}px`,
-                        filter: p < 0.999 ? `blur(${3 * (1 - p)}px)` : undefined,
-                      }}
-                    >
-                      {w.t}
-                    </span>
-                  );
-                })}
-              </div>
-            ))}
+            <div
+              style={{
+                translate: `0px ${14 * (1 - appear)}px`,
+                scale: String(0.97 + 0.03 * appear),
+                opacity: appear * (1 - leave),
+                padding: "14px 28px 16px",
+                borderRadius: 24,
+                background: "rgba(24, 22, 30, 0.80)",
+                boxShadow: "0 14px 34px rgba(0, 0, 0, 0.22)",
+                fontFamily: FONT,
+                fontWeight: 700,
+                fontSize: 37,
+                lineHeight: 1.1,
+                whiteSpace: "nowrap",
+                flexShrink: 0,
+              }}
+            >
+              {c.map((w, j) => {
+                const active = t >= w.s - 0.04 && t < (c[j + 1]?.s ?? w.e + 0.3) - 0.04;
+                const spoken = t >= w.s - 0.04;
+                return (
+                  <span
+                    key={j}
+                    style={{
+                      color: active ? LIME : "#FFFFFF",
+                      opacity: spoken ? 1 : 0.42,
+                      marginRight: j < c.length - 1 ? "0.26em" : 0,
+                    }}
+                  >
+                    {w.t}
+                  </span>
+                );
+              })}
+            </div>
           </div>
         );
       })}
@@ -404,7 +387,7 @@ const FadeOut: React.FC = () => {
 };
 
 export const DebitCardVideo: React.FC = () => {
-  useFonts();
+  const fontsReady = useFonts();
   return (
     <AbsoluteFill style={{ backgroundColor: "#F1F2EA", overflow: "hidden" }}>
       <Background />
@@ -413,7 +396,7 @@ export const DebitCardVideo: React.FC = () => {
         <Element key={el.id} el={el} index={i} />
       ))}
       <Titles />
-      <Subtitles />
+      {fontsReady ? <Subtitles /> : null}
       <FadeOut />
       <AudioTrack />
     </AbsoluteFill>
