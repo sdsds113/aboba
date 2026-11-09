@@ -421,7 +421,7 @@ const Intro: React.FC = () => {
         })}
       </div>
 
-      {/* логотипы: белые, справа сверху, СиВ и Альфа через тонкий разделитель */}
+      {/* логотипы: белые, справа сверху, СиВ и Альфа рядом */}
       <div
         style={{
           position: "absolute",
@@ -436,10 +436,7 @@ const Intro: React.FC = () => {
         }}
       >
         {LOGO_SIV ? (
-          <>
-            <Img src={staticFile(LOGO_SIV)} style={{ height: 64 }} />
-            <div style={{ width: 2, height: 64, background: "rgba(255,255,255,0.6)", borderRadius: 1 }} />
-          </>
+<Img src={staticFile(LOGO_SIV)} style={{ height: 64 }} />
         ) : null}
         <Img src={staticFile("logo_alfa_white.png")} style={{ height: 84 }} />
       </div>
