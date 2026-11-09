@@ -216,7 +216,8 @@ const Max: React.FC = () => {
             style={{
               position: "absolute",
               left: 1035,
-              top: 196,
+              // низ картинки на 40 px ниже кадра: при подпрыге и «дыхании» срез не виден
+              top: 236,
               width: 884,
               height: 884,
               opacity: fadeIn * fadeOut,
@@ -274,60 +275,90 @@ const Titles: React.FC = () => {
   );
 };
 
-// Субтитры: справа под Максом. Каждое слово своей маленькой плашкой,
-// слова выскакивают по одному слева направо. Без смены цвета.
+// Субтитры в духе Apple: стеклянная тёмная плашка под Максом, фраза в 1–2 строки
+// по центру. Ещё не сказанные слова еле видны, сказанное слово мягко поднимается
+// снизу, проявляется и становится резким. Размер плашки по всей фразе, без прыжков.
+const SUB_FONT_SIZE = 38;
+const WEAK = new Set(["в", "с", "и", "к", "а", "о", "у", "на", "за", "не", "ни", "по", "из", "от", "до", "или", "про", "под", "как", "где", "что", "чем", "это", "их"]);
+// Делим фразу на 1–2 ровные строки, предлоги и союзы не оставляем в конце строки
+const splitLines = (words: string[]): number[][] => {
+  const all = words.map((_, i) => i);
+  const len = (a: number, b: number) => words.slice(a, b).join(" ").length;
+  if (len(0, words.length) <= 26 || words.length < 2) return [all];
+  let best = 1;
+  let bestScore = Infinity;
+  for (let k = 1; k < words.length; k++) {
+    const last = words[k - 1].toLowerCase().replace(/[.,:;?!]/g, "");
+    const weakEnd = WEAK.has(last) && !/[.,:;?!]$/.test(words[k - 1]);
+    const score = Math.abs(len(0, k) - len(k, words.length)) + (weakEnd ? 100 : 0) - (/[,:;]$/.test(words[k - 1]) ? 4 : 0);
+    if (score < bestScore) {
+      bestScore = score;
+      best = k;
+    }
+  }
+  return [all.slice(0, best), all.slice(best)];
+};
+
 const Subtitles: React.FC = () => {
   const t = useT();
   return (
     <>
       {CAPTIONS.map((c, i) => {
+        const start = c[0].s - 0.2;
         const nextStart = CAPTIONS[i + 1]?.[0].s ?? Infinity;
-        const end = Math.min(c[c.length - 1].e + 0.45, nextStart - 0.06);
-        if (t < c[0].s - 0.1 || t > end + 0.15) return null;
-        const leave = interpolate(t, [end, end + 0.12], [0, 1], clamp);
+        // фраза уходит раньше, чем начнёт появляться следующая
+        const end = Math.min(c[c.length - 1].e + 0.5, nextStart - 0.42);
+        if (t < start - 0.02 || t > end + 0.22) return null;
+        const appear = interpolate(t, [start, start + 0.26], [0, 1], { ...clamp, easing: smooth });
+        const leave = interpolate(t, [end, end + 0.2], [0, 1], { ...clamp, easing: Easing.in(Easing.quad) });
         return (
           <div
             key={i}
             style={{
               position: "absolute",
-              left: 1128,
-              bottom: 48,
-              width: 760,
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 8,
-              opacity: 1 - leave,
-              translate: `0px ${-8 * leave}px`,
+              left: 1477,
+              bottom: 44,
+              translate: `-50% ${16 * (1 - appear) - 10 * leave}px`,
+              scale: String(0.97 + 0.03 * appear),
+              opacity: appear * (1 - leave),
+              width: "max-content",
+              padding: "16px 30px 19px",
+              borderRadius: 26,
+              background: "rgba(18, 16, 24, 0.68)",
+              backdropFilter: "blur(18px) saturate(140%)",
+              boxShadow: "0 14px 34px rgba(0, 0, 0, 0.18)",
+              fontFamily: FONT,
+              fontWeight: 700,
+              fontSize: SUB_FONT_SIZE,
+              lineHeight: 1.22,
+              letterSpacing: "-0.005em",
+              color: "#FFFFFF",
+              textAlign: "center",
               zIndex: 150,
             }}
           >
-            {c.map((w, j) => {
-              const p = interpolate(t, [w.s - 0.06, w.s + 0.14], [0, 1], { ...clamp, easing: smooth });
-              if (p <= 0) return null;
-              return (
-                <span
-                  key={j}
-                  style={{
-                    display: "inline-block",
-                    padding: "9px 16px 11px",
-                    borderRadius: 16,
-                    background: "rgba(24, 22, 30, 0.78)",
-                    boxShadow: "0 10px 24px rgba(0, 0, 0, 0.18)",
-                    fontFamily: FONT,
-                    fontWeight: 700,
-                    fontSize: 38,
-                    lineHeight: 1.1,
-                    color: "#FFFFFF",
-                    whiteSpace: "nowrap",
-                    opacity: p,
-                    translate: `0px ${10 * (1 - p)}px`,
-                    scale: String(0.9 + 0.1 * p),
-                  }}
-                >
-                  {w.t}
-                </span>
-              );
-            })}
+            {splitLines(c.map((w) => w.t)).map((line, li) => (
+              <div key={li} style={{ whiteSpace: "nowrap" }}>
+                {line.map((j, k) => {
+                  const w = c[j];
+                  const p = interpolate(t, [w.s - 0.08, w.s + 0.3], [0, 1], { ...clamp, easing: Easing.bezier(0.22, 1, 0.36, 1) });
+                  return (
+                    <span
+                      key={j}
+                      style={{
+                        display: "inline-block",
+                        marginRight: k < line.length - 1 ? "0.26em" : 0,
+                        opacity: 0.22 + 0.78 * p,
+                        translate: `0px ${0.42 * SUB_FONT_SIZE * (1 - p)}px`,
+                        filter: p < 0.999 ? `blur(${3 * (1 - p)}px)` : undefined,
+                      }}
+                    >
+                      {w.t}
+                    </span>
+                  );
+                })}
+              </div>
+            ))}
           </div>
         );
       })}
@@ -350,7 +381,7 @@ const AudioTrack: React.FC = () => {
       <Audio
         src={staticFile("music.mp3")}
         volume={(fr) =>
-          0.095 *
+          0.12 *
           interpolate(fr, [0, fps * 1.2], [0.5, 1], clamp) *
           interpolate(fr, [f(VO_END), durationInFrames - 1], [1, 0.6], clamp) *
           interpolate(fr, [durationInFrames - fps * 1.6, durationInFrames - 1], [1, 0], clamp)
