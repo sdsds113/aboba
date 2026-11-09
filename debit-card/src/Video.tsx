@@ -352,8 +352,8 @@ const Subtitles: React.FC = () => {
 
 // Заставка: красный фон из ролика, по краям плавают 3D-элементы, слева название,
 // справа Макс машет рукой. Потом всё мягко уходит, и начинается первая сцена.
-// Лок-ап логотипов «СиВ + Альфа-Банк» (белый) появится сверху, когда будет файл.
-const LOGO_LOCKUP: string | null = null; // например "logo_siv_alfa_white.png"
+// Слева сверху белые логотипы СиВ и Альфа-Банка.
+const LOGO_SIV: string | null = null; // белый логотип СиВ, например "logo_siv_white.png"
 const INTRO_ITEMS: { src: string; x: number; y: number; size: number; at: number; rot: number }[] = [
   { src: "el_01_card", x: -40, y: 700, size: 460, at: 0.05, rot: -14 },
   { src: "el_08_coins_fall", x: 440, y: 780, size: 300, at: 0.2, rot: 8 },
@@ -419,29 +419,30 @@ const Intro: React.FC = () => {
             </div>
           );
         })}
-        <div
-          style={{
-            margin: "34px auto 0",
-            width: interpolate(t, [1.0, 1.6], [0, 260], { ...clamp, easing: smooth }),
-            height: 10,
-            borderRadius: 5,
-            background: "#B6F03A",
-          }}
-        />
       </div>
 
-      {LOGO_LOCKUP ? (
-        <Img
-          src={staticFile(LOGO_LOCKUP)}
-          style={{
-            position: "absolute",
-            left: 96,
-            top: 80,
-            width: 300,
-            opacity: interpolate(t, [0.9, 1.4], [0, 1], clamp) * (1 - out),
-          }}
-        />
-      ) : null}
+      {/* логотипы: белые, слева сверху; СиВ добавится слева от Альфы через тонкий разделитель */}
+      <div
+        style={{
+          position: "absolute",
+          left: 96,
+          top: 76,
+          height: 92,
+          display: "flex",
+          alignItems: "center",
+          gap: 28,
+          opacity: interpolate(t, [0.9, 1.4], [0, 1], clamp) * (1 - out),
+          translate: `0px ${interpolate(t, [0.9, 1.4], [-12, 0], { ...clamp, easing: smooth })}px`,
+        }}
+      >
+        {LOGO_SIV ? (
+          <>
+            <Img src={staticFile(LOGO_SIV)} style={{ height: 70 }} />
+            <div style={{ width: 2, height: 64, background: "rgba(255,255,255,0.6)", borderRadius: 1 }} />
+          </>
+        ) : null}
+        <Img src={staticFile("logo_alfa_white.png")} style={{ height: 92 }} />
+      </div>
 
       <Img
         src={staticFile("char/max_09_bye.png")}
