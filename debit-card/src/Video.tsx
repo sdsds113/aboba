@@ -274,52 +274,54 @@ const Titles: React.FC = () => {
   );
 };
 
-// Субтитры: тёмная плашка внизу левой половины кадра, текущее слово лаймовое
-const LIME = "#B6F03A";
+// Субтитры: справа под Максом. Каждое слово своей маленькой плашкой,
+// слова выскакивают по одному слева направо. Без смены цвета.
 const Subtitles: React.FC = () => {
   const t = useT();
   return (
     <>
       {CAPTIONS.map((c, i) => {
-        const start = c[0].s - 0.08;
         const nextStart = CAPTIONS[i + 1]?.[0].s ?? Infinity;
-        const end = Math.min(c[c.length - 1].e + 0.35, nextStart - 0.08);
-        if (t < start - 0.02 || t > end + 0.15) return null;
-        const appear = interpolate(t, [start, start + 0.16], [0, 1], { ...clamp, easing: smooth });
+        const end = Math.min(c[c.length - 1].e + 0.45, nextStart - 0.06);
+        if (t < c[0].s - 0.1 || t > end + 0.15) return null;
         const leave = interpolate(t, [end, end + 0.12], [0, 1], clamp);
         return (
           <div
             key={i}
             style={{
               position: "absolute",
-              left: 560,
-              bottom: 54,
-              translate: `-50% ${14 * (1 - appear)}px`,
-              scale: String(0.97 + 0.03 * appear),
-              opacity: appear * (1 - leave),
-              padding: "14px 28px 16px",
-              borderRadius: 24,
-              background: "rgba(24, 22, 30, 0.80)",
-              boxShadow: "0 14px 34px rgba(0, 0, 0, 0.22)",
-              fontFamily: FONT,
-              fontWeight: 700,
-              fontSize: 44,
-              lineHeight: 1.1,
-              letterSpacing: "-0.005em",
-              whiteSpace: "nowrap",
+              left: 1128,
+              bottom: 48,
+              width: 760,
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 8,
+              opacity: 1 - leave,
+              translate: `0px ${-8 * leave}px`,
               zIndex: 150,
             }}
           >
             {c.map((w, j) => {
-              const active = t >= w.s - 0.04 && t < (c[j + 1]?.s ?? w.e + 0.3) - 0.04;
-              const spoken = t >= w.s - 0.04;
+              const p = interpolate(t, [w.s - 0.06, w.s + 0.14], [0, 1], { ...clamp, easing: smooth });
+              if (p <= 0) return null;
               return (
                 <span
                   key={j}
                   style={{
-                    color: active ? LIME : "#FFFFFF",
-                    opacity: spoken ? 1 : 0.42,
-                    marginRight: j < c.length - 1 ? "0.26em" : 0,
+                    display: "inline-block",
+                    padding: "9px 16px 11px",
+                    borderRadius: 16,
+                    background: "rgba(24, 22, 30, 0.78)",
+                    boxShadow: "0 10px 24px rgba(0, 0, 0, 0.18)",
+                    fontFamily: FONT,
+                    fontWeight: 700,
+                    fontSize: 38,
+                    lineHeight: 1.1,
+                    color: "#FFFFFF",
+                    whiteSpace: "nowrap",
+                    opacity: p,
+                    translate: `0px ${10 * (1 - p)}px`,
+                    scale: String(0.9 + 0.1 * p),
                   }}
                 >
                   {w.t}
@@ -348,7 +350,7 @@ const AudioTrack: React.FC = () => {
       <Audio
         src={staticFile("music.mp3")}
         volume={(fr) =>
-          0.14 *
+          0.095 *
           interpolate(fr, [0, fps * 1.2], [0.5, 1], clamp) *
           interpolate(fr, [f(VO_END), durationInFrames - 1], [1, 0.6], clamp) *
           interpolate(fr, [durationInFrames - fps * 1.6, durationInFrames - 1], [1, 0], clamp)
@@ -356,7 +358,7 @@ const AudioTrack: React.FC = () => {
       />
       {sfx.map((s, i) => (
         <Sequence key={i} name={`sfx ${s.sfx}`} from={f(s.t)} durationInFrames={fps * 3}>
-          <Audio src={staticFile(`sfx/${s.sfx}.mp3`)} volume={s.vol ?? 0.42} />
+          <Audio src={staticFile(`sfx/${s.sfx}.mp3`)} volume={(s.vol ?? 0.42) * 0.65} />
         </Sequence>
       ))}
     </>
