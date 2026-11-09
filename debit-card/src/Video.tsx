@@ -352,8 +352,8 @@ const Subtitles: React.FC = () => {
 
 // Заставка: красный фон из ролика, по краям плавают 3D-элементы, слева название,
 // справа Макс машет рукой. Потом всё мягко уходит, и начинается первая сцена.
-// Слева сверху белые логотипы СиВ и Альфа-Банка.
-const LOGO_SIV: string | null = null; // белый логотип СиВ, например "logo_siv_white.png"
+// Справа сверху белые логотипы СиВ и Альфа-Банка.
+const LOGO_SIV: string | null = "logo_siv_white.png"; // белый логотип СиВ
 const INTRO_ITEMS: { src: string; x: number; y: number; size: number; at: number; rot: number }[] = [
   { src: "el_01_card", x: -40, y: 700, size: 460, at: 0.05, rot: -14 },
   { src: "el_08_coins_fall", x: 440, y: 780, size: 300, at: 0.2, rot: 8 },
@@ -421,11 +421,11 @@ const Intro: React.FC = () => {
         })}
       </div>
 
-      {/* логотипы: белые, слева сверху; СиВ добавится слева от Альфы через тонкий разделитель */}
+      {/* логотипы: белые, справа сверху, СиВ и Альфа через тонкий разделитель */}
       <div
         style={{
           position: "absolute",
-          left: 96,
+          right: 96,
           top: 76,
           height: 92,
           display: "flex",
@@ -437,11 +437,11 @@ const Intro: React.FC = () => {
       >
         {LOGO_SIV ? (
           <>
-            <Img src={staticFile(LOGO_SIV)} style={{ height: 70 }} />
+            <Img src={staticFile(LOGO_SIV)} style={{ height: 64 }} />
             <div style={{ width: 2, height: 64, background: "rgba(255,255,255,0.6)", borderRadius: 1 }} />
           </>
         ) : null}
-        <Img src={staticFile("logo_alfa_white.png")} style={{ height: 92 }} />
+        <Img src={staticFile("logo_alfa_white.png")} style={{ height: 84 }} />
       </div>
 
       <Img
