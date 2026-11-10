@@ -200,8 +200,8 @@ const Row: React.FC<{ kind: "cross" | "check"; text: string; x: number; y: numbe
         zIndex: 6,
       }}
     >
-      <Img src={staticFile(`el/${kind === "cross" ? "el_33_cross" : "el_34_check"}.png`)} style={{ width: 92, height: 92, scale: String(0.6 + 0.4 * e) }} />
-      <span style={{ fontFamily: FONT, fontWeight: 700, fontSize: 46, color: dark ? INK : "#FFFFFF", whiteSpace: "nowrap" }}>{text}</span>
+      <Img src={staticFile(`el/${kind === "cross" ? "el_33_cross" : "el_34_check"}.png`)} style={{ width: 80, height: 80, scale: String(0.6 + 0.4 * e) }} />
+      <span style={{ fontFamily: FONT, fontWeight: 700, fontSize: 42, color: dark ? INK : "#FFFFFF", whiteSpace: "nowrap" }}>{text}</span>
     </div>
   );
 };
@@ -458,18 +458,18 @@ export const Shots: React.FC = () => {
               <div style={{ position: "absolute", right: 0, top: 0, width: 960 * split, height: 1080, overflow: "hidden" }}>
                 <Img src={staticFile("bg_lime.png")} style={{ position: "absolute", right: 0, width: 1920, height: 1080, objectFit: "cover" }} />
               </div>
-              <Label text="Наличка" x={110} y={210} at={29.36} bg="#FFFFFF" color={INK} size={52} />
-              <Label text="Карта" x={1510} y={210} at={30.16} bg={RED} size={52} />
-              <Sprite src="el/el_07_cash_crumpled.png" x={140} y={250} size={430} at={28.9} rot={-6} />
-              <Sprite src="el/el_08_coins_fall.png" x={430} y={330} size={300} at={35.9} from="top" />
-              <Sprite src="el/el_01_card.png" x={1320} y={200} size={430} at={30.16} rot={6} from="right" />
-              <Row kind="cross" text="Мнутся" x={100} y={660} at={34.1} />
-              <Row kind="cross" text="Теряются" x={100} y={760} at={34.9} />
-              <Row kind="cross" text="Звенят в кармане" x={100} y={860} at={36.62} />
-              <Row kind="cross" text="Не оплатить онлайн" x={100} y={960} at={39.56} />
-              <Row kind="check" text="Подписки" x={1330} y={600} at={40.62} dark />
-              <Row kind="check" text="Маркетплейсы" x={1330} y={700} at={41.76} dark />
-              <Row kind="check" text="Игры" x={1330} y={800} at={43.16} dark />
+              <Label text="Наличка" x={110} y={260} at={29.36} bg="#FFFFFF" color={INK} size={46} />
+              <Label text="Карта" x={1560} y={260} at={30.16} bg={RED} size={46} />
+              <Sprite src="el/el_07_cash_crumpled.png" x={120} y={330} size={360} at={28.9} rot={-6} />
+              <Sprite src="el/el_08_coins_fall.png" x={450} y={360} size={280} at={35.9} from="top" />
+              <Sprite src="el/el_01_card.png" x={1300} y={330} size={400} at={30.16} rot={6} from="right" />
+              <Row kind="cross" text="Мнутся" x={100} y={690} at={34.1} />
+              <Row kind="cross" text="Теряются" x={100} y={778} at={34.9} />
+              <Row kind="cross" text="Звенят в кармане" x={100} y={866} at={36.62} />
+              <Row kind="cross" text="Не оплатить онлайн" x={100} y={954} at={39.56} />
+              <Row kind="check" text="Подписки" x={1330} y={690} at={40.62} dark />
+              <Row kind="check" text="Маркетплейсы" x={1330} y={778} at={41.76} dark />
+              <Row kind="check" text="Игры" x={1330} y={866} at={43.16} dark />
               <BigMax src="max_cu_question" left={700} size={560} at={31.0} />
             </>
           );

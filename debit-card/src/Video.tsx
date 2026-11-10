@@ -476,6 +476,9 @@ const IntroAudio: React.FC = () => {
   );
 };
 
+// Звуковые эффекты выключены: в ролике только голос и музыка
+const SFX_ON = false;
+
 const AudioTrack: React.FC = () => {
   const { fps, durationInFrames } = useVideoConfig();
   const f = (s: number) => Math.round((s + LEAD_IN) * fps);
@@ -499,11 +502,13 @@ const AudioTrack: React.FC = () => {
           interpolate(fr, [durationInFrames - fps * 1.6, durationInFrames - 1], [1, 0], clamp)
         }
       />
-      {sfx.map((s, i) => (
-        <Sequence key={i} name={`sfx ${s.sfx}`} from={f(s.t)} durationInFrames={fps * 3}>
-          <Audio src={staticFile(`sfx/${s.sfx}.mp3`)} volume={(s.vol ?? 0.42) * 0.65} />
-        </Sequence>
-      ))}
+      {SFX_ON
+        ? sfx.map((s, i) => (
+            <Sequence key={i} name={`sfx ${s.sfx}`} from={f(s.t)} durationInFrames={fps * 3}>
+              <Audio src={staticFile(`sfx/${s.sfx}.mp3`)} volume={(s.vol ?? 0.42) * 0.65} />
+            </Sequence>
+          ))
+        : null}
     </>
   );
 };
@@ -547,8 +552,8 @@ export const DebitCardVideo: React.FC = () => {
       <Intro />
       <FadeOut />
       <AudioTrack />
-      <IntroAudio />
-      <ShotsAudio />
+      {SFX_ON ? <IntroAudio /> : null}
+      {SFX_ON ? <ShotsAudio /> : null}
     </AbsoluteFill>
   );
 };
