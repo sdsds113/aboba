@@ -26,6 +26,7 @@ import {
   VO_END,
 } from "./timeline";
 import { CAPTIONS } from "./captions";
+import { SHOT_RANGES, Shots, ShotsAudio } from "./Shots";
 
 const RED = "#EF3124";
 const INK = "#1B1B21";
@@ -478,10 +479,12 @@ const IntroAudio: React.FC = () => {
 const AudioTrack: React.FC = () => {
   const { fps, durationInFrames } = useVideoConfig();
   const f = (s: number) => Math.round((s + LEAD_IN) * fps);
+  // звуки ведущего плана глушим там, где его закрывает отдельный план со своими звуками
+  const underShot = (t: number) => SHOT_RANGES.some(([a, b]) => t >= a - 0.05 && t < b);
   const sfx = [
     ...ELEMENTS.filter((e) => e.sfx).map((e) => ({ t: e.in, sfx: e.sfx as string, vol: undefined as number | undefined })),
     ...EXTRA_SFX,
-  ];
+  ].filter((s) => !underShot(s.t));
   return (
     <>
       <Sequence name="Озвучка" from={f(0)}>
@@ -512,21 +515,40 @@ const FadeOut: React.FC = () => {
   return <AbsoluteFill style={{ background: "#FFFFFF", opacity: o, zIndex: 200 }} />;
 };
 
+// Камера ведущего плана: медленное покачивание и наезд, чтобы кадр не стоял
+const Stage: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const t = useT();
+  return (
+    <AbsoluteFill
+      style={{
+        scale: String(1.035 + 0.02 * Math.sin(t / 4.5)),
+        translate: `${Math.sin(t / 6.1) * 14}px ${Math.cos(t / 5.3) * 8}px`,
+      }}
+    >
+      {children}
+    </AbsoluteFill>
+  );
+};
+
 export const DebitCardVideo: React.FC = () => {
   const fontsReady = useFonts();
   return (
     <AbsoluteFill style={{ backgroundColor: "#F1F2EA", overflow: "hidden" }}>
-      <Background />
-      <Max />
-      {ELEMENTS.map((el, i) => (
-        <Element key={el.id} el={el} index={i} />
-      ))}
+      <Stage>
+        <Background />
+        <Max />
+        {ELEMENTS.map((el, i) => (
+          <Element key={el.id} el={el} index={i} />
+        ))}
+      </Stage>
+      <Shots />
       <Titles />
       {fontsReady ? <Subtitles /> : null}
       <Intro />
       <FadeOut />
       <AudioTrack />
       <IntroAudio />
+      <ShotsAudio />
     </AbsoluteFill>
   );
 };
