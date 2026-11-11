@@ -37,15 +37,10 @@ export const Sound: React.FC<{ s: Starts }> = ({ s }) => {
     return (Math.max(base, lift) + hero + outro) * fade;
   };
 
-  const cuts = [s.s2, s.s3, s.s4, s.s5, s.s6a, s.s6b, s.s6c, s.s7, s.s8, s.s9, s.s10a];
   return (
     <>
       <Audio src={staticFile("sfx/music.mp3")} volume={musicVol} />
 
-      {/* мягкие whoosh на склейках */}
-      {cuts.map((c, i) => (
-        <Fx key={i} src="whoosh" at={c - 8} vol={0.22} />
-      ))}
 
       {/* сцена 4: только тихий огонь (нарастание и удар убраны по просьбе) */}
       <Fx src="fire" at={s.s4} vol={0.07} dur={228} />
