@@ -9,7 +9,7 @@ import { DISPLAY, INK, INK_2, Reveal, useT } from "./premium";
 // «оценка» 277, «пять» 323, «таргете» 356, «восемь» 402.
 // Клип HeyGen Avatar III 720p (образ «Сцена 5 Цифры»), звук без сдвига.
 
-export const SCENE5_LEN = 428;
+export const SCENE5_LEN = 426;
 
 const APPLE = Easing.bezier(0.25, 0.1, 0.25, 1);
 
