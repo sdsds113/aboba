@@ -1,6 +1,6 @@
 import React from "react";
-import { AbsoluteFill, Audio, OffthreadVideo, Sequence, staticFile } from "remotion";
-import { DISPLAY, INK, INK_2, Reveal , K } from "./premium";
+import { AbsoluteFill, Audio, OffthreadVideo, staticFile } from "remotion";
+import { DISPLAY, INK, INK_2, Reveal } from "./premium";
 
 // Кадр 2. «Когда люди слышат слово «взыскание», они часто представляют себе железную
 // строгость и сухие скрипты. Но моя работа каждый день доказывает обратное.
@@ -9,7 +9,7 @@ import { DISPLAY, INK, INK_2, Reveal , K } from "./premium";
 // «человечность» ≈ 327, «эмпатию» ≈ 357, «психологию» ≈ 394.
 // Клип HeyGen + Omni 1920×1080, 14,13 с. Звук — чистая дорожка, сдвиг 1 кадр под губы.
 
-export const SCENE2_LEN = 424;
+export const SCENE2_LEN = 421;
 
 const WORD: React.CSSProperties = {
   fontSize: 94,
@@ -61,8 +61,6 @@ export const Scene2: React.FC = () => (
       </div>
     </div>
 
-    <Sequence from={K}>
-      <Audio src={staticFile("vo_02.mp3")} />
-    </Sequence>
+    <Audio src={staticFile("vo_02.mp3")} />
   </AbsoluteFill>
 );

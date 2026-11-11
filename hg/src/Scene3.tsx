@@ -1,13 +1,13 @@
 import React from "react";
-import { AbsoluteFill, Audio, OffthreadVideo, Sequence, staticFile } from "remotion";
-import { DISPLAY, INK, Reveal , K } from "./premium";
+import { AbsoluteFill, Audio, OffthreadVideo, staticFile } from "remotion";
+import { DISPLAY, INK, Reveal } from "./premium";
 
 // Кадр 3. «По ту сторону провода всегда человек со своей трудной историей. А по эту —
 // оператор, который должен сохранять баланс между интересами бизнеса и уважением к клиенту.»
 // Слова (30 fps): «баланс» ≈ 194, «бизнеса» ≈ 232, «уважением» ≈ 254, конец ≈ 290.
 // Клип HeyGen + Omni 1920×1080, 9,79 с. Звук — чистая дорожка, сдвиг 1 кадр под губы.
 
-export const SCENE3_LEN = 294;
+export const SCENE3_LEN = 293;
 
 export const Scene3: React.FC = () => (
   <AbsoluteFill style={{ backgroundColor: "#FFF" }}>
@@ -35,8 +35,6 @@ export const Scene3: React.FC = () => (
         </Reveal>
       </div>
     </div>
-    <Sequence from={K}>
-      <Audio src={staticFile("vo_03.mp3")} />
-    </Sequence>
+    <Audio src={staticFile("vo_03.mp3")} />
   </AbsoluteFill>
 );

@@ -1,6 +1,6 @@
 import React from "react";
-import { AbsoluteFill, Audio, OffthreadVideo, Sequence, staticFile } from "remotion";
-import { DISPLAY, INK, INK_2, Reveal , K } from "./premium";
+import { AbsoluteFill, Audio, OffthreadVideo, staticFile } from "remotion";
+import { DISPLAY, INK, INK_2, Reveal } from "./premium";
 
 // Кадр 1. «Привет всем! Меня зовут Юлиана Неверова, я главный эксперт по обучению
 // сотрудников дистанционного взыскания в Альфа-Банке.»
@@ -47,8 +47,6 @@ export const Scene1: React.FC = () => (
         </div>
       </Reveal>
     </div>
-    <Sequence from={K}>
-      <Audio src={staticFile("vo_01.mp3")} />
-    </Sequence>
+    <Audio src={staticFile("vo_01.mp3")} />
   </AbsoluteFill>
 );

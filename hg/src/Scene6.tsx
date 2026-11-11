@@ -8,8 +8,8 @@ import { DISPLAY, INK, INK_2, Reveal , K } from "./premium";
 // 6в: «И третий — забота…» 11,48 с
 
 export const SCENE6A_LEN = 584;
-export const SCENE6B_LEN = 319;
-export const SCENE6C_LEN = 344;
+export const SCENE6B_LEN = 318;
+export const SCENE6C_LEN = 343;
 export const SCENE6_LEN = SCENE6A_LEN + SCENE6B_LEN + SCENE6C_LEN;
 
 const TITLE: React.CSSProperties = { fontSize: 104, fontWeight: 600, letterSpacing: "-0.035em", lineHeight: 1, color: INK };
