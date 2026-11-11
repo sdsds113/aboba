@@ -26,7 +26,8 @@ import {
   VO_END,
 } from "./timeline";
 import { CAPTIONS } from "./captions";
-import { SHOT_RANGES, Shots, ShotsAudio } from "./Shots";
+import { FEEL, Feel, Head, Shine, SHOT_RANGES, Shots, ShotsAudio } from "./Shots";
+import { beatPulse } from "./beats";
 
 const RED = "#EF3124";
 const INK = "#1B1B21";
@@ -118,6 +119,12 @@ const Background: React.FC = () => {
   );
 };
 
+// Характер движения по типу предмета
+const HEAVY = ["el_03_safe", "el_13_lock", "el_18_pc", "el_20_jar", "el_27_skill"];
+const BOUNCY = ["el_02_sparkles", "el_05_piggy", "el_08_coins_fall", "el_07_cash_crumpled", "el_14_shield", "el_28_trophy", "el_15_cards_fan"];
+const feelOf = (el: El): Feel =>
+  el.text !== undefined ? "bouncy" : HEAVY.includes(el.src ?? "") ? "heavy" : BOUNCY.includes(el.src ?? "") ? "bouncy" : "snappy";
+
 const Element: React.FC<{ el: El; index: number }> = ({ el, index }) => {
   const { fps } = useVideoConfig();
   const t = useT();
@@ -127,7 +134,7 @@ const Element: React.FC<{ el: El; index: number }> = ({ el, index }) => {
   const enter = spring({
     frame: Math.round(local * fps),
     fps,
-    config: { damping: 15, stiffness: 110, mass: 0.9 },
+    config: FEEL[feelOf(el)],
   });
   const exitP = interpolate(t, [el.out, el.out + (el.exit === "flyUp" ? 0.55 : 0.3)], [0, 1], {
     ...clamp,
@@ -148,7 +155,7 @@ const Element: React.FC<{ el: El; index: number }> = ({ el, index }) => {
   const flyY = el.exit === "flyUp" ? -520 * exitP : 0;
   const flyR = el.exit === "flyUp" ? -35 * exitP : 0;
 
-  const scale = (startScale + (1 - startScale) * enter) * (1 - 0.08 * exitP);
+  const scale = (startScale + (1 - startScale) * enter) * (1 - 0.08 * exitP) * (1 + 0.016 * beatPulse(t));
   const opacity = Math.min(1, local / 0.18) * (1 - exitP);
 
   const style: React.CSSProperties = {
@@ -191,16 +198,19 @@ const Element: React.FC<{ el: El; index: number }> = ({ el, index }) => {
     );
   }
 
+  const src = `el/${el.src}.png`;
   return (
-    <Img
-      src={staticFile(`el/${el.src}.png`)}
+    <div
       style={{
         ...style,
         width: el.size,
         height: el.size,
-        filter: el.dim ? "grayscale(0.75) brightness(1.08)" : undefined,
+        filter: `${el.dim ? "grayscale(0.75) brightness(1.08) " : ""}drop-shadow(0 26px 24px rgba(20, 0, 40, 0.2))`,
       }}
-    />
+    >
+      <Img src={staticFile(src)} style={{ width: "100%", height: "100%" }} />
+      {el.src === "el_01_card" && !el.dim ? <Shine src={src} lt={local} /> : null}
+    </div>
   );
 };
 
@@ -237,49 +247,39 @@ const Max: React.FC = () => {
   );
 };
 
-const Titles: React.FC = () => {
-  const t = useT();
-  return (
-    <>
-      {TITLES.map((ti, i) => {
-        const next = TITLES[i + 1]?.t ?? DURATION_S;
-        if (t < ti.t - 0.05 || t > next + 0.3) return null;
-        const local = t - ti.t;
-        const appear = interpolate(local, [0.08, 0.5], [0, 1], { ...clamp, easing: smooth });
-        const leave = interpolate(t, [next - 0.02, next + 0.16], [0, 1], clamp);
-        const onRed = bgAt(ti.t) !== "light";
-        return (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              left: 96,
-              top: 84,
-              padding: "22px 38px 24px",
-              borderRadius: 30,
-              background: onRed ? "#FFFFFF" : RED,
-              color: onRed ? INK : "#FFFFFF",
-              fontFamily: FONT,
-              fontWeight: 700,
-              fontSize: 58,
-              letterSpacing: "-0.01em",
-              lineHeight: 1.05,
-              whiteSpace: "nowrap",
-              boxShadow: "0 20px 44px rgba(30, 0, 40, 0.16)",
-              opacity: appear * (1 - leave),
-              translate: `${-18 * leave}px ${24 * (1 - appear)}px`,
-              scale: String(0.96 + 0.04 * appear),
-              transformOrigin: "left center",
-              zIndex: 100,
-            }}
-          >
-            {ti.text}
-          </div>
-        );
-      })}
-    </>
-  );
+// Заголовки ведущего плана: кинетический текст. Под отдельными планами не показываются,
+// у планов свои заголовки.
+const uncoveredFrom = (t: number) => {
+  let x = t;
+  for (;;) {
+    const r = SHOT_RANGES.find(([a, b]) => x >= a - 0.01 && x < b);
+    if (!r) return x;
+    x = r[1];
+  }
 };
+const nextCover = (t: number) => Math.min(...SHOT_RANGES.filter(([a]) => a > t).map(([a]) => a), 9999);
+
+const Titles: React.FC = () => (
+  <>
+    {TITLES.map((ti, i) => {
+      const start = uncoveredFrom(ti.t);
+      const end = Math.min(TITLES[i + 1]?.t ?? DURATION_S, nextCover(start));
+      if (end - start < 0.8) return null;
+      return (
+        <Head
+          key={i}
+          text={ti.text}
+          x={100}
+          y={90}
+          at={start + 0.12}
+          until={end - 0.3}
+          color={bgAt(start) === "light" ? INK : "#FFFFFF"}
+          z={100}
+        />
+      );
+    })}
+  </>
+);
 
 // Субтитры как в первой версии: тёмная плашка, текущее слово лаймовое,
 // сказанные белые, следующие приглушены. Стоят справа под Максом, в одну строку.
@@ -356,23 +356,23 @@ const Subtitles: React.FC = () => {
 // Справа сверху белые логотипы СиВ и Альфа-Банка.
 const LOGO_SIV: string | null = "logo_siv_white.png"; // белый логотип СиВ
 const INTRO_ITEMS: { src: string; x: number; y: number; size: number; at: number; rot: number }[] = [
-  { src: "el_01_card", x: -40, y: 700, size: 460, at: 0.05, rot: -14 },
-  { src: "el_08_coins_fall", x: 440, y: 780, size: 300, at: 0.2, rot: 8 },
-  { src: "el_02_sparkles", x: 860, y: 150, size: 240, at: 0.55, rot: 0 },
-  { src: "el_05_piggy", x: 790, y: 640, size: 300, at: 0.35, rot: -8 },
+  { src: "el_01_card", x: -40, y: 700, size: 460, at: 0.0, rot: -14 },
+  { src: "el_08_coins_fall", x: 440, y: 780, size: 300, at: 0.5, rot: 8 },
+  { src: "el_02_sparkles", x: 860, y: 150, size: 240, at: 1.5, rot: 0 },
+  { src: "el_05_piggy", x: 790, y: 640, size: 300, at: 1.0, rot: -8 },
 ];
 const Intro: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
   if (t > INTRO_S + 0.6) return null;
-  const out = interpolate(t, [INTRO_S - 0.35, INTRO_S + 0.25], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
+  const out = interpolate(t, [INTRO_S - 0.3, INTRO_S + 0.25], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
   const titleLines = ["Твоя первая", "карта"];
   return (
     <AbsoluteFill style={{ zIndex: 120 }}>
       {INTRO_ITEMS.map((it, i) => {
         const local = t - it.at;
-        const enter = spring({ frame: Math.round(local * fps), fps, config: { damping: 15, stiffness: 100, mass: 0.9 } });
+        const enter = spring({ frame: Math.round(local * fps), fps, config: FEEL.bouncy });
         const fl = Math.sin(local * 1.7 + i) * 9;
         return (
           <Img
@@ -385,7 +385,8 @@ const Intro: React.FC = () => {
               width: it.size,
               height: it.size,
               opacity: Math.min(1, Math.max(0, local / 0.2)) * (1 - out),
-              scale: String((0.8 + 0.2 * enter) * (1 - 0.15 * out)),
+              scale: String((0.6 + 0.4 * enter) * (1 - 0.15 * out) * (1 + 0.02 * beatPulse(t - LEAD_IN))),
+              filter: "drop-shadow(0 26px 24px rgba(60, 0, 0, 0.25))",
               translate: `0px ${fl + 40 * (1 - enter) - 60 * out}px`,
               rotate: `${it.rot + Math.sin(local * 1.3 + i) * 2}deg`,
             }}
@@ -413,7 +414,7 @@ const Intro: React.FC = () => {
         }}
       >
         {titleLines.map((line, li) => {
-          const p = interpolate(t, [0.35 + li * 0.18, 0.95 + li * 0.18], [0, 1], { ...clamp, easing: smooth });
+          const p = interpolate(t, [0.5 + li * 0.5, 1.0 + li * 0.5], [0, 1], { ...clamp, easing: smooth });
           return (
             <div key={li} style={{ opacity: p, translate: `0px ${50 * (1 - p)}px`, scale: String(0.94 + 0.06 * p) }}>
               {line}
@@ -432,8 +433,8 @@ const Intro: React.FC = () => {
           display: "flex",
           alignItems: "center",
           gap: 28,
-          opacity: interpolate(t, [0.9, 1.4], [0, 1], clamp) * (1 - out),
-          translate: `0px ${interpolate(t, [0.9, 1.4], [-12, 0], { ...clamp, easing: smooth })}px`,
+          opacity: interpolate(t, [2.0, 2.4], [0, 1], clamp) * (1 - out),
+          translate: `0px ${interpolate(t, [2.0, 2.4], [-12, 0], { ...clamp, easing: smooth })}px`,
         }}
       >
         {LOGO_SIV ? (
@@ -450,8 +451,8 @@ const Intro: React.FC = () => {
           top: 236,
           width: 884,
           height: 884,
-          opacity: interpolate(t, [0.7, 0.95], [0, 1], clamp) * interpolate(t, [INTRO_S + 0.4, INTRO_S + 0.55], [1, 0], clamp),
-          translate: `0px ${interpolate(t, [0.7, 0.85, 1.1], [30, -14, 0], { ...clamp, easing: Easing.inOut(Easing.quad) }) + Math.sin(t * 1.6) * 3}px`,
+          opacity: interpolate(t, [1.5, 1.7], [0, 1], clamp) * (1 - out),
+          translate: `0px ${interpolate(t, [1.5, 1.65, 1.9], [30, -14, 0], { ...clamp, easing: Easing.inOut(Easing.quad) }) + Math.sin(t * 1.6) * 3}px`,
         }}
       />
     </AbsoluteFill>
@@ -479,6 +480,22 @@ const IntroAudio: React.FC = () => {
 // Звуковые эффекты выключены: в ролике только голос и музыка
 const SFX_ON = false;
 
+// Паузы в речи длиннее 0,45 с: в них музыка чуть поднимается
+const VO_GAPS: [number, number][] = (() => {
+  const w = CAPTIONS.flat();
+  const g: [number, number][] = [];
+  for (let i = 1; i < w.length; i++) if (w[i].s - w[i - 1].e >= 0.45) g.push([w[i - 1].e, w[i].s]);
+  return g;
+})();
+const musicVolume = (videoT: number, total: number) => {
+  const t = videoT - LEAD_IN;
+  const duck = interpolate(t, [-0.5, 0.15], [0.3, 0.115], clamp);
+  const gap = Math.max(0, ...VO_GAPS.map(([a, b]) => Math.min(interpolate(t, [a, a + 0.25], [0, 1], clamp), interpolate(t, [b - 0.2, b + 0.05], [1, 0], clamp))));
+  const finale = interpolate(t, [VO_END + 0.1, VO_END + 0.9], [0, 1], clamp);
+  const base = duck + 0.05 * gap * (t > 0 ? 1 : 0);
+  return (base + (0.32 - base) * finale) * interpolate(videoT, [total - 0.35, total], [1, 0], clamp);
+};
+
 const AudioTrack: React.FC = () => {
   const { fps, durationInFrames } = useVideoConfig();
   const f = (s: number) => Math.round((s + LEAD_IN) * fps);
@@ -493,15 +510,7 @@ const AudioTrack: React.FC = () => {
       <Sequence name="Озвучка" from={f(0)}>
         <Audio src={staticFile("vo.m4a")} />
       </Sequence>
-      <Audio
-        src={staticFile("music.mp3")}
-        volume={(fr) =>
-          0.12 *
-          interpolate(fr, [0, fps * 1.2], [0.5, 1], clamp) *
-          interpolate(fr, [f(VO_END), durationInFrames - 1], [1, 0.6], clamp) *
-          interpolate(fr, [durationInFrames - fps * 1.6, durationInFrames - 1], [1, 0], clamp)
-        }
-      />
+      <Audio src={staticFile("music_ext.m4a")} volume={(fr) => musicVolume(fr / fps, durationInFrames / fps)} />
       {SFX_ON
         ? sfx.map((s, i) => (
             <Sequence key={i} name={`sfx ${s.sfx}`} from={f(s.t)} durationInFrames={fps * 3}>
@@ -516,7 +525,7 @@ const AudioTrack: React.FC = () => {
 const FadeOut: React.FC = () => {
   const frame = useCurrentFrame();
   const { durationInFrames, fps } = useVideoConfig();
-  const o = interpolate(frame, [durationInFrames - fps * 0.8, durationInFrames - 1], [0, 1], clamp);
+  const o = interpolate(frame, [durationInFrames - fps * 0.4, durationInFrames - 1], [0, 1], clamp);
   return <AbsoluteFill style={{ background: "#FFFFFF", opacity: o, zIndex: 200 }} />;
 };
 

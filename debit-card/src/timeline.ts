@@ -2,10 +2,10 @@
 // (сжатая версия, 2:14). В композиции к ним прибавляется LEAD_IN.
 
 export const FPS = 60;
-export const INTRO_S = 3.2; // заставка «Твоя первая карта»
+export const INTRO_S = 3.5; // заставка «Твоя первая карта»
 export const LEAD_IN = INTRO_S + 0.5; // заставка + пауза перед первой фразой
 export const VO_END = 134.66;
-export const TAIL = 2.3; // хвост после последней фразы
+export const TAIL = 6.34; // финальная плашка, ролик кончается вместе с музыкой (145,0 с)
 export const DURATION_S = LEAD_IN + VO_END + TAIL;
 
 export type Bg = "red" | "violet" | "light";
@@ -20,17 +20,17 @@ export type Scene = {
 // Смена фона и эмоции Макса
 export const SCENES: Scene[] = [
   { start: 0.0, end: 9.5, bg: "red", max: "max_01_hello" },
-  { start: 9.5, end: 27.84, bg: "light", max: "max_02_explain" },
-  { start: 27.84, end: 43.81, bg: "violet", max: "max_03_skeptic" },
-  { start: 43.81, end: 51.15, bg: "light", max: "max_04_phone" },
-  { start: 51.15, end: 54.77, bg: "light", max: "max_05_shrug" },
-  { start: 54.77, end: 63.51, bg: "light", max: "max_04_phone" },
-  { start: 63.51, end: 67.26, bg: "red", max: "max_06_wow" },
-  { start: 67.26, end: 78.66, bg: "violet", max: "max_06_wow" },
-  { start: 78.66, end: 90.67, bg: "light", max: "max_06_wow" },
-  { start: 90.67, end: 107.95, bg: "violet", max: "max_07_dream" },
-  { start: 107.95, end: 126.76, bg: "red", max: "max_08_secret" },
-  { start: 126.76, end: VO_END + TAIL, bg: "light", max: "max_09_bye" },
+  { start: 9.5, end: 28.0, bg: "light", max: "max_02_explain" },
+  { start: 28.0, end: 44.0, bg: "violet", max: "max_03_skeptic" },
+  { start: 44.0, end: 51.0, bg: "light", max: "max_04_phone" },
+  { start: 51.0, end: 55.0, bg: "light", max: "max_05_shrug" },
+  { start: 55.0, end: 63.5, bg: "light", max: "max_04_phone" },
+  { start: 63.5, end: 67.5, bg: "red", max: "max_06_wow" },
+  { start: 67.5, end: 78.5, bg: "violet", max: "max_06_wow" },
+  { start: 78.5, end: 90.5, bg: "light", max: "max_06_wow" },
+  { start: 90.5, end: 108.0, bg: "violet", max: "max_07_dream" },
+  { start: 108.0, end: 127.0, bg: "red", max: "max_08_secret" },
+  { start: 127.0, end: VO_END + TAIL, bg: "light", max: "max_09_bye" },
 ];
 
 // Заголовки-плашки слева сверху
