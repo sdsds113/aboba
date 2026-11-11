@@ -18,7 +18,7 @@ export const Scene10a: React.FC = () => (
 );
 
 // ── 10б. Речь (клип HeyGen 6,96 с) ──
-export const SCENE10B_LEN = 208;
+export const SCENE10B_LEN = 204; // хвост тишины обрезан
 
 export const Scene10b: React.FC = () => (
   <AbsoluteFill style={{ backgroundColor: "#000" }}>

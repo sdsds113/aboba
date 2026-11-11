@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, Audio, OffthreadVideo, Series, staticFile } from "remotion";
+import { AbsoluteFill, Audio, OffthreadVideo, Sequence, Series, staticFile } from "remotion";
 import { DISPLAY, INK, INK_2, Reveal , K } from "./premium";
 
 // Кадр 6 «Три кита» (озвучка v2), три клипа HeyGen Avatar III 720p, звук совпадает без сдвига.
@@ -10,7 +10,13 @@ import { DISPLAY, INK, INK_2, Reveal , K } from "./premium";
 export const SCENE6A_LEN = 584;
 export const SCENE6B_LEN = 318;
 export const SCENE6C_LEN = 343;
-export const SCENE6_LEN = SCENE6A_LEN + SCENE6B_LEN + SCENE6C_LEN;
+// Обрезка тишины в начале/конце кусков (кадры 30 fps): [голова, хвост].
+export const TRIM6 = { a: [6, 6], b: [0, 0], c: [0, 1] } as const;
+const eff = (len: number, t: readonly [number, number]) => len - t[0] - t[1];
+export const SCENE6A_EFF = eff(SCENE6A_LEN, TRIM6.a);
+export const SCENE6B_EFF = eff(SCENE6B_LEN, TRIM6.b);
+export const SCENE6C_EFF = eff(SCENE6C_LEN, TRIM6.c);
+export const SCENE6_LEN = SCENE6A_EFF + SCENE6B_EFF + SCENE6C_EFF;
 
 const TITLE: React.CSSProperties = { fontSize: 104, fontWeight: 600, letterSpacing: "-0.035em", lineHeight: 1, color: INK };
 const POINT: React.CSSProperties = { fontSize: 46, fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1.2, color: INK };
@@ -114,14 +120,20 @@ export const Scene6c: React.FC = () => (
 
 export const Scene6: React.FC = () => (
   <Series>
-    <Series.Sequence durationInFrames={SCENE6A_LEN * K}>
-      <Scene6a />
+    <Series.Sequence durationInFrames={SCENE6A_EFF * K}>
+      <Sequence from={-TRIM6.a[0] * K}>
+        <Scene6a />
+      </Sequence>
     </Series.Sequence>
-    <Series.Sequence durationInFrames={SCENE6B_LEN * K}>
-      <Scene6b />
+    <Series.Sequence durationInFrames={SCENE6B_EFF * K}>
+      <Sequence from={-TRIM6.b[0] * K}>
+        <Scene6b />
+      </Sequence>
     </Series.Sequence>
-    <Series.Sequence durationInFrames={SCENE6C_LEN * K}>
-      <Scene6c />
+    <Series.Sequence durationInFrames={SCENE6C_EFF * K}>
+      <Sequence from={-TRIM6.c[0] * K}>
+        <Scene6c />
+      </Sequence>
     </Series.Sequence>
   </Series>
 );

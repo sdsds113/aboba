@@ -19,7 +19,7 @@ const Fx: React.FC<{ src: string; at: number; vol: number; dur?: number }> = ({ 
 );
 
 export const Sound: React.FC<{ s: Starts }> = ({ s }) => {
-  const speechEnd = s.s10b + 205; // конец последней фразы, дальше финальный экран
+  const speechEnd = s.s10b + 200; // конец последней фразы, дальше финальный экран
   // музыка: тихо под голос, громче на вручении и после финальной фразы, уход в конце
   const musicVol = (f: number) => {
     const t = f / K;
