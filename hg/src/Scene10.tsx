@@ -62,7 +62,7 @@ export const EndCard: React.FC = () => {
           <div style={{ ...line, color: "#FFFFFF" }}>Не за что</div>
         </Reveal>
         <Reveal at={38} dur={32}>
-          <div style={{ ...line, color: RED }}>краснеть!</div>
+          <div style={{ ...line, color: RED }}>краснеть</div>
         </Reveal>
       </AbsoluteFill>
     </AbsoluteFill>

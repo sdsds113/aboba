@@ -53,13 +53,13 @@ export const Sound: React.FC<{ s: Starts }> = ({ s }) => {
       <Fx src="impact" at={s.s4 + 178} vol={0.24} />
 
       {/* сцена 5: цифры */}
-      <Fx src="pop" at={s.s5 + 70} vol={0.3} />
-      <Fx src="pop" at={s.s5 + 148} vol={0.3} />
-      <Fx src="pop" at={s.s5 + 306} vol={0.32} />
+      <Fx src="pop" at={s.s5 + 77} vol={0.3} />
+      <Fx src="pop" at={s.s5 + 156} vol={0.3} />
+      <Fx src="pop" at={s.s5 + 316} vol={0.32} />
 
       {/* сцена 6: заголовки китов */}
-      <Fx src="pop" at={s.s6a + 140} vol={0.22} />
-      <Fx src="pop" at={s.s6a + 192} vol={0.25} />
+      <Fx src="pop" at={s.s6a + 150} vol={0.22} />
+      <Fx src="pop" at={s.s6a + 212} vol={0.25} />
       <Fx src="pop" at={s.s6b + 18} vol={0.25} />
       <Fx src="pop" at={s.s6c + 22} vol={0.25} />
 
@@ -75,8 +75,8 @@ export const Sound: React.FC<{ s: Starts }> = ({ s }) => {
       ))}
 
       {/* сцена 9 */}
-      <Fx src="pop" at={s.s9 + 98} vol={0.28} />
-      <Fx src="pop" at={s.s9 + 452} vol={0.3} />
+      <Fx src="pop" at={s.s9 + 111} vol={0.28} />
+      <Fx src="pop" at={s.s9 + 474} vol={0.3} />
 
       {/* финал: аплодисменты на вручении, звон на слогане */}
       <Fx src="applause" at={s.s10a} vol={0.38} />

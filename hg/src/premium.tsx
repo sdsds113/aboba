@@ -1,16 +1,16 @@
 import React from "react";
 import { Easing, continueRender, delayRender, interpolate, staticFile, useCurrentFrame } from "remotion";
 
-// Premium style: корпоративный шрифт Альфа-Банка Styrene B LC, calm Apple-like reveals.
+// Premium style: корпоративный шрифт Альфа-Банка Styrene A LC (как в благодарности), calm Apple-like reveals.
 // Файлы лежат в public/fonts/styrene (в git не хранятся — лицензия банка).
-export const DISPLAY = "StyreneB";
+export const DISPLAY = "StyreneA";
 
 // weight → файл. 600 (наш «полужирный» в титрах) берём из Medium: Bold у Styrene заметно тяжелее.
 const FILES: [string, string][] = [
-  ["fonts/styrene/StyreneBLC-Light.otf", "300"],
-  ["fonts/styrene/StyreneBLC-Regular.otf", "400"],
-  ["fonts/styrene/StyreneBLC-Medium.otf", "500 600"],
-  ["fonts/styrene/StyreneBLC-Bold.otf", "700"],
+  ["fonts/styrene/StyreneALC-Light.otf", "300"],
+  ["fonts/styrene/StyreneALC-Regular.otf", "400"],
+  ["fonts/styrene/StyreneALC-Medium.otf", "500 600"],
+  ["fonts/styrene/StyreneALC-Bold.otf", "700"],
 ];
 if (typeof document !== "undefined") {
   const h = delayRender("Loading Styrene");

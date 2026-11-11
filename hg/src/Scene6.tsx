@@ -3,17 +3,16 @@ import { AbsoluteFill, Audio, OffthreadVideo, Series, staticFile } from "remotio
 import { DISPLAY, INK, INK_2, Reveal , K } from "./premium";
 
 // Кадр 6 «Три кита» (озвучка v2), три клипа HeyGen Avatar III 720p, звук совпадает без сдвига.
-// 6а: «За прошлый год… на трёх китах. Первый — технологии…» 18,12 с
+// 6а (озвучка v4): «За этот год… на трёх китах. Первый — технологии…» 19,57 с
 // 6б: «Второй — азарт…» 10,64 с
 // 6в: «И третий — забота…» 11,48 с
 
-export const SCENE6A_LEN = 544;
+export const SCENE6A_LEN = 584;
 export const SCENE6B_LEN = 319;
 export const SCENE6C_LEN = 344;
 export const SCENE6_LEN = SCENE6A_LEN + SCENE6B_LEN + SCENE6C_LEN;
 
-const NUM: React.CSSProperties = { fontSize: 34, fontWeight: 500, letterSpacing: "0.02em", color: INK_2, marginBottom: 10 };
-const TITLE: React.CSSProperties = { fontSize: 120, fontWeight: 600, letterSpacing: "-0.035em", lineHeight: 1, color: INK };
+const TITLE: React.CSSProperties = { fontSize: 104, fontWeight: 600, letterSpacing: "-0.035em", lineHeight: 1, color: INK };
 const POINT: React.CSSProperties = { fontSize: 46, fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1.2, color: INK };
 const NOTE: React.CSSProperties = { fontSize: 36, fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.3, color: INK_2 };
 
@@ -32,7 +31,7 @@ const Clip: React.FC<{ video: string; audio: string; wash: string; children: Rea
 );
 
 // 6а. Она слева; справа внизу оператор с монитором, поэтому текст в верхней правой части.
-// Слова: «прорыв» 104, «китах» 156, «Первый» 178, «технологии» 196, «ИИ-тренажеры» 247, «страх» 483.
+// Слова: «прорыв» 112, «китах» 164, «Первый» 191, «технологии» 219, «ИИ-тренажёры» 263, «страх» 515.
 export const Scene6a: React.FC = () => (
   <Clip
     video="scene6a_talk.mp4"
@@ -40,24 +39,18 @@ export const Scene6a: React.FC = () => (
     wash="linear-gradient(90deg, rgba(255,255,255,0) 45%, rgba(255,255,255,0.5) 65%, rgba(255,255,255,0.6) 100%)"
   >
     <div style={{ position: "absolute", left: 1130, top: 150, width: 720 }}>
-      <Reveal at={98} dur={28} rise={12} outAt={170} outDur={16}>
-        <div style={NOTE}>Прорыв в обучении</div>
-      </Reveal>
-      <Reveal at={140} dur={28} outAt={170} outDur={16}>
-        <div style={{ ...TITLE, marginTop: 14 }}>Три кита</div>
+      <Reveal at={150} dur={28} outAt={180} outDur={16}>
+        <div style={TITLE}>Три кита</div>
       </Reveal>
     </div>
     <div style={{ position: "absolute", left: 1130, top: 150, width: 720 }}>
-      <Reveal at={182} dur={26} rise={12}>
-        <div style={NUM}>01</div>
-      </Reveal>
-      <Reveal at={192} dur={28}>
+      <Reveal at={212} dur={28}>
         <div style={TITLE}>Технологии</div>
       </Reveal>
-      <Reveal at={242} dur={26} rise={12} style={{ marginTop: 26 }}>
+      <Reveal at={258} dur={26} rise={12} style={{ marginTop: 26 }}>
         <div style={POINT}>ИИ-тренажёры</div>
       </Reveal>
-      <Reveal at={478} dur={26} rise={10} style={{ marginTop: 10 }}>
+      <Reveal at={510} dur={26} rise={10} style={{ marginTop: 10 }}>
         <div style={NOTE}>Страх первого звонка снят</div>
       </Reveal>
     </div>
@@ -73,9 +66,6 @@ export const Scene6b: React.FC = () => (
     wash="linear-gradient(270deg, rgba(255,255,255,0) 46%, rgba(255,255,255,0.6) 68%, rgba(255,255,255,0.72) 100%)"
   >
     <div style={{ position: "absolute", left: 120, top: 150, width: 780 }}>
-      <Reveal at={6} dur={26} rise={12}>
-        <div style={NUM}>02</div>
-      </Reveal>
       <Reveal at={18} dur={28}>
         <div style={TITLE}>Азарт</div>
       </Reveal>
@@ -106,9 +96,6 @@ export const Scene6c: React.FC = () => (
     wash="linear-gradient(90deg, rgba(255,255,255,0) 48%, rgba(255,255,255,0.45) 68%, rgba(255,255,255,0.55) 100%)"
   >
     <div style={{ position: "absolute", left: 1150, top: 290, width: 700 }}>
-      <Reveal at={8} dur={26} rise={12}>
-        <div style={NUM}>03</div>
-      </Reveal>
       <Reveal at={22} dur={28}>
         <div style={TITLE}>Забота</div>
       </Reveal>

@@ -12,7 +12,7 @@ import { DISPLAY, INK, INK_2, Reveal , K } from "./premium";
 export const SCENE2_LEN = 424;
 
 const WORD: React.CSSProperties = {
-  fontSize: 104,
+  fontSize: 94,
   fontWeight: 600,
   letterSpacing: "-0.03em",
   lineHeight: 1.04,

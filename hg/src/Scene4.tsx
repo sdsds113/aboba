@@ -12,7 +12,7 @@ export const SCENE4_LEN = 228;
 
 const SHADOW = "0 2px 30px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.5)";
 const PHRASE: React.CSSProperties = {
-  fontSize: 84,
+  fontSize: 64,
   fontWeight: 600,
   letterSpacing: "-0.03em",
   lineHeight: 1.04,
@@ -52,7 +52,7 @@ export const Scene4: React.FC = () => (
       </Reveal>
 
       {/* стало */}
-      <Reveal at={178} dur={30} style={{ position: "absolute", right: 110, top: 360, textAlign: "right" }}>
+      <Reveal at={178} dur={30} style={{ position: "absolute", right: 80, top: 360, textAlign: "right" }}>
         <div style={PHRASE}>
           к азарту
           <br />и мастерству
