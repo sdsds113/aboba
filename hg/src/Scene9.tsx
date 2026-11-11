@@ -10,7 +10,7 @@ import { DISPLAY, INK, INK_2, Reveal, useT } from "./premium";
 // «лояльность» 318, «довольный» 356, «клиент» 409, «eNPS» 448, «девяноста» 481, «гордиться» 587.
 // Текст идёт сменяющимися блоками на одном месте слева (в левом верхнем углу блик — текст ниже).
 
-export const SCENE9_LEN = 654;
+export const SCENE9_LEN = 656;
 
 const LABEL: React.CSSProperties = { fontSize: 36, fontWeight: 400, letterSpacing: "-0.01em", color: INK_2 };
 const BIG: React.CSSProperties = { fontSize: 98, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1, color: INK };
