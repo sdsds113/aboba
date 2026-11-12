@@ -16,7 +16,6 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { beatPulse } from "./beats";
 import { LEAD_IN } from "./timeline";
 
 const RED = "#EF3124";
@@ -174,12 +173,6 @@ const Shot: React.FC<{
           src={staticFile(bg)}
           style={{ width: "100%", height: "100%", objectFit: "cover", scale: String(1.1 - 0.05 * Math.min(lt / 8, 1)) }}
         />
-        <AbsoluteFill
-          style={{
-            background: "radial-gradient(60% 55% at 50% 40%, rgba(255,255,255,0.9), rgba(255,255,255,0) 70%)",
-            opacity: 0.1 * beatPulse(t),
-          }}
-        />
         <AbsoluteFill style={{ scale: String(1 + 0.035 * Math.min(lt / 6, 1)), transformOrigin: "50% 60%" }}>
           {children(lt, t)}
         </AbsoluteFill>
@@ -242,7 +235,7 @@ const Sprite: React.FC<{
   const lt = t - at;
   const ph = (x * 7 + y * 3) % 6.28;
   const vel = Math.abs(e - ePrev) * dist;
-  const sc = (s0 + (1 - s0) * e) * extraScale * (1 - 0.1 * leave) * (beat ? 1 + 0.018 * beatPulse(t) : 1);
+  const sc = (s0 + (1 - s0) * e) * extraScale * (1 - 0.1 * leave);
   const filters = [
     vel > 4 ? `blur(${Math.min(12, vel * 0.28)}px)` : "",
     shadow ? "drop-shadow(0 26px 24px rgba(20, 0, 40, 0.2))" : "",
@@ -288,7 +281,6 @@ const Fore: React.FC<{ src: string; x: number; y: number; size: number; blur?: n
         filter: `blur(${blur}px)`,
         translate: `${Math.sin(t * 0.5 + y) * drift[0] * 2}px ${Math.cos(t * 0.6 + x) * drift[1] * 3}px`,
         rotate: `${rot + Math.sin(t * 0.7 + y) * 4}deg`,
-        scale: String(1 + 0.03 * beatPulse(t)),
       }}
     />
   );
@@ -513,54 +505,72 @@ const Label: React.FC<{ text: string; x: number; y: number; at: number; color?: 
   );
 };
 
-// Крупное слово на весь кадр: буквы выезжают по очереди, перед текстом пролетает предмет
-const BigWord: React.FC<{ text: string; start: number; end: number; color?: string; fly?: string }> = ({ text, start, end, color = "#FFFFFF", fly }) => {
+// Мягкий акцент поверх текущей сцены: сцена чуть затемняется,
+// по центру выплывает белая карточка с фразой, рядом плавает предмет.
+// Фраз может быть несколько: они сменяют друг друга внутри одной карточки.
+const Accent: React.FC<{
+  start: number;
+  end: number;
+  phrases: { at: number; text: string; hi: string; obj: string }[];
+}> = ({ start, end, phrases }) => {
   const t = useT();
-  if (t < start - 0.02 || t > end + 0.25) return null;
-  const lt = t - start;
-  const inP = interpolate(lt, [0, 0.16], [0, 1], { ...clamp, easing: smooth });
-  const outP = interpolate(t, [end, end + 0.2], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
-  const u = interpolate(lt, [0.05, end - start + 0.1], [0, 1], clamp);
+  if (t < start - 0.02 || t > end + 0.5) return null;
+  const inP = interpolate(t, [start, start + 0.45], [0, 1], { ...clamp, easing: smooth });
+  const outP = interpolate(t, [end, end + 0.45], [0, 1], { ...clamp, easing: Easing.inOut(Easing.quad) });
+  const vis = inP * (1 - outP);
   return (
-    <AbsoluteFill style={{ zIndex: 115, clipPath: `inset(${(1 - inP) * 100}% 0 ${outP * 100}% 0)` }}>
-      <Img src={staticFile("bg_graphite.png")} style={{ width: "100%", height: "100%", objectFit: "cover", scale: String(1.08 - 0.05 * u) }} />
-      <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
-        <div
-          style={{
-            fontFamily: FONT,
-            fontWeight: 900,
-            fontSize: 250,
-            letterSpacing: "-0.03em",
-            color,
-            whiteSpace: "nowrap",
-            scale: String(1.06 - 0.06 * u),
-            textShadow: color === LIME ? "0 0 70px rgba(182,240,58,0.45)" : "0 24px 60px rgba(0,0,0,0.45)",
-          }}
-        >
-          {text.split("").map((ch, i) => {
-            const p = interpolate(lt, [0.03 + i * 0.016, 0.03 + i * 0.016 + 0.24], [0, 1], { ...clamp, easing: smooth });
-            return (
-              <span key={i} style={{ display: "inline-block", overflow: "hidden", paddingBottom: "0.12em", marginBottom: "-0.12em", verticalAlign: "top" }}>
-                <span style={{ display: "inline-block", translate: `0px ${(1 - p) * 105}%`, whiteSpace: "pre" }}>{ch}</span>
-              </span>
-            );
-          })}
-        </div>
-      </AbsoluteFill>
-      {fly ? (
-        <Img
-          src={staticFile(fly)}
-          style={{
-            position: "absolute",
-            left: -420 + u * 2500,
-            top: 620 - u * 520,
-            width: 460,
-            height: 460,
-            rotate: `${-20 + u * 50}deg`,
-            filter: "blur(5px) drop-shadow(0 30px 30px rgba(0,0,0,0.4))",
-          }}
-        />
-      ) : null}
+    <AbsoluteFill style={{ zIndex: 112 }}>
+      {/* мягкое затемнение сцены под карточкой (размытие фона рендерер рисует с отражениями) */}
+      <AbsoluteFill style={{ background: "radial-gradient(75% 70% at 50% 50%, rgba(20, 12, 40, 0.42), rgba(20, 12, 40, 0.28))", opacity: vis }} />
+      {phrases.map((ph, i) => {
+        const next = phrases[i + 1]?.at ?? 9999;
+        if (t < ph.at - 0.02 || t > next + 0.4) return null;
+        const pIn = i === 0 ? inP : interpolate(t, [ph.at, ph.at + 0.4], [0, 1], { ...clamp, easing: smooth });
+        const pOut = i === phrases.length - 1 ? outP : interpolate(t, [next, next + 0.3], [0, 1], { ...clamp, easing: Easing.in(Easing.quad) });
+        const a = pIn * (1 - pOut);
+        const lt = t - ph.at;
+        const [before, after] = ph.text.split(ph.hi);
+        return (
+          <AbsoluteFill key={i} style={{ alignItems: "center", justifyContent: "center" }}>
+            <div
+              style={{
+                position: "relative",
+                padding: "38px 70px 44px",
+                borderRadius: 48,
+                background: "#FFFFFF",
+                boxShadow: "0 40px 90px rgba(20, 0, 40, 0.35)",
+                fontFamily: FONT,
+                fontWeight: 900,
+                fontSize: 120,
+                letterSpacing: "-0.025em",
+                lineHeight: 1.0,
+                color: INK,
+                whiteSpace: "nowrap",
+                opacity: a,
+                translate: `0px ${40 * (1 - pIn) - 24 * pOut + Math.sin(lt * 1.4) * 5}px`,
+                scale: String(0.94 + 0.06 * pIn),
+              }}
+            >
+              {before}
+              <span style={{ color: RED }}>{ph.hi}</span>
+              {after}
+              <Img
+                src={staticFile(ph.obj)}
+                style={{
+                  position: "absolute",
+                  right: -150,
+                  top: -150,
+                  width: 260,
+                  height: 260,
+                  rotate: `${-10 + Math.sin(lt * 1.2) * 6}deg`,
+                  translate: `${30 * (1 - pIn)}px ${Math.sin(lt * 1.6 + 1) * 10 - 20 * (1 - pIn)}px`,
+                  filter: "drop-shadow(0 24px 24px rgba(20,0,40,0.3))",
+                }}
+              />
+            </div>
+          </AbsoluteFill>
+        );
+      })}
     </AbsoluteFill>
   );
 };
@@ -606,7 +616,7 @@ const GoalBar: React.FC<{ from: number; to: number; at: number }> = ({ from, to,
       <div style={{ height: 66, borderRadius: 33, background: "rgba(255,255,255,0.95)", boxShadow: "0 16px 40px rgba(0,0,0,0.25), inset 0 0 0 4px rgba(200,200,210,0.9)", overflow: "hidden" }}>
         <div style={{ width: `${Math.max(6, p * 100)}%`, height: "100%", borderRadius: 33, background: `linear-gradient(180deg, #D4FF6E 0%, ${LIME} 55%, #8FD11C 100%)`, boxShadow: "0 0 30px rgba(182,240,58,0.9)" }} />
       </div>
-      <Img src={staticFile("el/el_30_coin.png")} style={{ position: "absolute", left: Math.max(6, p * 100) * (W / 100) - 55, top: -22, width: 110, height: 110, rotate: `${p * 720}deg`, scale: String(1 + 0.08 * beatPulse(t)) }} />
+      <Img src={staticFile("el/el_30_coin.png")} style={{ position: "absolute", left: Math.max(6, p * 100) * (W / 100) - 55, top: -22, width: 110, height: 110, rotate: `${p * 720}deg` }} />
       <div style={{ position: "absolute", right: -240, top: 2, fontFamily: FONT, fontWeight: 900, fontSize: 56, color: "#FFFFFF" }}>{Math.round(p * 100)}%</div>
     </div>
   );
@@ -844,7 +854,7 @@ export const Shots: React.FC = () => {
           const intoCart = interpolate(t, [82.9, 83.7], [0, 1], { ...clamp, easing: Easing.in(Easing.quad) });
           return (
             <>
-              <Head text="Плюс 2: кэшбэк" x={110} y={90} at={80.3} color={INK} />
+              <Head text="Плюс 2: кэшбэк" x={110} y={90} at={80.75} color={INK} />
               <Sprite src="el/el_38_cart.png" x={250} y={430} size={560} at={78.8} from="left" feel="heavy" />
               {t < 83.8 ? (
                 <Sprite src="el/el_17_snacks.png" x={120} y={60} size={820} at={80.3} dy={330 * intoCart} extraScale={1 - 0.6 * intoCart} opacity={1 - intoCart} feel="bouncy" />
@@ -913,7 +923,7 @@ export const Shots: React.FC = () => {
           const drop = interpolate(t, [121.96, 122.6], [-760, 0], { ...clamp, easing: Easing.out(Easing.back(1.4)) });
           return (
             <>
-              <Head text="Никому не сообщай" x={110} y={90} at={119.6} />
+              <Head text="Никому не сообщай" x={110} y={90} at={120.2} />
               <BigMax src="max_cu_shh" left={860} size={1060} at={118.05} />
               {t > 121.9 ? (
                 <Img src={staticFile("el/el_25_hook.png")} style={{ position: "absolute", left: 170, top: 210 + drop, width: 600, height: 600, rotate: `${Math.sin((t - 122) * 2.2) * 5}deg`, transformOrigin: "50% 0%", zIndex: 4, filter: "drop-shadow(0 24px 22px rgba(60,0,0,0.3))" }} />
@@ -969,10 +979,17 @@ export const Shots: React.FC = () => {
       </Shot>
 
       {/* Крупные слова на весь кадр */}
-      <BigWord text="НЕ ДЕНЬГИ" start={17.9} end={18.66} fly="el/el_31_banknote.png" />
-      <BigWord text="КЛЮЧ" start={19.24} end={20.05} color={LIME} fly="el/el_04_key.png" />
-      <BigWord text="КЭШБЭК" start={79.46} end={80.25} color={LIME} fly="el/el_30_coin.png" />
-      <BigWord text="НИКОМУ" start={118.74} end={119.5} fly="el/el_13_lock.png" />
+      {/* Мягкие акценты на ключевых словах */}
+      <Accent
+        start={17.75}
+        end={20.6}
+        phrases={[
+          { at: 17.75, text: "Карта не деньги", hi: "не деньги", obj: "el/el_31_banknote.png" },
+          { at: 19.2, text: "Карта = ключ к счёту", hi: "ключ", obj: "el/el_04_key.png" },
+        ]}
+      />
+      <Accent start={79.3} end={80.6} phrases={[{ at: 79.3, text: "Кэшбэк", hi: "Кэшбэк", obj: "el/el_30_coin.png" }]} />
+      <Accent start={118.6} end={120.0} phrases={[{ at: 118.6, text: "Никому не говори", hi: "Никому", obj: "el/el_13_lock.png" }]} />
     </>
   );
 };

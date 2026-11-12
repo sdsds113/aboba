@@ -27,7 +27,6 @@ import {
 } from "./timeline";
 import { CAPTIONS } from "./captions";
 import { FEEL, Feel, Head, Shine, SHOT_RANGES, Shots, ShotsAudio } from "./Shots";
-import { beatPulse } from "./beats";
 
 const RED = "#EF3124";
 const INK = "#1B1B21";
@@ -155,7 +154,7 @@ const Element: React.FC<{ el: El; index: number }> = ({ el, index }) => {
   const flyY = el.exit === "flyUp" ? -520 * exitP : 0;
   const flyR = el.exit === "flyUp" ? -35 * exitP : 0;
 
-  const scale = (startScale + (1 - startScale) * enter) * (1 - 0.08 * exitP) * (1 + 0.016 * beatPulse(t));
+  const scale = (startScale + (1 - startScale) * enter) * (1 - 0.08 * exitP);
   const opacity = Math.min(1, local / 0.18) * (1 - exitP);
 
   const style: React.CSSProperties = {
@@ -385,7 +384,7 @@ const Intro: React.FC = () => {
               width: it.size,
               height: it.size,
               opacity: Math.min(1, Math.max(0, local / 0.2)) * (1 - out),
-              scale: String((0.6 + 0.4 * enter) * (1 - 0.15 * out) * (1 + 0.02 * beatPulse(t - LEAD_IN))),
+              scale: String((0.6 + 0.4 * enter) * (1 - 0.15 * out)),
               filter: "drop-shadow(0 26px 24px rgba(60, 0, 0, 0.25))",
               translate: `0px ${fl + 40 * (1 - enter) - 60 * out}px`,
               rotate: `${it.rot + Math.sin(local * 1.3 + i) * 2}deg`,
