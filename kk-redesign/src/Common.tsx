@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { layout, STRIP_H, type Variant } from "./Strip";
-import { anim, C, IN, INOUT, OUT, STYRENE, blp } from "./theme";
+import { anim, C, IN, INOUT, OUT, STYRENE, blp, fb, fx } from "./theme";
 
 // Живой, но тихий фон: чёрный, два медленных красных свечения и виньетка
 export const Background: React.FC = () => {
@@ -56,7 +56,7 @@ export const Reveal: React.FC<{
     <div
       style={{
         opacity: p * (1 - q),
-        filter: `${blp((1 - p) * blur + q * 8)}`,
+        filter: `${blp(fb(p) * blur + fx(q) * 8)}`,
         ...gpu(0, (1 - p) * dy - q * dy * 0.5),
         ...style,
       }}
@@ -122,7 +122,7 @@ export const Chapter: React.FC<{
               style={{
                 opacity: p,
                 transform: `translate(0, ${(1 - p) * 40}px) scale(${0.86 + 0.14 * p})`,
-                filter: `${blp((1 - p) * 10)} drop-shadow(0 24px 40px rgba(0,0,0,0.5))`,
+                filter: `${blp(fb(p) * 10)} drop-shadow(0 24px 40px rgba(0,0,0,0.5))`,
               }}
             >
               <El name={n} size={ICON} />
@@ -141,7 +141,7 @@ export const Chapter: React.FC<{
             color: C.white,
             whiteSpace: "nowrap",
             opacity: pTitle * (0.999 + 0 * pIcon),
-            filter: `${blp((1 - pTitle) * 12)}`,
+            filter: `${blp(fb(pTitle) * 12)}`,
             transform: `translate(${(1 - pTitle) * 30}px, 0)`,
           }}
         >
@@ -164,7 +164,7 @@ export const Chapter: React.FC<{
                 color: C.red,
                 whiteSpace: "nowrap",
                 opacity: p * (1 - q),
-                filter: `${blp((1 - p) * 10 + q * 8)}`,
+                filter: `${blp(fb(p) * 10 + fx(q) * 8)}`,
                 transform: `translate(0, ${(1 - p) * 20 - q * 14}px)`,
               }}
             >
@@ -264,7 +264,7 @@ export const Walk: React.FC<{
               justifyContent: "center",
               transform: `translate(${cx - 960}px, ${(1 - pin) * 26 - pout * 16}px)`,
               opacity: op,
-              filter: `${blp((1 - pin) * 10 + pout * 6)}`,
+              filter: `${blp(fb(pin) * 10 + fx(pout) * 6)}`,
               fontFamily: STYRENE,
               fontWeight: 500,
               fontSize: 64,

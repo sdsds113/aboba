@@ -25,7 +25,8 @@ export const STYRENE = "'Styrene A LC', 'Inter', sans-serif";
 export const UI = "'Inter', sans-serif";
 
 // Главная кривая: быстрый старт, долгое мягкое торможение
-export const OUT = Easing.bezier(0.16, 1, 0.3, 1);
+// Мягкий старт и длинное торможение: в первом кадре ничего не «выскакивает»
+export const OUT = Easing.bezier(0.3, 0, 0.1, 1);
 export const IN = Easing.bezier(0.7, 0, 0.84, 0);
 export const INOUT = Easing.bezier(0.65, 0, 0.35, 1);
 
@@ -61,3 +62,9 @@ export const keys = (
 // Размытие, которое исчезает совсем, когда почти дошло до нуля:
 // пустой filter не создаёт отдельный слой, и неподвижный элемент рисуется одинаково в каждом кадре
 export const blp = (v: number) => (v < 0.05 ? "" : `blur(${v.toFixed(2)}px)`);
+
+// Размытие на входе уходит в ноль, пока элемент ещё движется (к 60 % пути),
+// на выходе включается, когда элемент уже пошёл (после 35 %).
+// Так переключение сглаживания текста прячется в движении и не даёт «щелчка».
+export const fb = (p: number) => Math.max(0, 1 - p / 0.6);
+export const fx = (q: number) => Math.max(0, (q - 0.35) / 0.65);
