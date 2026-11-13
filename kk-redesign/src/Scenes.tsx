@@ -4,7 +4,7 @@ import { Chapter, El, Reveal, SceneShell, SideHint, Walk } from "./Common";
 import { Cursor, IconCheck, IconChevron, IconSearch } from "./Icons";
 import { MACBOOK, SHOT } from "./assets";
 import { FL, layout, Strip, STRIP_H, STRIP_W, Tooltip, UL, YL } from "./Strip";
-import { anim, C, IN, INOUT, keys, STYRENE, UI } from "./theme";
+import { anim, C, IN, INOUT, keys, STYRENE, UI, blp } from "./theme";
 import { at } from "./timeline";
 
 const SX = (1920 - STRIP_W) / 2; // левый край полосы
@@ -26,10 +26,9 @@ const StripIn: React.FC<{ from: number; out?: number; children: React.ReactNode;
         position: "absolute",
         left: 0,
         top: 0,
-        transform: `translate3d(${SX}px, ${y + (1 - p) * 60 - q * 30}px, 0)`,
+        transform: `translate(${SX}px, ${y + (1 - p) * 60 - q * 30}px)`,
         opacity: p * (1 - q),
-        filter: `blur(${(1 - p) * 14 + q * 10}px)`,
-        willChange: "transform, opacity, filter",
+        filter: `${blp((1 - p) * 14 + q * 10)}`,
       }}
     >
       {children}
@@ -81,8 +80,7 @@ export const SceneContext: React.FC = () => {
       <AbsoluteFill
         style={{
           transformOrigin: `${cx}px ${cy}px`,
-          transform: `translate3d(${camX}px, ${camY}px, 0) scale(${camS})`,
-          willChange: "transform",
+          transform: `translate(${camX}px, ${camY}px) scale(${camS})`,
         }}
       >
         <div
@@ -92,10 +90,9 @@ export const SceneContext: React.FC = () => {
             top: 0,
             width: LW,
             height: LH,
-            transform: `translate3d(${left}px, ${top + (1 - enter) * 90}px, 0)`,
+            transform: `translate(${left}px, ${top + (1 - enter) * 90}px)`,
             opacity: enter,
-            filter: `blur(${(1 - enter) * 16}px)`,
-            willChange: "transform, opacity, filter",
+            filter: `${blp((1 - enter) * 16)}`,
           }}
         >
           <Img
@@ -139,7 +136,6 @@ export const SceneContext: React.FC = () => {
               boxShadow: `0 0 0 6px rgba(239,49,36,0.14), 0 0 34px rgba(239,49,36,0.55)`,
               opacity: hl,
               transform: `scale(${1.04 - 0.04 * hl})`,
-              willChange: "transform, opacity",
             }}
           />
         </div>
@@ -268,8 +264,7 @@ export const SceneHover: React.FC = () => {
               position: "absolute",
               left: 0,
               top: 0,
-              transform: `translate3d(${cur.x - 8}px, ${cur.y - 4}px, 0)`,
-              willChange: "transform",
+              transform: `translate(${cur.x - 8}px, ${cur.y - 4}px)`,
               opacity: curVis,
               zIndex: 10,
             }}
@@ -410,7 +405,6 @@ export const SceneIMSI: React.FC = () => {
               boxShadow: "0 0 26px rgba(239,49,36,0.45)",
               opacity: between(f, tI - 4, tOpen + 40, 12),
               transform: `scale(${1 + 0.08 * press(f, tClick)})`,
-              willChange: "transform, opacity",
             }}
           />
           <div
@@ -418,8 +412,7 @@ export const SceneIMSI: React.FC = () => {
               position: "absolute",
               left: 0,
               top: 0,
-              transform: `translate3d(${cur.x - 8}px, ${cur.y - 4}px, 0)`,
-              willChange: "transform",
+              transform: `translate(${cur.x - 8}px, ${cur.y - 4}px)`,
               opacity: anim(f, tI - 34, tI - 20, 0, 1) * (1 - anim(f, tOpen + 20, tOpen + 34, 0, 1)),
               zIndex: 10,
             }}
@@ -433,10 +426,9 @@ export const SceneIMSI: React.FC = () => {
           position: "absolute",
           left: 0,
           top: 0,
-          transform: `translate3d(${SX}px, ${Y + STRIP_H + 30 + (1 - panel) * 120}px, 0)`,
+          transform: `translate(${SX}px, ${Y + STRIP_H + 30 + (1 - panel) * 120}px)`,
           opacity: panel,
-          filter: `blur(${(1 - panel) * 12}px)`,
-          willChange: "transform, opacity, filter",
+          filter: `${blp((1 - panel) * 12)}`,
         }}
       >
         <UkdPanel />
@@ -546,8 +538,7 @@ export const SceneSwitch: React.FC = () => {
           left: 0,
           top: 0,
           transformOrigin: "0 0",
-          transform: `translate3d(${sx}px, ${sy}px, 0) scale(${SW_SCALE})`,
-          willChange: "transform",
+          transform: `translate(${sx}px, ${sy}px) scale(${SW_SCALE})`,
         }}
       >
         <StripLocalIn from={4}>
@@ -575,7 +566,6 @@ export const SceneSwitch: React.FC = () => {
                     justifyContent: "center",
                     boxShadow: `0 0 0 ${3 * m}px ${C.red}, 0 0 ${28 * m}px rgba(239,49,36,${0.5 * m})`,
                     transform: `scale(${1 + 0.06 * m})`,
-                    willChange: "transform",
                   }}
                 >
                   {b}
@@ -589,10 +579,9 @@ export const SceneSwitch: React.FC = () => {
                 top: STRIP_H + 6,
                 width: 440,
                 opacity: drop * (1 - anim(f, tOpen + 150, tOpen + 172, 0, 1, INOUT)),
-                transform: `translate3d(0, ${(1 - drop) * -14}px, 0)`,
-                filter: `blur(${(1 - drop) * 6}px)`,
+                transform: `translate(0, ${(1 - drop) * -14}px)`,
+                filter: `${blp((1 - drop) * 6)}`,
                 transformOrigin: "100% 0",
-                willChange: "transform, opacity",
               }}
             >
               <Dropdown hl={anim(f, tOpen + 96, tOpen + 110, 0, 1)} />
@@ -602,8 +591,7 @@ export const SceneSwitch: React.FC = () => {
                 position: "absolute",
                 left: 0,
                 top: 0,
-                transform: `translate3d(${cur.x - 8}px, ${cur.y - 4}px, 0)`,
-                willChange: "transform",
+                transform: `translate(${cur.x - 8}px, ${cur.y - 4}px)`,
                 opacity: anim(f, tList - 34, tList - 20, 0, 1),
                 zIndex: 10,
               }}
@@ -633,10 +621,9 @@ const StripLocalIn: React.FC<{ from: number; children: React.ReactNode }> = ({ f
   return (
     <div
       style={{
-        transform: `translate3d(0, ${(1 - p) * 60}px, 0)`,
+        transform: `translate(0, ${(1 - p) * 60}px)`,
         opacity: p,
-        filter: `blur(${(1 - p) * 14}px)`,
-        willChange: "transform, opacity, filter",
+        filter: `${blp((1 - p) * 14)}`,
       }}
     >
       {children}
@@ -712,9 +699,8 @@ export const SceneLinks: React.FC = () => {
         <div
           style={{
             opacity: ic,
-            transform: `translate3d(0, ${(1 - ic) * 40}px, 0) scale(${0.88 + 0.12 * ic})`,
-            filter: `blur(${(1 - ic) * 10}px) drop-shadow(0 24px 40px rgba(0,0,0,0.5))`,
-            willChange: "transform, opacity, filter",
+            transform: `translate(0, ${(1 - ic) * 40}px) scale(${0.88 + 0.12 * ic})`,
+            filter: `${blp((1 - ic) * 10)} drop-shadow(0 24px 40px rgba(0,0,0,0.5))`,
           }}
         >
           <El name="link" size={220} />
@@ -754,10 +740,9 @@ const PillText: React.FC<{ text: string; o: number; y: number }> = ({ text, o, y
       justifyContent: "center",
       gap: 12,
       opacity: o,
-      transform: `translate3d(0, ${y}px, 0)`,
-      filter: `blur(${(1 - o) * 6}px)`,
+      transform: `translate(0, ${y}px)`,
+      filter: `${blp((1 - o) * 6)}`,
       whiteSpace: "nowrap",
-      willChange: "transform, opacity, filter",
     }}
   >
     {text}
@@ -778,9 +763,8 @@ export const SceneOutro: React.FC = () => {
         <div
           style={{
             opacity: ic,
-            transform: `translate3d(0, ${(1 - ic) * 50 + fl}px, 0) scale(${0.92 + 0.08 * ic})`,
-            filter: `blur(${(1 - ic) * 12}px) drop-shadow(0 30px 50px rgba(0,0,0,0.55))`,
-            willChange: "transform, opacity, filter",
+            transform: `translate(0, ${(1 - ic) * 50 + fl}px) scale(${0.92 + 0.08 * ic})`,
+            filter: `${blp((1 - ic) * 12)} drop-shadow(0 30px 50px rgba(0,0,0,0.55))`,
           }}
         >
           <Img src={staticFile("els/card.png")} style={{ width: 900, height: 225 }} />

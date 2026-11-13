@@ -1,7 +1,7 @@
 import React from "react";
-import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { Background } from "./Common";
-import { anim, C, IN, STYRENE } from "./theme";
+import { anim, C, IN, STYRENE, blp } from "./theme";
 
 // Заставка: «РЕДИЗАЙН КК» крупно и жирно, около 3 с
 export const Intro: React.FC<{ bg?: boolean }> = ({ bg = true }) => {
@@ -11,13 +11,11 @@ export const Intro: React.FC<{ bg?: boolean }> = ({ bg = true }) => {
   const word = (from: number): React.CSSProperties => ({
     opacity: anim(f, from, from + 40, 0, 1),
     // GPU-слой: текст не перерастрируется и не прыгает по пикселям
-    transform: `translate3d(0, ${anim(f, from, from + 54, 40, 0)}px, 0)`,
-    filter: `blur(${anim(f, from, from + 44, 14, 0)}px)`,
-    willChange: "transform, opacity, filter",
+    transform: `translate(0, ${anim(f, from, from + 54, 40, 0)}px)`,
+    filter: `${blp(anim(f, from, from + 44, 14, 0))}`,
   });
 
   const exit = anim(f, d - 18, d, 0, 1, IN);
-  const drift = interpolate(f, [0, d], [1, 1.025]);
 
   return (
     <AbsoluteFill>
@@ -26,10 +24,8 @@ export const Intro: React.FC<{ bg?: boolean }> = ({ bg = true }) => {
         style={{
           alignItems: "center",
           justifyContent: "center",
-          transform: `scale3d(${drift}, ${drift}, 1)`,
-          willChange: "transform",
           opacity: 1 - exit,
-          filter: `blur(${exit * 10}px)`,
+          filter: `${blp(exit * 10)}`,
         }}
       >
         <div

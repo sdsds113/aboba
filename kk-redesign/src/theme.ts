@@ -57,3 +57,7 @@ export const keys = (
     extrapolateRight: "clamp",
     easing,
   });
+
+// Размытие, которое исчезает совсем, когда почти дошло до нуля:
+// пустой filter не создаёт отдельный слой, и неподвижный элемент рисуется одинаково в каждом кадре
+export const blp = (v: number) => (v < 0.05 ? "" : `blur(${v.toFixed(2)}px)`);

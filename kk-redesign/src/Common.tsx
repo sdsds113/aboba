@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { layout, STRIP_H, type Variant } from "./Strip";
-import { anim, C, IN, INOUT, OUT, STYRENE } from "./theme";
+import { anim, C, IN, INOUT, OUT, STYRENE, blp } from "./theme";
 
 // Живой, но тихий фон: чёрный, два медленных красных свечения и виньетка
 export const Background: React.FC = () => {
@@ -36,8 +36,7 @@ export const SceneShell: React.FC<{ children: React.ReactNode; fade?: number }> 
 };
 
 const gpu = (x: number, y: number, s = 1): React.CSSProperties => ({
-  transform: `translate3d(${x}px, ${y}px, 0) scale(${s})`,
-  willChange: "transform, opacity, filter",
+  transform: `translate(${x}px, ${y}px) scale(${s})`,
 });
 
 // Дорогое появление: прозрачность + сдвиг + размытие
@@ -57,7 +56,7 @@ export const Reveal: React.FC<{
     <div
       style={{
         opacity: p * (1 - q),
-        filter: `blur(${(1 - p) * blur + q * 8}px)`,
+        filter: `${blp((1 - p) * blur + q * 8)}`,
         ...gpu(0, (1 - p) * dy - q * dy * 0.5),
         ...style,
       }}
@@ -108,8 +107,7 @@ export const Chapter: React.FC<{
         left: 0,
         top: 0,
         transformOrigin: "0 0",
-        transform: `translate3d(${left}px, ${top}px, 0) scale(${sc})`,
-        willChange: "transform",
+        transform: `translate(${left}px, ${top}px) scale(${sc})`,
         display: "flex",
         alignItems: "center",
         gap: GAP,
@@ -123,9 +121,8 @@ export const Chapter: React.FC<{
               key={n}
               style={{
                 opacity: p,
-                transform: `translate3d(0, ${(1 - p) * 40}px, 0) scale(${0.86 + 0.14 * p})`,
-                filter: `blur(${(1 - p) * 10}px) drop-shadow(0 24px 40px rgba(0,0,0,0.5))`,
-                willChange: "transform, opacity, filter",
+                transform: `translate(0, ${(1 - p) * 40}px) scale(${0.86 + 0.14 * p})`,
+                filter: `${blp((1 - p) * 10)} drop-shadow(0 24px 40px rgba(0,0,0,0.5))`,
               }}
             >
               <El name={n} size={ICON} />
@@ -144,9 +141,8 @@ export const Chapter: React.FC<{
             color: C.white,
             whiteSpace: "nowrap",
             opacity: pTitle * (0.999 + 0 * pIcon),
-            filter: `blur(${(1 - pTitle) * 12}px)`,
-            transform: `translate3d(${(1 - pTitle) * 30}px, 0, 0)`,
-            willChange: "transform, opacity, filter",
+            filter: `${blp((1 - pTitle) * 12)}`,
+            transform: `translate(${(1 - pTitle) * 30}px, 0)`,
           }}
         >
           {title}
@@ -168,9 +164,8 @@ export const Chapter: React.FC<{
                 color: C.red,
                 whiteSpace: "nowrap",
                 opacity: p * (1 - q),
-                filter: `blur(${(1 - p) * 10 + q * 8}px)`,
-                transform: `translate3d(0, ${(1 - p) * 20 - q * 14}px, 0)`,
-                willChange: "transform, opacity, filter",
+                filter: `${blp((1 - p) * 10 + q * 8)}`,
+                transform: `translate(0, ${(1 - p) * 20 - q * 14}px)`,
               }}
             >
               {s.text}
@@ -237,8 +232,7 @@ export const Walk: React.FC<{
           top: 0,
           width: (w + PADX * 2) * scale,
           height: (STRIP_H - 24) * scale,
-          transform: `translate3d(${stripX + (x - PADX) * scale}px, ${stripY + 12 * scale}px, 0)`,
-          willChange: "transform, width",
+          transform: `translate(${stripX + (x - PADX) * scale}px, ${stripY + 12 * scale}px)`,
           borderRadius: 14 * scale,
           border: `${2.5 * scale}px solid ${C.red}`,
           background: "rgba(239,49,36,0.06)",
@@ -248,10 +242,13 @@ export const Walk: React.FC<{
       />
       {steps.map((s, i) => {
         const b = L[s.id];
+        // Подписи сменяются по очереди: старая уходит за 8 кадров,
+        // новая появляется только после неё, поэтому они не накладываются
+        const OUTF = 8;
+        const tOut = i < steps.length - 1 ? steps[i + 1].at - LEAD - OUTF : end;
         const tIn = s.at - LEAD;
-        const tOut = i < steps.length - 1 ? steps[i + 1].at - LEAD : end;
-        const pin = anim(f, tIn, tIn + 22, 0, 1);
-        const pout = anim(f, tOut, tOut + 14, 0, 1, IN);
+        const pin = anim(f, tIn, tIn + 20, 0, 1);
+        const pout = anim(f, tOut, tOut + OUTF, 0, 1, IN);
         const op = pin * (1 - pout);
         if (op <= 0.001) return null;
         const cx = Math.min(1500, Math.max(420, stripX + (b.x + b.w / 2) * scale));
@@ -265,10 +262,9 @@ export const Walk: React.FC<{
               width: 1920,
               display: "flex",
               justifyContent: "center",
-              transform: `translate3d(${cx - 960}px, ${(1 - pin) * 26 - pout * 16}px, 0)`,
+              transform: `translate(${cx - 960}px, ${(1 - pin) * 26 - pout * 16}px)`,
               opacity: op,
-              filter: `blur(${(1 - pin) * 10 + pout * 6}px)`,
-              willChange: "transform, opacity, filter",
+              filter: `${blp((1 - pin) * 10 + pout * 6)}`,
               fontFamily: STYRENE,
               fontWeight: 500,
               fontSize: 64,
