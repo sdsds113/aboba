@@ -111,15 +111,14 @@ export const SceneContext: React.FC = () => {
               overflow: "hidden",
             }}
           >
+            {/* слой с вырезом под шапку: меняется только прозрачность, без огромной тени */}
             <div
               style={{
                 position: "absolute",
-                left: hd.x - scr.x - 4,
-                top: hd.y - scr.y - 4,
-                width: hd.w + 8,
-                height: hd.h + 8,
-                borderRadius: 10,
-                boxShadow: `0 0 0 3000px rgba(10,10,11,${0.62 * hl})`,
+                inset: 0,
+                background: "rgba(10,10,11,0.62)",
+                opacity: Math.min(hl, 0.998),
+                clipPath: `path(evenodd, "M0 0 H${scr.w} V${scr.h} H0 Z M${hd.x - scr.x - 4} ${hd.y - scr.y - 4} h${hd.w + 8} v${hd.h + 8} h-${hd.w + 8} Z")`,
               }}
             />
           </div>
@@ -532,6 +531,7 @@ export const SceneSwitch: React.FC = () => {
           <HeadRow icon="switch" text="Переключение ФЛ, УЛ и ЮЛ" />
         </Reveal>
       </div>
+      <Availability at={t.w(13) + 24} />
       <div
         style={{
           position: "absolute",
@@ -611,6 +611,80 @@ export const SceneSwitch: React.FC = () => {
         </Reveal>
       </div>
     </SceneShell>
+  );
+};
+
+// Кому доступна переключалка: только юрлицам (ЮЛ и ФЮ), операторам ФЛ она не появилась
+const Availability: React.FC<{ at: number }> = ({ at }) => {
+  const rows = [
+    { who: "ЮЛ", btns: ["УЛ", "ЮЛ"] },
+    { who: "ФЮ", btns: ["ФЛ", "УЛ", "ЮЛ"] },
+  ];
+  return (
+    <div
+      style={{
+        position: "absolute",
+        right: 120,
+        top: 58,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
+        gap: 18,
+      }}
+    >
+      <Reveal at={at}>
+        <div style={{ fontFamily: STYRENE, fontWeight: 500, fontSize: 30, color: C.red }}>Доступно только для юрлиц</div>
+      </Reveal>
+      {rows.map((r, i) => (
+        <Reveal key={r.who} at={at + 12 + i * 10} dy={20}>
+          <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+            <div
+              style={{
+                fontFamily: STYRENE,
+                fontWeight: 500,
+                fontSize: 34,
+                color: "rgba(255,255,255,0.78)",
+                width: 70,
+                textAlign: "right",
+              }}
+            >
+              {r.who}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                gap: 8,
+                padding: 7,
+                borderRadius: 16,
+                background: "white",
+                boxShadow: "0 18px 40px rgba(0,0,0,0.45)",
+              }}
+            >
+              {r.btns.map((b) => (
+                <div
+                  key={b}
+                  style={{
+                    width: 84,
+                    height: 46,
+                    borderRadius: 11,
+                    background: C.uiBg,
+                    color: C.uiText,
+                    fontFamily: UI,
+                    fontWeight: 600,
+                    fontSize: 19,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {b}
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      ))}
+    </div>
   );
 };
 
