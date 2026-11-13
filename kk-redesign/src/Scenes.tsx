@@ -183,7 +183,7 @@ export const SceneFL: React.FC = () => {
     { id: "name", at: t.w(3, "фио"), label: "ФИО" },
     { id: "meta", at: t.w(3, "pin"), label: "PIN" },
     { id: "meta", at: t.w(3, "сегмент"), label: "Сегмент" },
-    { id: "voc", at: t.w(3, "оценка"), label: "Оценка VOC" },
+    { id: "voc", at: t.w(3, "оценка"), label: "Оценка VOC за последний месяц" },
     { id: "mark", at: t.w(3, "маркеры"), label: "Маркеры" },
     { id: "hist", at: t.w(3, "историю"), label: "История коммуникаций" },
     { id: "card", at: t.w(3, "полную"), label: "Полная карточка клиента" },
@@ -297,7 +297,7 @@ export const SceneYL: React.FC = () => {
   const ul1 = [
     { id: "name", at: t.w(7, "фио"), label: "ФИО" },
     { id: "meta", at: t.w(7, "pin"), label: "PIN" },
-    { id: "voc", at: t.w(7, "оценка"), label: "Оценка VOC" },
+    { id: "voc", at: t.w(7, "оценка"), label: "Оценка VOC за последний месяц" },
     { id: "mark", at: t.w(7, "маркеры"), label: "Маркеры" },
     { id: "hist", at: t.w(7, "история"), label: "История коммуникаций" },
     { id: "card", at: t.w(7, "полная"), label: "Полная карточка" },

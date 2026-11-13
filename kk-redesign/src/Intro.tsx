@@ -3,7 +3,7 @@ import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { Background } from "./Common";
 import { anim, C, IN, STYRENE, blp, fb, fx, mv } from "./theme";
 
-// Заставка: «РЕДИЗАЙН КК» крупно и жирно, около 3 с
+// Заставка: «РЕДИЗАЙН КОРОТКОЙ КАРТОЧКИ КЛИЕНТА» крупно и жирно, около 3 с
 export const Intro: React.FC<{ bg?: boolean }> = ({ bg = true }) => {
   const f = useCurrentFrame();
   const { durationInFrames: d } = useVideoConfig();
@@ -31,17 +31,20 @@ export const Intro: React.FC<{ bg?: boolean }> = ({ bg = true }) => {
         <div
           style={{
             display: "flex",
-            gap: 40,
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 14,
             fontFamily: STYRENE,
             fontWeight: 700,
-            fontSize: 150,
-            lineHeight: 1,
-            letterSpacing: -4,
+            fontSize: 118,
+            lineHeight: 1.04,
+            letterSpacing: -3,
             color: C.white,
+            textAlign: "center",
           }}
         >
-          <div style={word(4)}>РЕДИЗАЙН</div>
-          <div style={{ ...word(14), color: C.red }}>КК</div>
+          <div style={word(4)}>РЕДИЗАЙН КОРОТКОЙ</div>
+          <div style={{ ...word(14), color: C.red }}>КАРТОЧКИ КЛИЕНТА</div>
         </div>
       </AbsoluteFill>
     </AbsoluteFill>
