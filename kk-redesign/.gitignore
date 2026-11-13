@@ -1,0 +1,18 @@
+node_modules
+dist
+.DS_Store
+.env
+
+# Ignore the output video from Git but not videos you import into src/.
+out
+
+# Исходник ролика кладётся вручную (24 МБ), в git не храним
+public/source.mp4
+
+# Фирменные шрифты: лицензия, в git не храним (лежат на Google Drive)
+public/fonts/
+
+# Медиа (озвучка, кадры записи, сгенерированные элементы) в git не храним
+public/vo/
+public/shots/
+public/els/
