@@ -4,7 +4,7 @@ import { Chapter, El, Reveal, SceneShell, SideHint, Walk } from "./Common";
 import { Cursor, IconCheck, IconChevron, IconSearch } from "./Icons";
 import { MACBOOK, SHOT } from "./assets";
 import { FL, layout, Strip, STRIP_H, STRIP_W, Tooltip, UL, YL } from "./Strip";
-import { anim, C, IN, INOUT, keys, OUT, STYRENE, UI } from "./theme";
+import { anim, C, IN, INOUT, keys, STYRENE, UI } from "./theme";
 import { at } from "./timeline";
 
 const SX = (1920 - STRIP_W) / 2; // левый край полосы
@@ -67,7 +67,7 @@ export const SceneContext: React.FC = () => {
   const top = 196;
 
   const enter = anim(f, 6, 70, 0, 1);
-  const hl = anim(f, t.w(1, "в", 1) - 6, t.w(1, "в", 1) + 30, 0, 1); // «в одной строке»
+  const hl = anim(f, t.w(1, "одной") - 14, t.w(1, "одной") + 44, 0, 1, INOUT); // «в одной строке»
   // наезд на шапку в конце сцены
   const push = anim(f, d - 70, d, 0, 1, Easing3);
   const cx = left + hd.x + hd.w / 2;
@@ -532,7 +532,7 @@ export const SceneSwitch: React.FC = () => {
     { f: tOpen + 60, x: hoverB.x, y: hoverB.y },
     { f: tOpen + 110, x: btnX(2) - 120, y: 210 },
   ]);
-  const drop = anim(f, tOpen, tOpen + 18, 0, 1, OUT);
+  const drop = anim(f, tOpen - 4, tOpen + 26, 0, 1, INOUT);
   return (
     <SceneShell>
       <div style={{ position: "absolute", left: 120, top: 64 }}>
@@ -588,8 +588,9 @@ export const SceneSwitch: React.FC = () => {
                 left: btnX(2) + BTN - 440,
                 top: STRIP_H + 6,
                 width: 440,
-                opacity: drop * (1 - anim(f, tOpen + 150, tOpen + 166, 0, 1)),
-                transform: `translate3d(0, ${(1 - drop) * -10}px, 0)`,
+                opacity: drop * (1 - anim(f, tOpen + 150, tOpen + 172, 0, 1, INOUT)),
+                transform: `translate3d(0, ${(1 - drop) * -14}px, 0)`,
+                filter: `blur(${(1 - drop) * 6}px)`,
                 transformOrigin: "100% 0",
                 willChange: "transform, opacity",
               }}
