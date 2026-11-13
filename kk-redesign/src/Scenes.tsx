@@ -70,7 +70,8 @@ export const SceneContext: React.FC = () => {
   const push = anim(f, d - 70, d, 0, 1, Easing3);
   const cx = left + hd.x + hd.w / 2;
   const cy = top + hd.y + hd.h / 2;
-  const camS = (1 + 0.025 * anim(f, 0, d, 0, 1, (x) => x)) * (1 + 1.5 * push);
+  // без постоянного медленного наезда: при нём браузер перерисовывает слой и мелкий текст на записи щёлкает
+  const camS = 1 + 1.5 * push;
   const camX = (960 - cx) * push;
   const camY = (540 - cy) * push;
 
@@ -90,7 +91,8 @@ export const SceneContext: React.FC = () => {
             width: LW,
             height: LH,
             transform: `translate3d(${left}px, ${top + (1 - enter) * 90}px, 0)`, willChange: "transform",
-            opacity: enter,
+            // не доводим до ровной 1: на 1,0 браузер меняет способ отрисовки и запись экрана «щёлкает»
+            opacity: Math.min(enter, 0.998),
             filter: `${blp(fb(enter) * 16)}`,
           }}
         >
@@ -133,7 +135,7 @@ export const SceneContext: React.FC = () => {
               borderRadius: 12,
               border: `2.5px solid ${C.red}`,
               boxShadow: `0 0 0 6px rgba(239,49,36,0.14), 0 0 34px rgba(239,49,36,0.55)`,
-              opacity: hl,
+              opacity: Math.min(hl, 0.998),
               transform: `scale(${1.04 - 0.04 * hl})`,
             }}
           />
