@@ -1,28 +1,18 @@
 import { loadFont } from "@remotion/fonts";
-import { loadFont as loadInter } from "@remotion/google-fonts/Inter";
 import { staticFile } from "remotion";
 
-// Styrene A LC лежит в public/fonts (в git не храним, файлы с Google Drive).
-const STYRENE_FILES: { file: string; weight: string }[] = [
-  { file: "StyreneALC-Light.otf", weight: "300" },
-  { file: "StyreneALC-Regular.otf", weight: "400" },
-  { file: "StyreneALC-Medium.otf", weight: "500" },
-  { file: "StyreneALC-Bold.otf", weight: "700" },
+// Все шрифты локальные, из public/fonts (в git не храним):
+// Styrene A LC с Google Drive, Inter (переменный, OFL) с github.com/rsms/inter.
+const FILES: { family: string; file: string; weight: string }[] = [
+  { family: "Styrene A LC", file: "StyreneALC-Light.otf", weight: "300" },
+  { family: "Styrene A LC", file: "StyreneALC-Regular.otf", weight: "400" },
+  { family: "Styrene A LC", file: "StyreneALC-Medium.otf", weight: "500" },
+  { family: "Styrene A LC", file: "StyreneALC-Bold.otf", weight: "700" },
+  { family: "Inter", file: "InterVariable.woff2", weight: "100 900" },
 ];
 
-for (const f of STYRENE_FILES) {
-  loadFont({
-    family: "Styrene A LC",
-    url: staticFile(`fonts/${f.file}`),
-    weight: f.weight,
-    style: "normal",
-  }).catch(() => {
-    // нет файла: сработает запасной Inter из стека
+for (const f of FILES) {
+  loadFont({ family: f.family, url: staticFile(`fonts/${f.file}`), weight: f.weight, style: "normal" }).catch(() => {
+    // файла нет: сработает запасной шрифт из стека
   });
 }
-
-// Inter для макета интерфейса: он ближе всего к шрифту самой SFACall
-loadInter("normal", {
-  weights: ["400", "500", "600", "700"],
-  subsets: ["cyrillic", "latin"],
-});

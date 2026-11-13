@@ -110,20 +110,11 @@ export const Words: React.FC<{
 );
 
 // Маленькая надпись над заголовком (глава)
-export const Kicker: React.FC<{ text: string; at: number; out?: number }> = ({ text, at, out }) => {
-  const f = useCurrentFrame();
-  const line = anim(f, at, at + 36, 0, 1);
-  return (
-    <Reveal at={at + 4} out={out} dy={16}>
-      <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-        <div style={{ width: 44 * line, height: 3, background: C.red, borderRadius: 2 }} />
-        <div style={{ fontFamily: STYRENE, fontSize: 26, fontWeight: 500, color: C.red, letterSpacing: 0.4 }}>
-          {text}
-        </div>
-      </div>
-    </Reveal>
-  );
-};
+export const Kicker: React.FC<{ text: string; at: number; out?: number }> = ({ text, at, out }) => (
+  <Reveal at={at + 4} out={out} dy={16}>
+    <div style={{ fontFamily: STYRENE, fontSize: 26, fontWeight: 500, color: C.red, letterSpacing: 0.4 }}>{text}</div>
+  </Reveal>
+);
 
 // Сгенерированный элемент или векторная заглушка
 export const Asset: React.FC<{ name: AssetName; size: number; fallback: React.ReactNode; style?: React.CSSProperties }> = ({
