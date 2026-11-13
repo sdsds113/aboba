@@ -242,13 +242,13 @@ export const Walk: React.FC<{
       />
       {steps.map((s, i) => {
         const b = L[s.id];
-        // Подписи сменяются по очереди: старая уходит за 8 кадров,
+        // Подписи сменяются по очереди: старая плавно уходит за 12 кадров,
         // новая появляется только после неё, поэтому они не накладываются
-        const OUTF = 8;
+        const OUTF = 12;
         const tOut = i < steps.length - 1 ? steps[i + 1].at - LEAD - OUTF : end;
         const tIn = s.at - LEAD;
         const pin = anim(f, tIn, tIn + 20, 0, 1);
-        const pout = anim(f, tOut, tOut + OUTF, 0, 1, IN);
+        const pout = anim(f, tOut, tOut + OUTF, 0, 1, INOUT);
         const op = pin * (1 - pout);
         if (op <= 0.001) return null;
         const cx = Math.min(1500, Math.max(420, stripX + (b.x + b.w / 2) * scale));
