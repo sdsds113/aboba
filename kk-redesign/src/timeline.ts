@@ -5,41 +5,60 @@ type Word = { w: string; s: number; e: number };
 type Sent = { start: number; end: number; words: Word[] };
 export const VO = voData as Sent[];
 
-// Когда в ролике начинается каждая фраза диктора (секунды).
-// Между смысловыми блоками паузы, чтобы картинка успевала «дышать».
-export const PLACE = [1.0, 5.4, 14.6, 26.6, 35.6, 44.4, 56.8, 65.2, 71.6, 83.2, 93.0, 99.6, 105.0];
+// Голос (public/vo/voice.wav) стартует сразу после заставки
+export const VO_AT = 3.0;
+export const INTRO_DUR = 3.2;
 
-// Сцены: [начало, конец] в секундах. Соседние перекрываются на 0,3 с (кроссфейд).
+const sec = (i: number, word?: string, nth = 0) => {
+  const s = VO[i];
+  if (!word) return VO_AT + s.start;
+  const hits = s.words.filter((w) => w.w.startsWith(word));
+  const w = hits[nth];
+  if (!w) throw new Error(`Слово «${word}» (#${nth}) не найдено во фразе ${i}`);
+  return VO_AT + w.s;
+};
+const endSec = (i: number) => VO_AT + VO[i].end;
+
+// Абсолютный кадр слова
+export const wordAt = (i: number, word?: string, nth = 0) => Math.round(sec(i, word, nth) * FPS);
+export const sentEndAt = (i: number) => Math.round(endSec(i) * FPS);
+
+// Сцены (секунды). Соседние перекрываются на 0,3 с: кроссфейд без чёрных кадров.
+const X = 0.3;
+const b = {
+  context: sec(0) - 0.25,
+  fl: sec(2) - 0.4,
+  hover: sec(5) - 0.35,
+  yl: sec(6) - 0.4,
+  imsi: sec(11) - 0.4,
+  sw: sec(13) - 0.4,
+  links: sec(16, "а") - 0.25,
+  outro: endSec(16) + 0.45,
+};
+export const TOTAL_SEC = b.outro + 3.9;
+
 export const SCENES = {
-  intro: [0, 5.0],
-  context: [4.7, 13.6],
-  fl: [13.3, 34.6],
-  hover: [34.3, 42.6],
-  yl: [42.3, 81.6],
-  imsi: [81.3, 92.2],
-  sw: [91.9, 104.4],
-  links: [104.1, 109.6],
-  outro: [109.3, 114.0],
+  intro: [0, INTRO_DUR],
+  context: [b.context, b.fl + X],
+  fl: [b.fl, b.hover + X],
+  hover: [b.hover, b.yl + X],
+  yl: [b.yl, b.imsi + X],
+  imsi: [b.imsi, b.sw + X],
+  sw: [b.sw, b.links + X],
+  links: [b.links, b.outro + X],
+  outro: [b.outro, TOTAL_SEC],
 } as const;
 
 export type SceneId = keyof typeof SCENES;
-
-export const TOTAL = Math.round(SCENES.outro[1] * FPS);
-
+export const TOTAL = Math.round(TOTAL_SEC * FPS);
 export const sceneFrom = (id: SceneId) => Math.round(SCENES[id][0] * FPS);
 export const sceneDur = (id: SceneId) => Math.round((SCENES[id][1] - SCENES[id][0]) * FPS);
 
-// Кадр (абсолютный), на котором диктор произносит слово в фразе i
-export const wordAt = (i: number, word: string, nth = 0): number => {
-  const sent = VO[i];
-  const hits = sent.words.filter((w) => w.w.startsWith(word));
-  const w = hits[nth];
-  if (!w) throw new Error(`Слово «${word}» (#${nth}) не найдено во фразе ${i}`);
-  return Math.round((PLACE[i] + (w.s - sent.start)) * FPS);
+// Хелперы «относительно начала сцены»
+export const at = (id: SceneId) => {
+  const s0 = sceneFrom(id);
+  return {
+    w: (i: number, word?: string, nth = 0) => wordAt(i, word, nth) - s0,
+    end: (i: number) => sentEndAt(i) - s0,
+  };
 };
-
-// То же, но относительно начала сцены
-export const wordIn = (id: SceneId, i: number, word: string, nth = 0) => wordAt(i, word, nth) - sceneFrom(id);
-export const sentIn = (id: SceneId, i: number) => Math.round(PLACE[i] * FPS) - sceneFrom(id);
-export const sentEndIn = (id: SceneId, i: number) =>
-  Math.round((PLACE[i] + VO[i].end - VO[i].start) * FPS) - sceneFrom(id);

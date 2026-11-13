@@ -3,41 +3,44 @@ import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remo
 import { Background } from "./Common";
 import { anim, C, IN, STYRENE } from "./theme";
 
-// Заставка 3 с: «РЕДИЗАЙН КК» крупно и жирно
-export const Intro: React.FC = () => {
+// Заставка: «РЕДИЗАЙН КК» крупно и жирно, около 3 с
+export const Intro: React.FC<{ bg?: boolean }> = ({ bg = true }) => {
   const f = useCurrentFrame();
   const { durationInFrames: d } = useVideoConfig();
 
-  const word = (at: number) => ({
-    opacity: anim(f, at, at + 34, 0, 1),
-    translate: `0 ${anim(f, at, at + 40, 46, 0)}px`,
-    filter: `blur(${anim(f, at, at + 36, 16, 0)}px)`,
+  const word = (from: number): React.CSSProperties => ({
+    opacity: anim(f, from, from + 40, 0, 1),
+    // GPU-слой: текст не перерастрируется и не прыгает по пикселям
+    transform: `translate3d(0, ${anim(f, from, from + 54, 40, 0)}px, 0)`,
+    filter: `blur(${anim(f, from, from + 44, 14, 0)}px)`,
+    willChange: "transform, opacity, filter",
   });
 
-  const exit = anim(f, d - 16, d, 0, 1, IN);
-  const drift = interpolate(f, [0, d], [1, 1.035]);
+  const exit = anim(f, d - 18, d, 0, 1, IN);
+  const drift = interpolate(f, [0, d], [1, 1.025]);
 
   return (
     <AbsoluteFill>
-      <Background />
+      {bg ? <Background /> : null}
       <AbsoluteFill
         style={{
           alignItems: "center",
           justifyContent: "center",
-          scale: drift,
+          transform: `scale3d(${drift}, ${drift}, 1)`,
+          willChange: "transform",
           opacity: 1 - exit,
-          filter: `blur(${exit * 12}px)`,
+          filter: `blur(${exit * 10}px)`,
         }}
       >
         <div
           style={{
             display: "flex",
-            gap: 52,
+            gap: 40,
             fontFamily: STYRENE,
             fontWeight: 700,
-            fontSize: 200,
+            fontSize: 150,
             lineHeight: 1,
-            letterSpacing: -6,
+            letterSpacing: -4,
             color: C.white,
           }}
         >
@@ -48,4 +51,3 @@ export const Intro: React.FC = () => {
     </AbsoluteFill>
   );
 };
-

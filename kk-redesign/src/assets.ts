@@ -1,20 +1,11 @@
-// Какие сгенерированные элементы уже лежат в public/els/.
-// Когда файл появится, ставим true: сцена возьмёт картинку вместо векторной заглушки.
-export const HAS = {
-  macbook: false,
-  fl: false,
-  ul: false,
-  yl: false,
-  switch: false,
-  cursor: false,
-  copy: false,
-  bell: false,
-  link: false,
-  card: false,
+// Сгенерированные элементы в public/els/ (в git не храним).
+// macbook_keyed.png: тот же мокап с вырезанным зелёным экраном.
+export const MACBOOK = {
+  w: 2048,
+  h: 1365,
+  // экран внутри картинки, пиксели
+  screen: { x: 235, y: 156, w: 1580, h: 999 },
 };
 
-export type AssetName = keyof typeof HAS;
-
-// Экран MacBook внутри картинки macbook.png (доли от ширины и высоты),
-// заполняется после того, как придёт файл и найдём зелёную область.
-export const MACBOOK_SCREEN = { x: 0.1, y: 0.06, w: 0.8, h: 0.78 };
+// Кадр записи SFACall, дополненный снизу до 16:10 (1920×1215)
+export const SHOT = { w: 1920, h: 1215, header: { x: 20, y: 178, w: 1880, h: 70 } };

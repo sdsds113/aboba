@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { HAS, type AssetName } from "./assets";
-import { anim, C, IN, OUT, STYRENE } from "./theme";
+import { layout, STRIP_H, type Variant } from "./Strip";
+import { anim, C, IN, INOUT, OUT, STYRENE } from "./theme";
 
 // Живой, но тихий фон: чёрный, два медленных красных свечения и виньетка
 export const Background: React.FC = () => {
@@ -15,8 +15,8 @@ export const Background: React.FC = () => {
     <AbsoluteFill style={{ backgroundColor: C.black }}>
       <AbsoluteFill
         style={{
-          background: `radial-gradient(42% 52% at ${ax}% ${ay}%, rgba(239,49,36,0.16), rgba(239,49,36,0) 70%),
-            radial-gradient(46% 56% at ${bx}% ${by}%, rgba(239,49,36,0.11), rgba(239,49,36,0) 70%)`,
+          background: `radial-gradient(42% 52% at ${ax}% ${ay}%, rgba(239,49,36,0.15), rgba(239,49,36,0) 70%),
+            radial-gradient(46% 56% at ${bx}% ${by}%, rgba(239,49,36,0.10), rgba(239,49,36,0) 70%)`,
         }}
       />
       <AbsoluteFill
@@ -26,28 +26,19 @@ export const Background: React.FC = () => {
   );
 };
 
-// Вход и выход сцены: прозрачность, размытие и лёгкий масштаб
-export const SceneShell: React.FC<{ children: React.ReactNode; fadeIn?: number; fadeOut?: number }> = ({
-  children,
-  fadeIn = 24,
-  fadeOut = 22,
-}) => {
+// Вход и выход сцены (кроссфейд с соседней)
+export const SceneShell: React.FC<{ children: React.ReactNode; fade?: number }> = ({ children, fade = 18 }) => {
   const f = useCurrentFrame();
   const { durationInFrames: d } = useVideoConfig();
-  const i = anim(f, 0, fadeIn, 0, 1);
-  const o = anim(f, d - fadeOut, d, 1, 0, IN);
-  return (
-    <AbsoluteFill
-      style={{
-        opacity: Math.min(i, o),
-        filter: `blur(${(1 - i) * 10 + (1 - o) * 12}px)`,
-        scale: 1.015 - 0.015 * i + (1 - o) * -0.02,
-      }}
-    >
-      {children}
-    </AbsoluteFill>
-  );
+  const i = anim(f, 0, fade, 0, 1, INOUT);
+  const o = anim(f, d - fade, d, 1, 0, INOUT);
+  return <AbsoluteFill style={{ opacity: Math.min(i, o) }}>{children}</AbsoluteFill>;
 };
+
+const gpu = (x: number, y: number, s = 1): React.CSSProperties => ({
+  transform: `translate3d(${x}px, ${y}px, 0) scale(${s})`,
+  willChange: "transform, opacity, filter",
+});
 
 // Дорогое появление: прозрачность + сдвиг + размытие
 export const Reveal: React.FC<{
@@ -55,19 +46,19 @@ export const Reveal: React.FC<{
   dur?: number;
   dy?: number;
   blur?: number;
-  out?: number; // кадр начала ухода
+  out?: number;
   style?: React.CSSProperties;
   children: React.ReactNode;
-}> = ({ at, dur = 40, dy = 34, blur = 14, out, style, children }) => {
+}> = ({ at, dur = 44, dy = 30, blur = 12, out, style, children }) => {
   const f = useCurrentFrame();
   const p = anim(f, at, at + dur, 0, 1);
-  const q = out === undefined ? 0 : anim(f, out, out + 22, 0, 1, IN);
+  const q = out === undefined ? 0 : anim(f, out, out + 24, 0, 1, IN);
   return (
     <div
       style={{
         opacity: p * (1 - q),
-        translate: `0 ${(1 - p) * dy - q * dy * 0.6}px`,
-        filter: `blur(${(1 - p) * blur + q * 10}px)`,
+        filter: `blur(${(1 - p) * blur + q * 8}px)`,
+        ...gpu(0, (1 - p) * dy - q * dy * 0.5),
         ...style,
       }}
     >
@@ -76,104 +67,222 @@ export const Reveal: React.FC<{
   );
 };
 
-// Заголовок, который появляется по словам
-export const Words: React.FC<{
-  text: string;
-  at: number;
-  step?: number;
-  size: number;
-  weight?: number;
-  color?: string;
-  out?: number;
-  style?: React.CSSProperties;
-}> = ({ text, at, step = 5, size, weight = 500, color = C.white, out, style }) => (
-  <div
-    style={{
-      display: "flex",
-      flexWrap: "wrap",
-      columnGap: size * 0.26,
-      fontFamily: STYRENE,
-      fontSize: size,
-      fontWeight: weight,
-      lineHeight: 1.12,
-      letterSpacing: -size * 0.015,
-      color,
-      ...style,
-    }}
-  >
-    {text.split(" ").map((w, i) => (
-      <Reveal key={i} at={at + i * step} dur={44} dy={size * 0.32} blur={12} out={out}>
-        {w}
-      </Reveal>
-    ))}
-  </div>
+// Сгенерированный элемент из public/els
+export const El: React.FC<{ name: string; size: number; style?: React.CSSProperties }> = ({ name, size, style }) => (
+  <Img src={staticFile(`els/${name}.png`)} style={{ width: size, height: size, objectFit: "contain", ...style }} />
 );
 
-// Маленькая надпись над заголовком (глава)
-export const Kicker: React.FC<{ text: string; at: number; out?: number }> = ({ text, at, out }) => (
-  <Reveal at={at + 4} out={out} dy={16}>
-    <div style={{ fontFamily: STYRENE, fontSize: 26, fontWeight: 500, color: C.red, letterSpacing: 0.4 }}>{text}</div>
-  </Reveal>
-);
+// Ширина текста (для точной раскладки заголовков)
+let ctx: CanvasRenderingContext2D | null = null;
+export const textW = (text: string, size: number, weight = 700, family = STYRENE) => {
+  if (!ctx) ctx = document.createElement("canvas").getContext("2d");
+  ctx!.font = `${weight} ${size}px ${family}`;
+  return ctx!.measureText(text).width;
+};
 
-// Сгенерированный элемент или векторная заглушка
-export const Asset: React.FC<{ name: AssetName; size: number; fallback: React.ReactNode; style?: React.CSSProperties }> = ({
-  name,
-  size,
-  fallback,
-  style,
-}) =>
-  HAS[name] ? (
-    <Img src={staticFile(`els/${name}.png`)} style={{ width: size, height: size, objectFit: "contain", ...style }} />
-  ) : (
-    <div style={{ width: size, height: size, display: "flex", alignItems: "center", justifyContent: "center", ...style }}>
-      {fallback}
-    </div>
-  );
-
-// Векторная «объёмная» плитка-иконка для заглушек
-export const Tile: React.FC<{ size: number; tone?: "red" | "dark" | "white"; children: React.ReactNode }> = ({
-  size,
-  tone = "red",
-  children,
-}) => {
-  const bg =
-    tone === "red"
-      ? "linear-gradient(160deg, #FF6A5E 0%, #EF3124 45%, #B8180F 100%)"
-      : tone === "dark"
-        ? "linear-gradient(160deg, #3A3A3E 0%, #1A1A1C 55%, #0E0E10 100%)"
-        : "linear-gradient(160deg, #FFFFFF 0%, #F1F1F3 60%, #DADADF 100%)";
+// Глава: иконка и заголовок. Сначала крупно по центру, затем уезжают в левый верхний угол.
+export const Chapter: React.FC<{
+  icons: string[];
+  title: string;
+  sub?: { text: string; at: number }[];
+  at: number; // появление
+  settle?: number; // переезд в шапку (если нет, сразу шапка)
+}> = ({ icons, title, sub = [], at, settle }) => {
+  const f = useCurrentFrame();
+  const ICON = 200;
+  const GAP = 44;
+  const T = 104;
+  const iconsW = icons.length * ICON + (icons.length - 1) * 18;
+  const gw = iconsW + GAP + textW(title, T, 700);
+  const m = settle === undefined ? 1 : anim(f, settle, settle + 46, 0, 1, INOUT);
+  const HEAD = 0.46;
+  const left = (1920 - gw) / 2 + ((120 - (1920 - gw) / 2) * m);
+  const top = 390 + (64 - 390) * m;
+  const sc = 1 + (HEAD - 1) * m;
+  const pIcon = anim(f, at, at + 50, 0, 1);
+  const pTitle = anim(f, at + 8, at + 56, 0, 1);
   return (
     <div
       style={{
-        width: size,
-        height: size,
-        borderRadius: size * 0.27,
-        background: bg,
-        boxShadow: `0 ${size * 0.12}px ${size * 0.3}px rgba(0,0,0,0.55), inset 0 ${size * 0.02}px 0 rgba(255,255,255,0.45), inset 0 -${size * 0.03}px ${size * 0.08}px rgba(0,0,0,0.25)`,
+        position: "absolute",
+        left: 0,
+        top: 0,
+        transformOrigin: "0 0",
+        transform: `translate3d(${left}px, ${top}px, 0) scale(${sc})`,
+        willChange: "transform",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-        overflow: "hidden",
+        gap: GAP,
       }}
     >
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: "linear-gradient(180deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0) 42%)",
-        }}
-      />
-      {children}
+      <div style={{ display: "flex", gap: 18 }}>
+        {icons.map((n, i) => {
+          const p = anim(f, at + i * 6, at + i * 6 + 50, 0, 1);
+          return (
+            <div
+              key={n}
+              style={{
+                opacity: p,
+                transform: `translate3d(0, ${(1 - p) * 40}px, 0) scale(${0.86 + 0.14 * p})`,
+                filter: `blur(${(1 - p) * 10}px) drop-shadow(0 24px 40px rgba(0,0,0,0.5))`,
+                willChange: "transform, opacity, filter",
+              }}
+            >
+              <El name={n} size={ICON} />
+            </div>
+          );
+        })}
+      </div>
+      <div style={{ position: "relative" }}>
+        <div
+          style={{
+            fontFamily: STYRENE,
+            fontWeight: 700,
+            fontSize: T,
+            letterSpacing: -2.5,
+            lineHeight: 1,
+            color: C.white,
+            whiteSpace: "nowrap",
+            opacity: pTitle * (0.999 + 0 * pIcon),
+            filter: `blur(${(1 - pTitle) * 12}px)`,
+            transform: `translate3d(${(1 - pTitle) * 30}px, 0, 0)`,
+            willChange: "transform, opacity, filter",
+          }}
+        >
+          {title}
+        </div>
+        {sub.map((s, i) => {
+          const next = sub[i + 1]?.at;
+          const p = anim(f, s.at, s.at + 36, 0, 1);
+          const q = next === undefined ? 0 : anim(f, next - 6, next + 16, 0, 1, IN);
+          return (
+            <div
+              key={s.text}
+              style={{
+                position: "absolute",
+                left: 0,
+                top: T * 1.12,
+                fontFamily: STYRENE,
+                fontWeight: 500,
+                fontSize: 64,
+                color: C.red,
+                whiteSpace: "nowrap",
+                opacity: p * (1 - q),
+                filter: `blur(${(1 - p) * 10 + q * 8}px)`,
+                transform: `translate3d(0, ${(1 - p) * 20 - q * 14}px, 0)`,
+                willChange: "transform, opacity, filter",
+              }}
+            >
+              {s.text}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
 
-// Плавающее «дыхание» объекта
-export const useFloat = (amp = 8, speed = 0.5) => {
+// Подсказка «слева / справа» над полосой
+export const SideHint: React.FC<{ text: string; at: number; out?: number; x: number; align: "left" | "right" }> = ({
+  text,
+  at,
+  out,
+  x,
+  align,
+}) => (
+  <div style={{ position: "absolute", top: 352, ...(align === "left" ? { left: x } : { right: 1920 - x }) }}>
+    <Reveal at={at} out={out} dy={16}>
+      <div style={{ fontFamily: STYRENE, fontSize: 34, fontWeight: 400, color: "rgba(255,255,255,0.62)" }}>{text}</div>
+    </Reveal>
+  </div>
+);
+
+// Фокус по элементам полосы в такт голосу: красная рамка + подпись снизу
+export type Step = { id: string; at: number; label: string };
+
+export const Walk: React.FC<{
+  v: Variant;
+  steps: Step[];
+  end: number;
+  stripX: number;
+  stripY: number;
+  scale?: number;
+  width?: number;
+  extraRight?: number;
+  labelY?: number;
+}> = ({ v, steps, end, stripX, stripY, scale = 1, width, extraRight = 0, labelY }) => {
   const f = useCurrentFrame();
-  return Math.sin((f / 60) * Math.PI * speed) * amp;
+  const L = layout(v, extraRight, width);
+  const LEAD = 6; // рамка приходит чуть раньше слова
+  let idx = -1;
+  steps.forEach((s, i) => {
+    if (f >= s.at - LEAD) idx = i;
+  });
+  const first = steps[0].at - LEAD;
+  const vis = anim(f, first - 10, first + 8, 0, 1) * (1 - anim(f, end, end + 18, 0, 1, IN));
+  const i0 = Math.max(idx, 0);
+  const cur = L[steps[i0].id];
+  const prev = i0 > 0 ? L[steps[i0 - 1].id] : cur;
+  const p = anim(f, steps[i0].at - LEAD, steps[i0].at - LEAD + 20, 0, 1, OUT);
+  const x = prev.x + (cur.x - prev.x) * p;
+  const w = prev.w + (cur.w - prev.w) * p;
+  const PADX = 10;
+  const ly = labelY ?? stripY + (STRIP_H + 64) * scale;
+  return (
+    <>
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+          width: (w + PADX * 2) * scale,
+          height: (STRIP_H - 24) * scale,
+          transform: `translate3d(${stripX + (x - PADX) * scale}px, ${stripY + 12 * scale}px, 0)`,
+          willChange: "transform, width",
+          borderRadius: 14 * scale,
+          border: `${2.5 * scale}px solid ${C.red}`,
+          background: "rgba(239,49,36,0.06)",
+          boxShadow: `0 0 0 ${6 * scale}px rgba(239,49,36,0.12), 0 0 ${26 * scale}px rgba(239,49,36,0.35)`,
+          opacity: vis,
+        }}
+      />
+      {steps.map((s, i) => {
+        const b = L[s.id];
+        const tIn = s.at - LEAD;
+        const tOut = i < steps.length - 1 ? steps[i + 1].at - LEAD : end;
+        const pin = anim(f, tIn, tIn + 22, 0, 1);
+        const pout = anim(f, tOut, tOut + 14, 0, 1, IN);
+        const op = pin * (1 - pout);
+        if (op <= 0.001) return null;
+        const cx = Math.min(1500, Math.max(420, stripX + (b.x + b.w / 2) * scale));
+        return (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: 0,
+              top: ly,
+              width: 1920,
+              display: "flex",
+              justifyContent: "center",
+              transform: `translate3d(${cx - 960}px, ${(1 - pin) * 26 - pout * 16}px, 0)`,
+              opacity: op,
+              filter: `blur(${(1 - pin) * 10 + pout * 6}px)`,
+              willChange: "transform, opacity, filter",
+              fontFamily: STYRENE,
+              fontWeight: 500,
+              fontSize: 64,
+              letterSpacing: -1,
+              color: C.white,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {s.label}
+          </div>
+        );
+      })}
+    </>
+  );
 };
 
 export { OUT };
