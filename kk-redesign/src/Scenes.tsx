@@ -26,7 +26,7 @@ const StripIn: React.FC<{ from: number; out?: number; children: React.ReactNode;
         position: "absolute",
         left: 0,
         top: 0,
-        transform: `translate(${SX}px, ${y + (1 - p) * 60 - q * 30}px)`,
+        transform: `translate3d(${SX}px, ${y + (1 - p) * 60 - q * 30}px, 0)`, willChange: "transform",
         opacity: p * (1 - q),
               }}
     >
@@ -79,7 +79,7 @@ export const SceneContext: React.FC = () => {
       <AbsoluteFill
         style={{
           transformOrigin: `${cx}px ${cy}px`,
-          transform: `translate(${camX}px, ${camY}px) scale(${camS})`,
+          transform: `translate3d(${camX}px, ${camY}px, 0) scale(${camS})`, willChange: "transform",
         }}
       >
         <div
@@ -89,7 +89,7 @@ export const SceneContext: React.FC = () => {
             top: 0,
             width: LW,
             height: LH,
-            transform: `translate(${left}px, ${top + (1 - enter) * 90}px)`,
+            transform: `translate3d(${left}px, ${top + (1 - enter) * 90}px, 0)`, willChange: "transform",
             opacity: enter,
             filter: `${blp(fb(enter) * 16)}`,
           }}
@@ -263,7 +263,7 @@ export const SceneHover: React.FC = () => {
               position: "absolute",
               left: 0,
               top: 0,
-              transform: `translate(${cur.x - 8}px, ${cur.y - 4}px)`,
+              transform: `translate3d(${cur.x - 8}px, ${cur.y - 4}px, 0)`, willChange: "transform",
               opacity: curVis,
               zIndex: 10,
             }}
@@ -411,7 +411,7 @@ export const SceneIMSI: React.FC = () => {
               position: "absolute",
               left: 0,
               top: 0,
-              transform: `translate(${cur.x - 8}px, ${cur.y - 4}px)`,
+              transform: `translate3d(${cur.x - 8}px, ${cur.y - 4}px, 0)`, willChange: "transform",
               opacity: anim(f, tI - 34, tI - 20, 0, 1) * (1 - anim(f, tOpen + 20, tOpen + 34, 0, 1)),
               zIndex: 10,
             }}
@@ -425,7 +425,7 @@ export const SceneIMSI: React.FC = () => {
           position: "absolute",
           left: 0,
           top: 0,
-          transform: `translate(${SX}px, ${Y + STRIP_H + 30 + (1 - panel) * 120}px)`,
+          transform: `translate3d(${SX}px, ${Y + STRIP_H + 30 + (1 - panel) * 120}px, 0)`, willChange: "transform",
           opacity: panel,
                   }}
       >
@@ -536,7 +536,7 @@ export const SceneSwitch: React.FC = () => {
           left: 0,
           top: 0,
           transformOrigin: "0 0",
-          transform: `translate(${sx}px, ${sy}px) scale(${SW_SCALE})`,
+          transform: `translate3d(${sx}px, ${sy}px, 0) scale(${SW_SCALE})`, willChange: "transform",
         }}
       >
         <StripLocalIn from={4}>
@@ -577,7 +577,7 @@ export const SceneSwitch: React.FC = () => {
                 top: STRIP_H + 6,
                 width: 440,
                 opacity: drop * (1 - anim(f, tOpen + 150, tOpen + 172, 0, 1, INOUT)),
-                transform: `translate(0, ${(1 - drop) * -14}px)`,
+                transform: `translate3d(0, ${(1 - drop) * -14}px, 0)`, willChange: "transform",
                                 transformOrigin: "100% 0",
               }}
             >
@@ -588,7 +588,7 @@ export const SceneSwitch: React.FC = () => {
                 position: "absolute",
                 left: 0,
                 top: 0,
-                transform: `translate(${cur.x - 8}px, ${cur.y - 4}px)`,
+                transform: `translate3d(${cur.x - 8}px, ${cur.y - 4}px, 0)`, willChange: "transform",
                 opacity: anim(f, tList - 34, tList - 20, 0, 1),
                 zIndex: 10,
               }}
@@ -618,7 +618,7 @@ const StripLocalIn: React.FC<{ from: number; children: React.ReactNode }> = ({ f
   return (
     <div
       style={{
-        transform: `translate(0, ${(1 - p) * 60}px)`,
+        transform: `translate3d(0, ${(1 - p) * 60}px, 0)`, willChange: "transform",
         opacity: p,
               }}
     >
@@ -695,7 +695,7 @@ export const SceneLinks: React.FC = () => {
         <div
           style={{
             opacity: ic,
-            transform: `translate(0, ${(1 - ic) * 40}px) scale(${0.88 + 0.12 * ic})`,
+            transform: `translate3d(0, ${(1 - ic) * 40}px, 0) scale(${0.88 + 0.12 * ic})`, willChange: "transform",
             filter: `${blp(fb(ic) * 10)} drop-shadow(0 24px 40px rgba(0,0,0,0.5))`,
           }}
         >
@@ -736,7 +736,7 @@ const PillText: React.FC<{ text: string; o: number; y: number }> = ({ text, o, y
       justifyContent: "center",
       gap: 12,
       opacity: o,
-      transform: `translate(0, ${y}px)`,
+      transform: `translate3d(0, ${y}px, 0)`, willChange: "transform",
       filter: `${blp(fb(o) * 6)}`,
       whiteSpace: "nowrap",
     }}
@@ -759,7 +759,7 @@ export const SceneOutro: React.FC = () => {
         <div
           style={{
             opacity: ic,
-            transform: `translate(0, ${(1 - ic) * 50 + fl}px) scale(${0.92 + 0.08 * ic})`,
+            transform: `translate3d(0, ${(1 - ic) * 50 + fl}px, 0) scale(${0.92 + 0.08 * ic})`, willChange: "transform",
             filter: `${blp(fb(ic) * 12)} drop-shadow(0 30px 50px rgba(0,0,0,0.55))`,
           }}
         >

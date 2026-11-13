@@ -1,3 +1,4 @@
+import type React from "react";
 import { Easing, interpolate } from "remotion";
 
 export const FPS = 60;
@@ -68,3 +69,11 @@ export const blp = (v: number) => (v < 0.05 ? "" : `blur(${v.toFixed(2)}px)`);
 // Так переключение сглаживания текста прячется в движении и не даёт «щелчка».
 export const fb = (p: number) => Math.max(0, 1 - p / 0.6);
 export const fx = (q: number) => Math.max(0, (q - 0.35) / 0.65);
+
+// Сдвиг/масштаб. Пока элемент движется, он на GPU-слое (субпиксельно плавно);
+// в покое слой снимается, и элемент рисуется одинаково в каждом кадре.
+export const mv = (moving: boolean, x: number, y: number, s = 1): React.CSSProperties =>
+  moving
+    ? { transform: `translate3d(${x}px, ${y}px, 0) scale(${s})`, willChange: "transform" }
+    : { transform: `translate(${x}px, ${y}px) scale(${s})` };
+export const live = (...ps: number[]) => ps.some((p) => p > 0 && p < 1);

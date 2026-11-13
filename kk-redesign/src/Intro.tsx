@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { Background } from "./Common";
-import { anim, C, IN, STYRENE, blp, fb, fx } from "./theme";
+import { anim, C, IN, STYRENE, blp, fb, fx, mv } from "./theme";
 
 // Заставка: «РЕДИЗАЙН КК» крупно и жирно, около 3 с
 export const Intro: React.FC<{ bg?: boolean }> = ({ bg = true }) => {
@@ -11,7 +11,7 @@ export const Intro: React.FC<{ bg?: boolean }> = ({ bg = true }) => {
   const word = (from: number): React.CSSProperties => ({
     opacity: anim(f, from, from + 40, 0, 1),
     // GPU-слой: текст не перерастрируется и не прыгает по пикселям
-    transform: `translate(0, ${anim(f, from, from + 54, 40, 0)}px)`,
+    ...mv(true, 0, anim(f, from, from + 54, 40, 0)),
     filter: `${blp(fb(anim(f, from, from + 44, 0, 1)) * 14)}`,
   });
 

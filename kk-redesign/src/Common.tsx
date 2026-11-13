@@ -36,7 +36,7 @@ export const SceneShell: React.FC<{ children: React.ReactNode; fade?: number }> 
 };
 
 const gpu = (x: number, y: number, s = 1): React.CSSProperties => ({
-  transform: `translate(${x}px, ${y}px) scale(${s})`,
+  transform: `translate3d(${x}px, ${y}px, 0) scale(${s})`, willChange: "transform",
 });
 
 // Дорогое появление: прозрачность + сдвиг + размытие
@@ -107,7 +107,7 @@ export const Chapter: React.FC<{
         left: 0,
         top: 0,
         transformOrigin: "0 0",
-        transform: `translate(${left}px, ${top}px) scale(${sc})`,
+        transform: `translate3d(${left}px, ${top}px, 0) scale(${sc})`, willChange: "transform",
         display: "flex",
         alignItems: "center",
         gap: GAP,
@@ -121,7 +121,7 @@ export const Chapter: React.FC<{
               key={n}
               style={{
                 opacity: p,
-                transform: `translate(0, ${(1 - p) * 40}px) scale(${0.86 + 0.14 * p})`,
+                transform: `translate3d(0, ${(1 - p) * 40}px, 0) scale(${0.86 + 0.14 * p})`, willChange: "transform",
                 filter: `${blp(fb(p) * 10)} drop-shadow(0 24px 40px rgba(0,0,0,0.5))`,
               }}
             >
@@ -142,7 +142,7 @@ export const Chapter: React.FC<{
             whiteSpace: "nowrap",
             opacity: pTitle * (0.999 + 0 * pIcon),
             filter: `${blp(fb(pTitle) * 12)}`,
-            transform: `translate(${(1 - pTitle) * 30}px, 0)`,
+            transform: `translate3d(${(1 - pTitle) * 30}px, 0, 0)`, willChange: "transform",
           }}
         >
           {title}
@@ -165,7 +165,7 @@ export const Chapter: React.FC<{
                 whiteSpace: "nowrap",
                 opacity: p * (1 - q),
                 filter: `${blp(fb(p) * 10 + fx(q) * 8)}`,
-                transform: `translate(0, ${(1 - p) * 20 - q * 14}px)`,
+                transform: `translate3d(0, ${(1 - p) * 20 - q * 14}px, 0)`, willChange: "transform",
               }}
             >
               {s.text}
@@ -232,7 +232,7 @@ export const Walk: React.FC<{
           top: 0,
           width: (w + PADX * 2) * scale,
           height: (STRIP_H - 24) * scale,
-          transform: `translate(${stripX + (x - PADX) * scale}px, ${stripY + 12 * scale}px)`,
+          transform: `translate3d(${stripX + (x - PADX) * scale}px, ${stripY + 12 * scale}px, 0)`, willChange: "transform",
           borderRadius: 14 * scale,
           border: `${2.5 * scale}px solid ${C.red}`,
           background: "rgba(239,49,36,0.06)",
@@ -262,7 +262,7 @@ export const Walk: React.FC<{
               width: 1920,
               display: "flex",
               justifyContent: "center",
-              transform: `translate(${cx - 960}px, ${(1 - pin) * 26 - pout * 16}px)`,
+              transform: `translate3d(${cx - 960}px, ${(1 - pin) * 26 - pout * 16}px, 0)`, willChange: "transform",
               opacity: op,
               filter: `${blp(fb(pin) * 10 + fx(pout) * 6)}`,
               fontFamily: STYRENE,
