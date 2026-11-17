@@ -210,7 +210,7 @@
    "orig_end": 12.02
   },
   {
-   "text": "все",
+   "text": "всё",
    "start": 10.552,
    "end": 10.703,
    "orig_start": 12.06,
@@ -413,7 +413,7 @@
    "orig_end": 23.7
   },
   {
-   "text": "все",
+   "text": "всё",
    "start": 20.993,
    "end": 21.181,
    "orig_start": 23.82,
@@ -497,7 +497,7 @@
    "orig_end": 28.88
   },
   {
-   "text": "все",
+   "text": "всё",
    "start": 25.587,
    "end": 25.738,
    "orig_start": 28.92,
@@ -644,17 +644,10 @@
    "orig_end": 37.76
   },
   {
-   "text": "AI",
+   "text": "AI-наставник.",
    "start": 33.924,
-   "end": 34.15,
-   "orig_start": 37.86,
-   "orig_end": 38.1
-  },
-  {
-   "text": "Наставник.",
-   "start": 34.188,
    "end": 34.792,
-   "orig_start": 38.14,
+   "orig_start": 37.86,
    "orig_end": 38.78
   },
   {
@@ -679,7 +672,7 @@
    "orig_end": 39.98
   },
   {
-   "text": "тренажер",
+   "text": "тренажёр",
    "start": 35.803,
    "end": 36.218,
    "orig_start": 40.02,
@@ -714,7 +707,7 @@
    "orig_end": 41.86
   },
   {
-   "text": "поймет,",
+   "text": "поймёт,",
    "start": 37.53,
    "end": 37.813,
    "orig_start": 41.9,
@@ -770,7 +763,7 @@
    "orig_end": 45.26
   },
   {
-   "text": "все",
+   "text": "всё",
    "start": 40.714,
    "end": 40.902,
    "orig_start": 45.3,
@@ -896,7 +889,7 @@
    "orig_end": 53.48
   },
   {
-   "text": "трем",
+   "text": "трём",
    "start": 48.12,
    "end": 48.29,
    "orig_start": 53.52,
@@ -1113,7 +1106,7 @@
    "orig_end": 66.04
   },
   {
-   "text": "все",
+   "text": "всё",
    "start": 60.044,
    "end": 60.214,
    "orig_start": 66.08,
@@ -1211,7 +1204,7 @@
    "orig_end": 70.52
   },
   {
-   "text": "Alpha",
+   "text": "Alfa",
    "start": 64.417,
    "end": 64.662,
    "orig_start": 70.58,
@@ -1232,17 +1225,10 @@
    "orig_end": 72.06
   },
   {
-   "text": "AI",
+   "text": "AI-ассистенты,",
    "start": 65.908,
-   "end": 66.172,
-   "orig_start": 72.16,
-   "orig_end": 72.44
-  },
-  {
-   "text": "ассистенты,",
-   "start": 66.228,
    "end": 66.889,
-   "orig_start": 72.5,
+   "orig_start": 72.16,
    "orig_end": 73.2
   },
   {
@@ -1253,17 +1239,10 @@
    "orig_end": 74.0
   },
   {
-   "text": "AI",
+   "text": "AI-ментор",
    "start": 67.719,
-   "end": 67.983,
-   "orig_start": 74.08,
-   "orig_end": 74.36
-  },
-  {
-   "text": "Mentor",
-   "start": 68.04,
    "end": 68.379,
-   "orig_start": 74.42,
+   "orig_start": 74.08,
    "orig_end": 74.78
   },
   {
@@ -1288,17 +1267,10 @@
    "orig_end": 75.94
   },
   {
-   "text": "AI",
+   "text": "AI-наставник.",
    "start": 69.568,
-   "end": 69.794,
-   "orig_start": 76.04,
-   "orig_end": 76.28
-  },
-  {
-   "text": "Наставник.",
-   "start": 69.832,
    "end": 70.398,
-   "orig_start": 76.32,
+   "orig_start": 76.04,
    "orig_end": 76.92
   },
   {
@@ -1323,7 +1295,7 @@
    "orig_end": 78.02
   },
   {
-   "text": "еще",
+   "text": "ещё",
    "start": 71.567,
    "end": 71.775,
    "orig_start": 78.12,
@@ -1365,7 +1337,7 @@
    "orig_end": 80.14
   },
   {
-   "text": "Рабочее",
+   "text": "«Рабочее»",
    "start": 73.511,
    "end": 74.058,
    "orig_start": 80.18,
@@ -1393,7 +1365,7 @@
    "orig_end": 81.24
   },
   {
-   "text": "Alpha",
+   "text": "Alfa",
    "start": 74.586,
    "end": 74.831,
    "orig_start": 81.32,
@@ -1435,17 +1407,10 @@
    "orig_end": 83.46
   },
   {
-   "text": "AI",
+   "text": "AI-наставника,",
    "start": 76.511,
-   "end": 76.719,
-   "orig_start": 83.52,
-   "orig_end": 83.74
-  },
-  {
-   "text": "Наставника,",
-   "start": 76.756,
    "end": 77.341,
-   "orig_start": 83.78,
+   "orig_start": 83.52,
    "orig_end": 84.4
   },
   {
