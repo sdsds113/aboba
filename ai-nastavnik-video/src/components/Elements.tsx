@@ -1,5 +1,5 @@
 import React from "react";
-import { Img, interpolate, staticFile } from "remotion";
+import { getStaticFiles, Img, interpolate, staticFile } from "remotion";
 import { noise2D } from "@remotion/noise";
 import {
   C,
@@ -43,6 +43,10 @@ export type StickerId = keyof typeof STICKERS;
 export const sticker = (id: StickerId) =>
   staticFile(`assets/stickers/${STICKERS[id]}.png`);
 export const prop = (name: string) => staticFile(`assets/props/${name}.png`);
+
+/** Use a newly generated prop when it exists in public/, otherwise a stand-in from the first pack. */
+export const propOr = (name: string, fallback: string) =>
+  getStaticFiles().some((f) => f.name === `assets/props/${name}.png`) ? prop(name) : prop(fallback);
 export const fx = (name: string) => staticFile(`assets/fx/${name}.png`);
 
 /** Small paint droplets bursting outward from a point. */

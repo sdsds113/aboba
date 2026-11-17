@@ -3,15 +3,15 @@ import { interpolate } from "remotion";
 import { C, clamp, EASE, FONT_A, hexA } from "../lib/core";
 import { loopAround, Thread } from "./Thread";
 
-/** Screencast content size after crop (source x 370..1520, full height). */
-export const CW = 1150;
+/** Screencast content size (full source frame). */
+export const CW = 1920;
 export const CH = 1080;
 export const BAR = 40;
 
 export type Box = [number, number, number, number];
 /** Convert a box from source-screencast pixels (1920 wide) to content pixels. */
-export const srcBox = (x0: number, y0: number, x1: number, y1: number): Box => [x0 - 370, y0, x1 - 370, y1];
-export const srcPt = (x: number, y: number): [number, number] => [x - 370, y];
+export const srcBox = (x0: number, y0: number, x1: number, y1: number): Box => [x0, y0, x1, y1];
+export const srcPt = (x: number, y: number): [number, number] => [x, y];
 
 export type Cam = { zoom: number; fx: number; fy: number };
 

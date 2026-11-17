@@ -5,14 +5,8 @@ import { Backdrop, Grain } from "./components/Backdrop";
 import { SidePools } from "./components/Pools";
 import { Subtitles } from "./components/Subtitles";
 import { FPS, Scene, TOTAL_SECONDS, VO_OFFSET } from "./lib/core";
-import { ActABack, ActAFront } from "./scenes/ActA";
-import { ActBBack } from "./scenes/ActB";
-import { ActCBack } from "./scenes/ActC";
-import { ActDBack, ActDFront } from "./scenes/ActD";
-import { ActEBack, ActEFront } from "./scenes/ActE";
-import { ActFBack, ActGBack } from "./scenes/ActF";
-import { ActHBack } from "./scenes/ActH";
-import { CharacterTrack } from "./scenes/CharacterTrack";
+import { SceneAnswer, SceneChat, SceneRoute, SceneSetup, SceneWidget } from "./scenes/Screens";
+import { SceneFinale, SceneHero, ScenePile, ScenePuzzle, SceneQuestions, SceneTea } from "./scenes/Story";
 import { TitleIntroOutro } from "./scenes/Title";
 
 /** Music: full on the title, ducked under the voice, back up on the end title, fades out. */
@@ -27,48 +21,44 @@ const musicVolume = (f: number) => {
   );
 };
 
+/** Element-only cut: no character, no on-screen words (subtitles carry the text). */
 export const AINastavnik: React.FC<{ subtitles?: boolean }> = ({ subtitles = true }) => {
   return (
     <AbsoluteFill style={{ background: "#0B0B0E", overflow: "hidden" }}>
       <Backdrop />
       <SidePools />
-      {/* back layers (behind the character) */}
-      <Scene name="S1-3 back" start={-0.5} end={18.8}>
-        <ActABack />
+      <Scene name="S1-3 questions" start={-0.5} end={18.6}>
+        <SceneQuestions />
       </Scene>
-      <Scene name="S4-5 back" start={18.2} end={33.0}>
-        <ActBBack />
+      <Scene name="S4 pile" start={18.2} end={28.0}>
+        <ScenePile />
       </Scene>
-      <Scene name="S6 back" start={32.4} end={40.5}>
-        <ActCBack />
+      <Scene name="S5 puzzle" start={27.7} end={32.9}>
+        <ScenePuzzle />
       </Scene>
-      <Scene name="S7-8 back" start={40.0} end={53.3}>
-        <ActDBack />
+      <Scene name="S6 hero" start={32.4} end={40.5}>
+        <SceneHero />
       </Scene>
-      <Scene name="S9-10 back" start={53.0} end={64.0}>
-        <ActEBack />
+      <Scene name="S7 setup" start={40.0} end={47.7}>
+        <SceneSetup />
       </Scene>
-      <Scene name="S11 back" start={63.4} end={71.1}>
-        <ActFBack />
+      <Scene name="S8 tea" start={47.2} end={53.3}>
+        <SceneTea />
       </Scene>
-      <Scene name="S12 back" start={70.6} end={79.5}>
-        <ActGBack />
+      <Scene name="S9 answer" start={53.0} end={60.2}>
+        <SceneAnswer />
       </Scene>
-      <Scene name="S13 back" start={79.0} end={89.3}>
-        <ActHBack />
+      <Scene name="S10 chat" start={59.6} end={64.0}>
+        <SceneChat />
       </Scene>
-
-      <CharacterTrack />
-
-      {/* front layers */}
-      <Scene name="S1-3 front" start={-0.5} end={18.8}>
-        <ActAFront />
+      <Scene name="S11 route" start={63.4} end={71.1}>
+        <SceneRoute />
       </Scene>
-      <Scene name="S7-8 front" start={40.0} end={53.3}>
-        <ActDFront />
+      <Scene name="S12 widget" start={70.7} end={79.5}>
+        <SceneWidget />
       </Scene>
-      <Scene name="S10 front" start={62.0} end={64.0}>
-        <ActEFront />
+      <Scene name="S13 finale" start={79.2} end={89.3}>
+        <SceneFinale />
       </Scene>
 
       <TitleIntroOutro />
