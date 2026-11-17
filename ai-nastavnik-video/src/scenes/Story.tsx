@@ -41,17 +41,17 @@ export const SceneQuestions: React.FC = () => {
     <div style={{ position: "absolute", inset: 0, opacity: op }}>
       <Prop t={t} src={propOr("N01_headset", "P01_bubble_blue")} x={headset.x} y={headset.y} size={headset.s} enter={0.1} exit={17.0} seed={1} />
       {/* Max opens the story */}
-      {t < 8.3 ? <Character t={t} timeline={[[-0.5, "E01"], [6.98, "E02"]]} x={1400} bottom={1100} height={1180} enter={0.0} exit={7.55} hue="red" /> : null}
+      {t < 8.3 ? <Character t={t} timeline={[[-0.5, "E01"], [6.98, "E02"]]} x={1400} bottom={1100} height={1180} enter={-0.05} exit={7.55} hue="red" /> : null}
       {/* three consultations in a row */}
       <Prop t={t} src={prop("P01_bubble_blue")} x={260} y={270} size={180} enter={2.0} exit={6.2} seed={11} rotate={-6} />
       <Prop t={t} src={prop("P01_bubble_violet")} x={860} y={240} size={180} enter={2.6} exit={6.3} seed={12} rotate={6} />
-      <Prop t={t} src={prop("P01_bubble_blue")} x={880} y={720} size={180} enter={3.2} exit={6.4} seed={13} rotate={4} flip />
+      <Prop t={t} src={prop("P01_bubble_blue")} x={880} y={720} size={180} enter={3.2} exit={6.4} seed={13} rotate={4} />
       {/* stalled loader + hourglass */}
       <Thread d={loopCircle(560, 470, 300, 1, -Math.PI / 2)} to={spin} from={ramp(t, 7.6, 7.9) * spin} width={7} opacity={1 - ramp(t, 7.6, 7.9)} />
       <Prop t={t} src={prop("P02_hourglass")} x={900} y={300} size={230} enter={6.98} exit={7.85} seed={2} rotate={-8} />
       {/* one, two, three questions */}
       <Prop t={t} src={prop("P01_bubble_red")} x={560} y={300} size={230} enter={7.83} exit={13.99} seed={3} rotate={-8} />
-      <Prop t={t} src={prop("P01_bubble_red")} x={1360} y={260} size={230} enter={9.0} exit={13.99} seed={4} rotate={7} flip />
+      <Prop t={t} src={prop("P01_bubble_red")} x={1360} y={260} size={230} enter={9.0} exit={13.99} seed={4} rotate={7} />
       <Prop t={t} src={prop("P01_bubble_red")} x={1420} y={700} size={230} enter={9.68} exit={13.99} seed={5} rotate={-4} />
       {/* "in which tab was it" */}
       <Prop

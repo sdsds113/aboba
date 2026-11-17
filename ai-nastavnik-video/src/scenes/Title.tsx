@@ -55,7 +55,7 @@ const TitleCard: React.FC<{ lt: number; opacity: number }> = ({ lt, opacity }) =
           filter: `blur(${(1 - Math.min(1, icon)) * 10}px) drop-shadow(0 30px 40px rgba(0,0,0,.5))`,
         }}
       />
-      <Word t={lt} text="AI-наставник" x={120} y={420} size={140} t0={0.45} stagger={0.03} seed={301} />
+      <Word t={lt} text="AI-наставник" x={120} y={420} size={140} t0={0.45} stagger={0.03} seed={301} still />
     </div>
   );
 };

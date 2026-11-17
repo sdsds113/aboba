@@ -8,7 +8,6 @@ import {
   EASE_IN,
   float,
   FONT_A,
-  hexA,
   Hue,
   springAt,
 } from "../lib/core";
@@ -145,7 +144,7 @@ export const Character: React.FC<{
 
   const e = enter === undefined ? 1 : springAt(t, enter, { damping: 26, stiffness: 70 });
   const xOut = exit === undefined ? 0 : interpolate(t, [exit, exit + 0.5], [0, 1], { ...clamp, easing: EASE_IN });
-  const enterY = from === "below" ? (1 - e) * height * 0.75 : 0;
+  const enterY = from === "below" ? (1 - Math.min(1, e)) * height * 0.04 : 0;
   const enterScale = from === "focus" ? 0.85 + 0.15 * e : 1;
   const enterBlur = (1 - Math.min(1, e)) * 16;
   const breath = Math.sin(t * 1.9) * 0.006;
@@ -159,10 +158,10 @@ export const Character: React.FC<{
         top: bottom - height,
         width,
         height,
-        translate: `${sway.x}px ${enterY + sway.y * 0.5 + xOut * height * 0.8}px`,
+        translate: `${sway.x}px ${enterY + sway.y * 0.5 + xOut * height * 0.04}px`,
         rotate: `${rotate + sway.r * 0.3}deg`,
         transformOrigin: "50% 100%",
-        opacity: opacity * (from === "focus" ? Math.min(1, e * 1.5) : 1),
+        opacity: opacity * Math.min(1, e * 1.4) * (1 - xOut),
       }}
     >
       <Img
@@ -172,7 +171,7 @@ export const Character: React.FC<{
           height: "100%",
           scale: `${(mirror ? -1 : 1) * sX * enterScale * (1 + breath)} ${sY * enterScale * (1 + breath)}`,
           transformOrigin: "50% 100%",
-          filter: `brightness(${bright}) drop-shadow(0 0 28px rgba(0,0,0,.55)) drop-shadow(0 0 60px ${hexA(color, glow)}) blur(${enterBlur + blur}px)`,
+          filter: `brightness(${bright})${enterBlur + blur > 0.2 ? ` blur(${enterBlur + blur}px)` : ""}`,
         }}
       />
       {false && !isFirst ? (
@@ -302,6 +301,7 @@ export const Word: React.FC<{
   seed?: number;
   style?: React.CSSProperties;
   exitStyle?: "fall" | "fade" | "suck";
+  still?: boolean;
 }> = ({
   t,
   text,
@@ -321,6 +321,7 @@ export const Word: React.FC<{
   seed = 5,
   style,
   exitStyle = "fade",
+  still = false,
 }) => {
   if (t < t0 - 0.05) return null;
   const letters = Array.from(text);
@@ -328,7 +329,7 @@ export const Word: React.FC<{
   if (xo >= 1) return null;
   const stretch = stretchAt === undefined ? 0 : interpolate(t, [stretchAt, stretchAt + 1.3], [0, 1], { ...clamp, easing: EASE });
   const droop = droopAt === undefined ? 0 : interpolate(t, [droopAt, droopAt + 0.9], [0, 1], { ...clamp, easing: EASE });
-  const flt = float(t, seed, 2, 6);
+  const flt = still ? { x: 0, y: 0, r: 0 } : float(t, seed, 2, 6);
   const anchor = align === "left" ? "0%" : align === "center" ? "-50%" : "-100%";
   return (
     <div

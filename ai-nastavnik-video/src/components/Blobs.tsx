@@ -10,6 +10,8 @@ export type BlobSpec = {
   seed: number;
   /** relative edge wobble amplitude (0.08 calm .. 0.3 splashy) */
   wobble?: number;
+  /** add the finer, higher-frequency edge detail (off = smooth) */
+  detail?: boolean;
   /** time speed multiplier of edge motion */
   speed?: number;
   opacity?: number;
@@ -64,7 +66,7 @@ export const blobPath = (b: BlobSpec, t: number, points = 12) => {
     const nx = Math.cos(a) * 0.9;
     const ny = Math.sin(a) * 0.9;
     const n1 = noise3D(`b${b.seed}`, nx, ny, (t * speed) / 7);
-    const n2 = noise3D(`c${b.seed}`, nx * 2.2, ny * 2.2, (t * speed) / 4) * 0.35;
+    const n2 = b.detail === false ? 0 : noise3D(`c${b.seed}`, nx * 2.2, ny * 2.2, (t * speed) / 4) * 0.35;
     const rr = b.r * (1 + wobble * (n1 + n2));
     const px = Math.cos(a) * rr * sx;
     const py = Math.sin(a) * rr * sy;

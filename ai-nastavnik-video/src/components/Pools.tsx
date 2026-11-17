@@ -38,21 +38,16 @@ export const SidePools: React.FC = () => {
   const spill = interpolate(frame / FPS, [0.1, 1.6], [0, 1], { ...clamp, easing: EASE });
   const left = colorAt(t, 1);
   const right = colorAt(t, 2);
-  const slow = { speed: 0.7, wobble: 0.14 };
+  const slow = { speed: 0.55, wobble: 0.1, detail: false };
   const dx = (p: number, a: number) => Math.sin(t / 6.5 + p) * a;
   const dy = (p: number, a: number) => Math.cos(t / 8.3 + p) * a;
   return (
     <BlobField
       id="pools"
       t={t}
-      goo={16}
       blobs={[
         { x: -40 + dx(0, 40), y: 990 + dy(0, 30), r: 270 * spill, sx: 1.25, sy: 0.9, color: left, seed: 201, ...slow },
-        { x: 290 + dx(1, 60), y: 1040 + dy(1, 25), r: 52 * spill, color: left, seed: 202, ...slow },
-        { x: 380 + dx(2, 70), y: 950 + dy(2, 40), r: 17 * spill, color: left, seed: 203, ...slow },
         { x: 1970 + dx(3, 40), y: 80 + dy(3, 30), r: 250 * spill, sx: 1.2, sy: 0.9, color: right, seed: 204, ...slow },
-        { x: 1660 + dx(4, 60), y: 40 + dy(4, 25), r: 46 * spill, color: right, seed: 205, ...slow },
-        { x: 1760 + dx(5, 70), y: 270 + dy(5, 40), r: 19 * spill, color: right, seed: 206, ...slow },
       ]}
     />
   );
