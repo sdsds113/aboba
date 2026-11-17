@@ -37,7 +37,7 @@ node scripts/stills.mjs 42.4 58.9
 - `src/components/`: кляксы на шуме со слипанием (`Blobs`), белая нить (`Thread`), стикер, предметы и кинетический текст (`Elements`), окно macOS с камерой, затемнением вокруг элемента, петлями и кликами (`MacWindow`), субтитры (`Subtitles`).
 - `src/scenes/`: акты A–H (сцены 1–14) и общая дорожка персонажа (`CharacterTrack`: смены эмоций и перемещения).
 - Скринкаст заранее перемонтирован под озвучку: `scripts/build_screencast_clips.py` → `public/video/sc07_setup.mp4`, `sc09_answer.mp4`, `sc11_route.mp4`. Подсветки рисуются в координатах исходника (`srcBox`) внутри той же камеры, что и видео, поэтому не съезжают.
-- Озвучка: `public/audio/voice_edit.wav` (паузы подрезаны, ×1,06). Музыка: `public/audio/music_chill.mp3`.
+- Озвучка: `public/audio/voice_edit.wav` (паузы подрезаны, ×1,06). Музыка: `public/audio/music_upbeat.mp3`.
 
 ## Временная заглушка
 
