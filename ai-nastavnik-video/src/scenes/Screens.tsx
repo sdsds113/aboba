@@ -146,7 +146,7 @@ export const SceneChat: React.FC = () => {
 
 const Stopwatch: React.FC<{ t: number }> = ({ t }) => {
   if (t < 62.3) return null;
-  const S = 440;
+  const S = 560;
   const X = 960;
   const Y = 470;
   const e = springAt(t, 62.35, { damping: 26, stiffness: 80 });

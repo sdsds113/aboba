@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate, interpolateColors, useCurrentFrame } from "remotion";
 import { BlobField } from "./Blobs";
-import { C, clamp, EASE, FPS, VO_OFFSET } from "../lib/core";
+import { C, clamp, EASE, FPS, n2o, VO_OFFSET } from "../lib/core";
 
 /**
  * Two spilled-paint pools at the frame edges (bottom-left and top-right).
@@ -33,7 +33,7 @@ const colorAt = (t: number, side: 1 | 2) => {
 
 export const SidePools: React.FC = () => {
   const frame = useCurrentFrame();
-  const t = frame / FPS - VO_OFFSET;
+  const t = n2o(frame / FPS - VO_OFFSET);
   // spill in at the very start
   const spill = interpolate(frame / FPS, [0.1, 1.6], [0, 1], { ...clamp, easing: EASE });
   const left = colorAt(t, 1);

@@ -2,7 +2,7 @@
 
 Each clip is a list of segments in VOICE time: (v_start, v_end, src_start, src_end).
 src_start == src_end means a freeze frame. Output: 60 fps, full 1920x1080 frame.
-Usage: python build_screencast_clips.py <frames_dir (60fps jpg, 1-based)> <out_dir>
+Usage: python build_screencast_clips.py <frames_dir (60fps jpg, 1-based)> <out_dir> [data/time_map.json]
 """
 import os, subprocess, sys, tempfile
 
@@ -24,11 +24,6 @@ CLIPS = {
         (57.90, 60.60, 13.60, 13.60),
     ]),
     # scene 11: catalog route, then click "Новый чат"
-    "sc11_route": (63.40, 71.20, [
-        (63.40, 69.60, 0.20, 0.20),
-        (69.60, 70.40, 0.20, 1.00),
-        (70.40, 71.20, 1.00, 1.80),
-    ]),
 }
 
 def src_at(segs, v):
@@ -37,14 +32,31 @@ def src_at(segs, v):
             return s0 if b == a else s0 + (s1 - s0) * (v - a) / (b - a)
     return segs[-1][3]
 
-def main(frames, out):
+def load_map(path):
+    """old->new voice-time anchors (data/time_map.json); identity when absent."""
+    if not path:
+        return lambda t: t, lambda t: t
+    import json
+    A = json.load(open(path))["anchors"]
+    def lerp(t, f, g):
+        if t <= A[0][f]:
+            return A[0][g] + t - A[0][f]
+        for a, b in zip(A, A[1:]):
+            if t <= b[f]:
+                return a[g] + (t - a[f]) * (b[g] - a[g]) / max(1e-6, b[f] - a[f])
+        return A[-1][g] + t - A[-1][f]
+    return (lambda t: lerp(t, 0, 1)), (lambda t: lerp(t, 1, 0))
+
+def main(frames, out, tmap=None):
     os.makedirs(out, exist_ok=True)
     nframes = len(os.listdir(frames))
+    o2n, n2o = load_map(tmap)
     for name, (v0, v1, segs) in CLIPS.items():
-        n = round((v1 - v0) * FPS_OUT)
+        n0, n1 = o2n(v0), o2n(v1)
+        n = round((n1 - n0) * FPS_OUT)
         lines = []
         for i in range(n):
-            s = src_at(segs, v0 + i / FPS_OUT)
+            s = src_at(segs, n2o(n0 + i / FPS_OUT))
             idx = min(nframes, max(1, round(s * FPS_SRC) + 1))
             lines.append(f"file '{os.path.join(frames, f'{idx:05d}.jpg')}'\nduration {1/FPS_OUT:.6f}")
         lines.append(lines[-1].split("\n")[0])
@@ -58,4 +70,4 @@ def main(frames, out):
         print(name, n, "frames", f"{v0}->{v1}")
 
 if __name__ == "__main__":
-    main(*sys.argv[1:3])
+    main(*sys.argv[1:4])

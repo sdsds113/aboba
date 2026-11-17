@@ -8,14 +8,15 @@ import {
   useCurrentFrame,
 } from "remotion";
 import { loadFont } from "@remotion/fonts";
+import timeMap from "../../data/time_map.json";
 
 export const FPS = 60;
 export const W = 1920;
 export const H = 1080;
 /** Voiceover starts this many seconds into the video. */
 export const VO_OFFSET = 3.0;
-export const VOICE_DURATION = 79.97;
-export const TOTAL_SECONDS = 87.3;
+export const VOICE_DURATION = timeMap.new_duration;
+export const TOTAL_SECONDS = Math.round((VO_OFFSET + VOICE_DURATION + 4.3) * 10) / 10;
 export const TOTAL_FRAMES = Math.round(TOTAL_SECONDS * FPS);
 
 export const C = {
@@ -45,7 +46,28 @@ for (const [family, file, weight] of fonts) {
 }
 
 /** Voice time (seconds) -> absolute video frame. */
-export const vf = (t: number) => Math.round((t + VO_OFFSET) * FPS);
+/**
+ * Scenes are authored in the timing of the previous take ("old" voice time).
+ * The new full re-voice is mapped onto it with word anchors, so every beat still lands on its word.
+ */
+const ANCHORS = timeMap.anchors as [number, number][];
+const lerpMap = (t: number, from: 0 | 1, to: 0 | 1) => {
+  if (t <= ANCHORS[0][from]) return ANCHORS[0][to] + (t - ANCHORS[0][from]);
+  for (let i = 0; i < ANCHORS.length - 1; i++) {
+    const a = ANCHORS[i];
+    const b = ANCHORS[i + 1];
+    if (t <= b[from]) return a[to] + ((t - a[from]) * (b[to] - a[to])) / Math.max(1e-6, b[from] - a[from]);
+  }
+  const l = ANCHORS[ANCHORS.length - 1];
+  return l[to] + (t - l[from]);
+};
+/** old voice time -> new voice time */
+export const o2n = (t: number) => lerpMap(t, 0, 1);
+/** new voice time -> old voice time */
+export const n2o = (t: number) => lerpMap(t, 1, 0);
+
+/** Old voice time -> absolute video frame. */
+export const vf = (t: number) => Math.round((o2n(t) + VO_OFFSET) * FPS);
 
 const SceneStart = createContext(0);
 
@@ -73,7 +95,7 @@ export const Scene: React.FC<{
 export const useVT = () => {
   const frame = useCurrentFrame();
   const start = useContext(SceneStart);
-  return (frame + start) / FPS - VO_OFFSET;
+  return n2o((frame + start) / FPS - VO_OFFSET);
 };
 
 export const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;

@@ -1,1496 +1,1046 @@
 {
- "tempo": 1.06,
- "default_pause": 0.16,
- "break_pause": 0.38,
- "source_duration": 96.780771,
- "duration": 79.965215,
- "fps": 30,
+ "duration": 86.292744,
+ "voice": "ElevenLabs Nikolay, eleven_v4, speed 1.08, pauses <= 0.30 s",
  "words": [
   {
    "text": "Знакомое",
-   "start": 0.075,
-   "end": 0.566,
-   "orig_start": 0.14,
-   "orig_end": 0.66
+   "start": 0.06,
+   "end": 0.56
   },
   {
    "text": "чувство.",
-   "start": 0.642,
-   "end": 1.113,
-   "orig_start": 0.74,
-   "orig_end": 1.24
+   "start": 0.64,
+   "end": 1.08
   },
   {
    "text": "Проводишь",
-   "start": 1.356,
-   "end": 1.752,
-   "orig_start": 1.72,
-   "orig_end": 2.14
+   "start": 1.511,
+   "end": 1.951
   },
   {
    "text": "пару",
-   "start": 1.809,
-   "end": 1.979,
-   "orig_start": 2.2,
-   "orig_end": 2.38
+   "start": 1.991,
+   "end": 2.191
   },
   {
    "text": "консультаций",
-   "start": 2.016,
-   "end": 2.601,
-   "orig_start": 2.42,
-   "orig_end": 3.04
+   "start": 2.231,
+   "end": 2.851
   },
   {
    "text": "подряд",
-   "start": 2.658,
-   "end": 3.186,
-   "orig_start": 3.1,
-   "orig_end": 3.66
+   "start": 2.911,
+   "end": 3.451
   },
   {
    "text": "и",
-   "start": 3.243,
-   "end": 3.299,
-   "orig_start": 3.72,
-   "orig_end": 3.78
+   "start": 3.511,
+   "end": 3.591
   },
   {
    "text": "ловишь",
-   "start": 3.394,
-   "end": 3.639,
-   "orig_start": 3.88,
-   "orig_end": 4.14
+   "start": 3.671,
+   "end": 3.93
   },
   {
    "text": "себя",
-   "start": 3.696,
-   "end": 3.884,
-   "orig_start": 4.2,
-   "orig_end": 4.4
+   "start": 3.971,
+   "end": 4.171
   },
   {
    "text": "на",
-   "start": 3.922,
-   "end": 4.035,
-   "orig_start": 4.44,
-   "orig_end": 4.56
+   "start": 4.211,
+   "end": 4.331
   },
   {
    "text": "том,",
-   "start": 4.073,
-   "end": 4.224,
-   "orig_start": 4.6,
-   "orig_end": 4.76
+   "start": 4.391,
+   "end": 4.531
   },
   {
    "text": "что",
-   "start": 4.356,
-   "end": 4.545,
-   "orig_start": 4.9,
-   "orig_end": 5.1
+   "start": 4.611,
+   "end": 4.811
   },
   {
    "text": "на",
-   "start": 4.601,
-   "end": 4.677,
-   "orig_start": 5.16,
-   "orig_end": 5.24
+   "start": 4.871,
+   "end": 4.931
   },
   {
    "text": "одном",
-   "start": 4.715,
-   "end": 4.998,
-   "orig_start": 5.28,
-   "orig_end": 5.58
+   "start": 4.991,
+   "end": 5.311
   },
   {
    "text": "и",
-   "start": 5.035,
-   "end": 5.092,
-   "orig_start": 5.62,
-   "orig_end": 5.68
+   "start": 5.371,
+   "end": 5.431
   },
   {
    "text": "том",
-   "start": 5.13,
-   "end": 5.281,
-   "orig_start": 5.72,
-   "orig_end": 5.88
+   "start": 5.491,
+   "end": 5.631
   },
   {
    "text": "же",
-   "start": 5.318,
-   "end": 5.394,
-   "orig_start": 5.92,
-   "orig_end": 6.0
+   "start": 5.671,
+   "end": 5.751
   },
   {
    "text": "вопросе",
-   "start": 5.432,
-   "end": 5.884,
-   "orig_start": 6.04,
-   "orig_end": 6.52
+   "start": 5.791,
+   "end": 6.431
   },
   {
    "text": "каждый",
-   "start": 6.035,
-   "end": 6.356,
-   "orig_start": 6.68,
-   "orig_end": 7.02
+   "start": 6.491,
+   "end": 6.831
   },
   {
    "text": "раз",
-   "start": 6.394,
-   "end": 6.564,
-   "orig_start": 7.06,
-   "orig_end": 7.24
+   "start": 6.891,
+   "end": 7.071
   },
   {
    "text": "немного",
-   "start": 6.601,
-   "end": 6.922,
-   "orig_start": 7.28,
-   "orig_end": 7.62
+   "start": 7.131,
+   "end": 7.491
   },
   {
    "text": "зависаешь.",
-   "start": 6.979,
-   "end": 7.601,
-   "orig_start": 7.68,
-   "orig_end": 8.34
+   "start": 7.551,
+   "end": 8.271
   },
   {
    "text": "Один",
-   "start": 7.831,
-   "end": 8.057,
-   "orig_start": 8.94,
-   "orig_end": 9.18
+   "start": 8.584,
+   "end": 8.824
   },
   {
    "text": "клиент",
-   "start": 8.114,
-   "end": 8.34,
-   "orig_start": 9.24,
-   "orig_end": 9.48
+   "start": 8.864,
+   "end": 9.124
   },
   {
    "text": "спросил,",
-   "start": 8.416,
-   "end": 8.85,
-   "orig_start": 9.56,
-   "orig_end": 10.02
+   "start": 9.204,
+   "end": 9.704
   },
   {
    "text": "второй,",
-   "start": 9.001,
-   "end": 9.491,
-   "orig_start": 10.18,
-   "orig_end": 10.7
+   "start": 9.844,
+   "end": 10.364
   },
   {
    "text": "третий,",
-   "start": 9.68,
-   "end": 10.114,
-   "orig_start": 10.9,
-   "orig_end": 11.36
+   "start": 10.564,
+   "end": 11.044
   },
   {
    "text": "а",
-   "start": 10.344,
-   "end": 10.363,
-   "orig_start": 11.84,
-   "orig_end": 11.86
+   "start": 11.42,
+   "end": 11.46
   },
   {
    "text": "ты",
-   "start": 10.439,
-   "end": 10.514,
-   "orig_start": 11.94,
-   "orig_end": 12.02
+   "start": 11.52,
+   "end": 11.58
   },
   {
    "text": "всё",
-   "start": 10.552,
-   "end": 10.703,
-   "orig_start": 12.06,
-   "orig_end": 12.22
+   "start": 11.62,
+   "end": 11.78
   },
   {
    "text": "пытаешься",
-   "start": 10.722,
-   "end": 11.137,
-   "orig_start": 12.24,
-   "orig_end": 12.68
+   "start": 11.82,
+   "end": 12.24
   },
   {
    "text": "вспомнить,",
-   "start": 11.174,
-   "end": 11.646,
-   "orig_start": 12.72,
-   "orig_end": 13.22
+   "start": 12.3,
+   "end": 12.88
   },
   {
    "text": "в",
-   "start": 11.722,
-   "end": 11.759,
-   "orig_start": 13.3,
-   "orig_end": 13.34
+   "start": 12.94,
+   "end": 13.0
   },
   {
    "text": "какой",
-   "start": 11.797,
-   "end": 12.061,
-   "orig_start": 13.38,
-   "orig_end": 13.66
+   "start": 13.04,
+   "end": 13.32
   },
   {
    "text": "вкладке",
-   "start": 12.099,
-   "end": 12.476,
-   "orig_start": 13.7,
-   "orig_end": 14.1
+   "start": 13.36,
+   "end": 13.78
   },
   {
    "text": "это",
-   "start": 12.533,
-   "end": 12.646,
-   "orig_start": 14.16,
-   "orig_end": 14.28
+   "start": 13.82,
+   "end": 13.96
   },
   {
    "text": "вообще",
-   "start": 12.684,
-   "end": 13.023,
-   "orig_start": 14.32,
-   "orig_end": 14.68
+   "start": 14.0,
+   "end": 14.36
   },
   {
    "text": "было",
-   "start": 13.061,
-   "end": 13.212,
-   "orig_start": 14.72,
-   "orig_end": 14.88
+   "start": 14.42,
+   "end": 14.56
   },
   {
    "text": "написано.",
-   "start": 13.25,
-   "end": 13.797,
-   "orig_start": 14.92,
-   "orig_end": 15.5
+   "start": 14.62,
+   "end": 15.16
   },
   {
    "text": "Ничего",
-   "start": 13.989,
-   "end": 14.291,
-   "orig_start": 16.02,
-   "orig_end": 16.34
+   "start": 15.493,
+   "end": 15.793
   },
   {
    "text": "страшного",
-   "start": 14.366,
-   "end": 14.782,
-   "orig_start": 16.42,
-   "orig_end": 16.86
+   "start": 15.873,
+   "end": 16.313
   },
   {
    "text": "в",
-   "start": 14.8,
-   "end": 14.819,
-   "orig_start": 16.88,
-   "orig_end": 16.9
+   "start": 16.333,
+   "end": 16.373
   },
   {
    "text": "этом",
-   "start": 14.876,
-   "end": 15.083,
-   "orig_start": 16.96,
-   "orig_end": 17.18
+   "start": 16.413,
+   "end": 16.633
   },
   {
    "text": "нет.",
-   "start": 15.14,
-   "end": 15.366,
-   "orig_start": 17.24,
-   "orig_end": 17.48
+   "start": 16.693,
+   "end": 16.913
   },
   {
    "text": "Просто",
-   "start": 15.545,
-   "end": 15.847,
-   "orig_start": 17.74,
-   "orig_end": 18.06
+   "start": 17.193,
+   "end": 17.513
   },
   {
    "text": "сигнал,",
-   "start": 15.904,
-   "end": 16.243,
-   "orig_start": 18.12,
-   "orig_end": 18.48
+   "start": 17.553,
+   "end": 17.973
   },
   {
    "text": "что",
-   "start": 16.357,
-   "end": 16.583,
-   "orig_start": 18.6,
-   "orig_end": 18.84
+   "start": 18.053,
+   "end": 18.253
   },
   {
    "text": "эту",
-   "start": 16.677,
-   "end": 16.847,
-   "orig_start": 18.94,
-   "orig_end": 19.12
+   "start": 18.373,
+   "end": 18.533
   },
   {
    "text": "тему",
-   "start": 16.923,
-   "end": 17.206,
-   "orig_start": 19.2,
-   "orig_end": 19.5
+   "start": 18.613,
+   "end": 18.873
   },
   {
    "text": "пора",
-   "start": 17.243,
-   "end": 17.451,
-   "orig_start": 19.54,
-   "orig_end": 19.76
+   "start": 18.933,
+   "end": 19.193
   },
   {
    "text": "освежить.",
-   "start": 17.508,
-   "end": 18.017,
-   "orig_start": 19.82,
-   "orig_end": 20.36
+   "start": 19.273,
+   "end": 19.813
   },
   {
    "text": "Только",
-   "start": 18.388,
-   "end": 18.596,
-   "orig_start": 20.82,
-   "orig_end": 21.04
+   "start": 20.133,
+   "end": 20.354
   },
   {
    "text": "вот",
-   "start": 18.634,
-   "end": 18.917,
-   "orig_start": 21.08,
-   "orig_end": 21.38
+   "start": 20.393,
+   "end": 20.713
   },
   {
    "text": "с",
-   "start": 18.954,
-   "end": 18.992,
-   "orig_start": 21.42,
-   "orig_end": 21.46
+   "start": 20.773,
+   "end": 20.814
   },
   {
    "text": "чего",
-   "start": 19.068,
-   "end": 19.256,
-   "orig_start": 21.54,
-   "orig_end": 21.74
+   "start": 20.893,
+   "end": 21.094
   },
   {
    "text": "начать?",
-   "start": 19.294,
-   "end": 19.728,
-   "orig_start": 21.78,
-   "orig_end": 22.24
+   "start": 21.133,
+   "end": 21.594
   },
   {
    "text": "Материалов",
-   "start": 19.898,
-   "end": 20.445,
-   "orig_start": 22.66,
-   "orig_end": 23.24
+   "start": 21.908,
+   "end": 22.488
   },
   {
    "text": "куча,",
-   "start": 20.521,
-   "end": 20.879,
-   "orig_start": 23.32,
-   "orig_end": 23.7
+   "start": 22.548,
+   "end": 22.948
   },
   {
    "text": "всё",
-   "start": 20.993,
-   "end": 21.181,
-   "orig_start": 23.82,
-   "orig_end": 24.02
+   "start": 23.108,
+   "end": 23.308
   },
   {
    "text": "раскидано",
-   "start": 21.219,
-   "end": 21.691,
-   "orig_start": 24.06,
-   "orig_end": 24.56
+   "start": 23.348,
+   "end": 23.868
   },
   {
    "text": "по",
-   "start": 21.728,
-   "end": 21.785,
-   "orig_start": 24.6,
-   "orig_end": 24.66
+   "start": 23.908,
+   "end": 23.968
   },
   {
    "text": "разным",
-   "start": 21.823,
-   "end": 22.106,
-   "orig_start": 24.7,
-   "orig_end": 25.0
+   "start": 24.008,
+   "end": 24.328
   },
   {
    "text": "местам,",
-   "start": 22.143,
-   "end": 22.577,
-   "orig_start": 25.04,
-   "orig_end": 25.5
+   "start": 24.368,
+   "end": 24.788
   },
   {
    "text": "и",
-   "start": 22.728,
-   "end": 22.804,
-   "orig_start": 25.66,
-   "orig_end": 25.74
+   "start": 24.908,
+   "end": 24.968
   },
   {
    "text": "непонятно,",
-   "start": 22.86,
-   "end": 23.37,
-   "orig_start": 25.8,
-   "orig_end": 26.34
+   "start": 25.028,
+   "end": 25.608
   },
   {
    "text": "что",
-   "start": 23.502,
-   "end": 23.823,
-   "orig_start": 26.48,
-   "orig_end": 26.82
+   "start": 25.728,
+   "end": 25.988
   },
   {
    "text": "именно",
-   "start": 23.936,
-   "end": 24.238,
-   "orig_start": 26.94,
-   "orig_end": 27.26
+   "start": 26.108,
+   "end": 26.388
   },
   {
    "text": "ты",
-   "start": 24.276,
-   "end": 24.351,
-   "orig_start": 27.3,
-   "orig_end": 27.38
+   "start": 26.448,
+   "end": 26.528
   },
   {
    "text": "подзабыл.",
-   "start": 24.389,
-   "end": 24.898,
-   "orig_start": 27.42,
-   "orig_end": 27.96
+   "start": 26.568,
+   "end": 27.068
   },
   {
    "text": "Перечитывать",
-   "start": 25.04,
-   "end": 25.549,
-   "orig_start": 28.34,
-   "orig_end": 28.88
+   "start": 27.357,
+   "end": 27.897
   },
   {
    "text": "всё",
-   "start": 25.587,
-   "end": 25.738,
-   "orig_start": 28.92,
-   "orig_end": 29.08
+   "start": 27.957,
+   "end": 28.117
   },
   {
    "text": "подряд",
-   "start": 25.776,
-   "end": 26.379,
-   "orig_start": 29.12,
-   "orig_end": 29.76
+   "start": 28.157,
+   "end": 28.557
   },
   {
    "text": "долго",
-   "start": 26.455,
-   "end": 26.776,
-   "orig_start": 29.84,
-   "orig_end": 30.18
+   "start": 28.878,
+   "end": 29.177
   },
   {
    "text": "и",
-   "start": 26.794,
-   "end": 26.87,
-   "orig_start": 30.2,
-   "orig_end": 30.28
+   "start": 29.217,
+   "end": 29.277
   },
   {
    "text": "скучно.",
-   "start": 26.926,
-   "end": 27.398,
-   "orig_start": 30.34,
-   "orig_end": 30.84
+   "start": 29.337,
+   "end": 29.817
   },
   {
    "text": "Гораздо",
-   "start": 27.633,
-   "end": 27.953,
-   "orig_start": 31.22,
-   "orig_end": 31.56
+   "start": 30.159,
+   "end": 30.499
   },
   {
    "text": "проще",
-   "start": 27.972,
-   "end": 28.293,
-   "orig_start": 31.58,
-   "orig_end": 31.92
+   "start": 30.559,
+   "end": 30.879
   },
   {
    "text": "быстро",
-   "start": 28.406,
-   "end": 28.708,
-   "orig_start": 32.04,
-   "orig_end": 32.36
+   "start": 30.999,
+   "end": 31.319
   },
   {
    "text": "проверить",
-   "start": 28.727,
-   "end": 29.123,
-   "orig_start": 32.38,
-   "orig_end": 32.8
+   "start": 31.358,
+   "end": 31.759
   },
   {
    "text": "себя,",
-   "start": 29.161,
-   "end": 29.406,
-   "orig_start": 32.84,
-   "orig_end": 33.1
+   "start": 31.819,
+   "end": 32.119
   },
   {
    "text": "найти",
-   "start": 29.576,
-   "end": 29.859,
-   "orig_start": 33.28,
-   "orig_end": 33.58
+   "start": 32.339,
+   "end": 32.619
   },
   {
    "text": "конкретный",
-   "start": 29.897,
-   "end": 30.35,
-   "orig_start": 33.62,
-   "orig_end": 34.1
+   "start": 32.679,
+   "end": 33.179
   },
   {
    "text": "пробел",
-   "start": 30.387,
-   "end": 30.84,
-   "orig_start": 34.14,
-   "orig_end": 34.62
+   "start": 33.219,
+   "end": 33.679
   },
   {
    "text": "и",
-   "start": 30.897,
-   "end": 30.991,
-   "orig_start": 34.68,
-   "orig_end": 34.78
+   "start": 33.759,
+   "end": 33.84
   },
   {
    "text": "сразу",
-   "start": 31.067,
-   "end": 31.368,
-   "orig_start": 34.86,
-   "orig_end": 35.18
+   "start": 33.919,
+   "end": 34.259
   },
   {
    "text": "его",
-   "start": 31.425,
-   "end": 31.557,
-   "orig_start": 35.24,
-   "orig_end": 35.38
+   "start": 34.319,
+   "end": 34.459
   },
   {
    "text": "закрыть.",
-   "start": 31.595,
-   "end": 31.991,
-   "orig_start": 35.42,
-   "orig_end": 35.84
+   "start": 34.519,
+   "end": 34.959
   },
   {
    "text": "Для",
-   "start": 32.433,
-   "end": 32.584,
-   "orig_start": 36.28,
-   "orig_end": 36.44
+   "start": 35.346,
+   "end": 35.506
   },
   {
    "text": "этого",
-   "start": 32.66,
-   "end": 33.0,
-   "orig_start": 36.52,
-   "orig_end": 36.88
+   "start": 35.586,
+   "end": 35.926
   },
   {
    "text": "и",
-   "start": 33.056,
-   "end": 33.132,
-   "orig_start": 36.94,
-   "orig_end": 37.02
+   "start": 35.986,
+   "end": 36.066
   },
   {
    "text": "появился",
-   "start": 33.188,
-   "end": 33.83,
-   "orig_start": 37.08,
-   "orig_end": 37.76
+   "start": 36.106,
+   "end": 36.786
   },
   {
    "text": "AI-наставник.",
-   "start": 33.924,
-   "end": 34.792,
-   "orig_start": 37.86,
-   "orig_end": 38.78
+   "start": 36.886,
+   "end": 37.826
   },
   {
    "text": "Это",
-   "start": 34.992,
-   "end": 35.143,
-   "orig_start": 39.16,
-   "orig_end": 39.32
+   "start": 38.203,
+   "end": 38.363
   },
   {
    "text": "твой",
-   "start": 35.181,
-   "end": 35.35,
-   "orig_start": 39.36,
-   "orig_end": 39.54
+   "start": 38.403,
+   "end": 38.603
   },
   {
    "text": "личный",
-   "start": 35.426,
-   "end": 35.766,
-   "orig_start": 39.62,
-   "orig_end": 39.98
+   "start": 38.663,
+   "end": 39.023
   },
   {
    "text": "тренажёр",
-   "start": 35.803,
-   "end": 36.218,
-   "orig_start": 40.02,
-   "orig_end": 40.46
+   "start": 39.063,
+   "end": 39.503
   },
   {
    "text": "по",
-   "start": 36.237,
-   "end": 36.313,
-   "orig_start": 40.48,
-   "orig_end": 40.56
+   "start": 39.543,
+   "end": 39.603
   },
   {
    "text": "продуктам.",
-   "start": 36.35,
-   "end": 36.879,
-   "orig_start": 40.6,
-   "orig_end": 41.16
+   "start": 39.643,
+   "end": 40.223
   },
   {
    "text": "Он",
-   "start": 37.096,
-   "end": 37.228,
-   "orig_start": 41.44,
-   "orig_end": 41.58
+   "start": 40.483,
+   "end": 40.603
   },
   {
    "text": "сам",
-   "start": 37.304,
-   "end": 37.493,
-   "orig_start": 41.66,
-   "orig_end": 41.86
+   "start": 40.683,
+   "end": 40.883
   },
   {
    "text": "поймёт,",
-   "start": 37.53,
-   "end": 37.813,
-   "orig_start": 41.9,
-   "orig_end": 42.2
+   "start": 40.923,
+   "end": 41.243
   },
   {
    "text": "где",
-   "start": 37.851,
-   "end": 37.983,
-   "orig_start": 42.24,
-   "orig_end": 42.38
+   "start": 41.283,
+   "end": 41.423
   },
   {
    "text": "ты",
-   "start": 38.021,
-   "end": 38.115,
-   "orig_start": 42.42,
-   "orig_end": 42.52
+   "start": 41.463,
+   "end": 41.563
   },
   {
    "text": "плаваешь,",
-   "start": 38.153,
-   "end": 38.606,
-   "orig_start": 42.56,
-   "orig_end": 43.04
+   "start": 41.623,
+   "end": 42.063
   },
   {
    "text": "и",
-   "start": 38.738,
-   "end": 38.813,
-   "orig_start": 43.18,
-   "orig_end": 43.26
+   "start": 42.223,
+   "end": 42.303
   },
   {
    "text": "поможет",
-   "start": 38.851,
-   "end": 39.21,
-   "orig_start": 43.3,
-   "orig_end": 43.68
+   "start": 42.343,
+   "end": 42.743
   },
   {
    "text": "разобраться.",
-   "start": 39.266,
-   "end": 39.851,
-   "orig_start": 43.74,
-   "orig_end": 44.36
+   "start": 42.783,
+   "end": 43.403
   },
   {
    "text": "Работает",
-   "start": 40.261,
-   "end": 40.676,
-   "orig_start": 44.82,
-   "orig_end": 45.26
+   "start": 43.802,
+   "end": 44.262
   },
   {
    "text": "всё",
-   "start": 40.714,
-   "end": 40.902,
-   "orig_start": 45.3,
-   "orig_end": 45.5
+   "start": 44.302,
+   "end": 44.522
   },
   {
    "text": "максимально",
-   "start": 40.959,
-   "end": 41.525,
-   "orig_start": 45.56,
-   "orig_end": 46.16
+   "start": 44.582,
+   "end": 45.262
   },
   {
    "text": "просто:",
-   "start": 41.563,
-   "end": 41.94,
-   "orig_start": 46.2,
-   "orig_end": 46.6
+   "start": 45.322,
+   "end": 45.742
   },
   {
    "text": "заходишь",
-   "start": 42.19,
-   "end": 42.586,
-   "orig_start": 47.0,
-   "orig_end": 47.42
+   "start": 46.122,
+   "end": 46.522
   },
   {
    "text": "в",
-   "start": 42.624,
-   "end": 42.642,
-   "orig_start": 47.46,
-   "orig_end": 47.48
+   "start": 46.562,
+   "end": 46.582
   },
   {
    "text": "режим",
-   "start": 42.68,
-   "end": 42.925,
-   "orig_start": 47.52,
-   "orig_end": 47.78
+   "start": 46.622,
+   "end": 46.882
   },
   {
    "text": "тренировки,",
-   "start": 42.963,
-   "end": 43.51,
-   "orig_start": 47.82,
-   "orig_end": 48.4
+   "start": 46.922,
+   "end": 47.502
   },
   {
    "text": "выбираешь",
-   "start": 43.718,
-   "end": 44.152,
-   "orig_start": 48.62,
-   "orig_end": 49.08
+   "start": 47.742,
+   "end": 48.222
   },
   {
    "text": "нужный",
-   "start": 44.208,
-   "end": 44.454,
-   "orig_start": 49.14,
-   "orig_end": 49.4
+   "start": 48.282,
+   "end": 48.562
   },
   {
    "text": "продукт",
-   "start": 44.491,
-   "end": 44.982,
-   "orig_start": 49.44,
-   "orig_end": 49.96
+   "start": 48.602,
+   "end": 49.082
   },
   {
    "text": "и",
-   "start": 45.058,
-   "end": 45.133,
-   "orig_start": 50.04,
-   "orig_end": 50.12
+   "start": 49.162,
+   "end": 49.242
   },
   {
    "text": "количество",
-   "start": 45.19,
-   "end": 45.68,
-   "orig_start": 50.18,
-   "orig_end": 50.7
+   "start": 49.282,
+   "end": 49.802
   },
   {
    "text": "вопросов,",
-   "start": 45.718,
-   "end": 46.227,
-   "orig_start": 50.74,
-   "orig_end": 51.28
+   "start": 49.842,
+   "end": 50.382
   },
   {
    "text": "до",
-   "start": 46.473,
-   "end": 46.548,
-   "orig_start": 51.54,
-   "orig_end": 51.62
+   "start": 50.662,
+   "end": 50.742
   },
   {
    "text": "десяти.",
-   "start": 46.586,
-   "end": 47.001,
-   "orig_start": 51.66,
-   "orig_end": 52.1
+   "start": 50.782,
+   "end": 51.242
   },
   {
    "text": "Можно",
-   "start": 47.176,
-   "end": 47.384,
-   "orig_start": 52.52,
-   "orig_end": 52.74
+   "start": 51.58,
+   "end": 51.82
   },
   {
    "text": "пробежаться",
-   "start": 47.422,
-   "end": 47.931,
-   "orig_start": 52.78,
-   "orig_end": 53.32
+   "start": 51.86,
+   "end": 52.4
   },
   {
    "text": "по",
-   "start": 47.969,
-   "end": 48.082,
-   "orig_start": 53.36,
-   "orig_end": 53.48
+   "start": 52.46,
+   "end": 52.56
   },
   {
    "text": "трём",
-   "start": 48.12,
-   "end": 48.29,
-   "orig_start": 53.52,
-   "orig_end": 53.7
+   "start": 52.6,
+   "end": 52.8
   },
   {
    "text": "вопросам,",
-   "start": 48.346,
-   "end": 48.761,
-   "orig_start": 53.76,
-   "orig_end": 54.2
+   "start": 52.86,
+   "end": 53.32
   },
   {
    "text": "пока",
-   "start": 48.818,
-   "end": 49.007,
-   "orig_start": 54.26,
-   "orig_end": 54.46
+   "start": 53.4,
+   "end": 53.6
   },
   {
    "text": "остывает",
-   "start": 49.063,
-   "end": 49.497,
-   "orig_start": 54.52,
-   "orig_end": 54.98
+   "start": 53.64,
+   "end": 54.12
   },
   {
    "text": "чай,",
-   "start": 49.573,
-   "end": 49.931,
-   "orig_start": 55.06,
-   "orig_end": 55.44
+   "start": 54.2,
+   "end": 54.6
   },
   {
    "text": "а",
-   "start": 50.007,
-   "end": 50.063,
-   "orig_start": 55.52,
-   "orig_end": 55.58
+   "start": 54.68,
+   "end": 54.74
   },
   {
    "text": "можно",
-   "start": 50.101,
-   "end": 50.346,
-   "orig_start": 55.62,
-   "orig_end": 55.88
+   "start": 54.8,
+   "end": 55.1
   },
   {
    "text": "взять",
-   "start": 50.403,
-   "end": 50.592,
-   "orig_start": 55.94,
-   "orig_end": 56.14
+   "start": 55.14,
+   "end": 55.38
   },
   {
    "text": "все",
-   "start": 50.648,
-   "end": 50.875,
-   "orig_start": 56.2,
-   "orig_end": 56.44
+   "start": 55.44,
+   "end": 55.64
   },
   {
    "text": "десять,",
-   "start": 50.95,
-   "end": 51.271,
-   "orig_start": 56.52,
-   "orig_end": 56.86
+   "start": 55.7,
+   "end": 56.06
   },
   {
    "text": "чтобы",
-   "start": 51.365,
-   "end": 51.573,
-   "orig_start": 56.96,
-   "orig_end": 57.18
+   "start": 56.16,
+   "end": 56.36
   },
   {
    "text": "закрыть",
-   "start": 51.629,
-   "end": 51.969,
-   "orig_start": 57.24,
-   "orig_end": 57.6
+   "start": 56.42,
+   "end": 56.76
   },
   {
    "text": "тему",
-   "start": 52.026,
-   "end": 52.214,
-   "orig_start": 57.66,
-   "orig_end": 57.86
+   "start": 56.82,
+   "end": 57.04
   },
   {
    "text": "наверняка.",
-   "start": 52.252,
-   "end": 52.875,
-   "orig_start": 57.9,
-   "orig_end": 58.56
+   "start": 57.08,
+   "end": 57.64
   },
   {
    "text": "Наставник",
-   "start": 53.172,
-   "end": 53.625,
-   "orig_start": 58.94,
-   "orig_end": 59.42
+   "start": 57.98,
+   "end": 58.52
   },
   {
    "text": "сразу",
-   "start": 53.681,
-   "end": 54.002,
-   "orig_start": 59.48,
-   "orig_end": 59.82
+   "start": 58.6,
+   "end": 58.94
   },
   {
    "text": "подтянет",
-   "start": 54.059,
-   "end": 54.474,
-   "orig_start": 59.88,
-   "orig_end": 60.32
+   "start": 58.98,
+   "end": 59.44
   },
   {
    "text": "правильный",
-   "start": 54.512,
-   "end": 54.87,
-   "orig_start": 60.36,
-   "orig_end": 60.74
+   "start": 59.48,
+   "end": 59.86
   },
   {
    "text": "ответ",
-   "start": 54.927,
-   "end": 55.153,
-   "orig_start": 60.8,
-   "orig_end": 61.04
+   "start": 59.9,
+   "end": 60.16
   },
   {
    "text": "из",
-   "start": 55.21,
-   "end": 55.304,
-   "orig_start": 61.1,
-   "orig_end": 61.2
+   "start": 60.22,
+   "end": 60.32
   },
   {
    "text": "базы",
-   "start": 55.342,
-   "end": 55.568,
-   "orig_start": 61.24,
-   "orig_end": 61.48
+   "start": 60.36,
+   "end": 60.6
   },
   {
    "text": "знаний,",
-   "start": 55.625,
-   "end": 55.964,
-   "orig_start": 61.54,
-   "orig_end": 61.9
+   "start": 60.66,
+   "end": 61.06
   },
   {
    "text": "покажет,",
-   "start": 56.191,
-   "end": 56.549,
-   "orig_start": 62.14,
-   "orig_end": 62.52
+   "start": 61.26,
+   "end": 61.64
   },
   {
    "text": "где",
-   "start": 56.625,
-   "end": 56.87,
-   "orig_start": 62.6,
-   "orig_end": 62.86
+   "start": 61.72,
+   "end": 62.0
   },
   {
    "text": "именно",
-   "start": 56.983,
-   "end": 57.247,
-   "orig_start": 62.98,
-   "orig_end": 63.26
+   "start": 62.12,
+   "end": 62.42
   },
   {
    "text": "это",
-   "start": 57.285,
-   "end": 57.398,
-   "orig_start": 63.3,
-   "orig_end": 63.42
+   "start": 62.46,
+   "end": 62.599
   },
   {
    "text": "написано",
-   "start": 57.436,
-   "end": 58.078,
-   "orig_start": 63.46,
-   "orig_end": 64.14
+   "start": 62.64,
+   "end": 63.28
   },
   {
    "text": "и",
-   "start": 58.153,
-   "end": 58.229,
-   "orig_start": 64.22,
-   "orig_end": 64.3
+   "start": 63.36,
+   "end": 63.459
   },
   {
    "text": "выделит",
-   "start": 58.285,
-   "end": 58.663,
-   "orig_start": 64.36,
-   "orig_end": 64.76
+   "start": 63.539,
+   "end": 63.92
   },
   {
    "text": "главное.",
-   "start": 58.718,
-   "end": 59.21,
-   "orig_start": 64.819,
-   "orig_end": 65.34
+   "start": 63.98,
+   "end": 64.44
   },
   {
    "text": "Выглядит",
-   "start": 59.667,
-   "end": 60.006,
-   "orig_start": 65.68,
-   "orig_end": 66.04
+   "start": 64.824,
+   "end": 65.204
   },
   {
    "text": "всё",
-   "start": 60.044,
-   "end": 60.214,
-   "orig_start": 66.08,
-   "orig_end": 66.26
+   "start": 65.244,
+   "end": 65.464
   },
   {
    "text": "как",
-   "start": 60.27,
-   "end": 60.384,
-   "orig_start": 66.32,
-   "orig_end": 66.44
+   "start": 65.504,
+   "end": 65.644
   },
   {
    "text": "обычный",
-   "start": 60.44,
-   "end": 60.855,
-   "orig_start": 66.5,
-   "orig_end": 66.94
+   "start": 65.704,
+   "end": 66.124
   },
   {
    "text": "чат,",
-   "start": 60.931,
-   "end": 61.176,
-   "orig_start": 67.02,
-   "orig_end": 67.28
+   "start": 66.184,
+   "end": 66.444
   },
   {
    "text": "а",
-   "start": 61.365,
-   "end": 61.402,
-   "orig_start": 67.48,
-   "orig_end": 67.52
+   "start": 66.644,
+   "end": 66.684
   },
   {
    "text": "на",
-   "start": 61.459,
-   "end": 61.516,
-   "orig_start": 67.58,
-   "orig_end": 67.64
+   "start": 66.744,
+   "end": 66.784
   },
   {
    "text": "одну",
-   "start": 61.553,
-   "end": 61.742,
-   "orig_start": 67.68,
-   "orig_end": 67.88
+   "start": 66.844,
+   "end": 67.044
   },
   {
    "text": "тренировку",
-   "start": 61.78,
-   "end": 62.289,
-   "orig_start": 67.92,
-   "orig_end": 68.46
+   "start": 67.084,
+   "end": 67.624
   },
   {
    "text": "хватит",
-   "start": 62.346,
-   "end": 62.723,
-   "orig_start": 68.52,
-   "orig_end": 68.92
+   "start": 67.684,
+   "end": 68.084
   },
   {
    "text": "и",
-   "start": 62.78,
-   "end": 62.836,
-   "orig_start": 68.98,
-   "orig_end": 69.04
+   "start": 68.144,
+   "end": 68.224
   },
   {
    "text": "пяти",
-   "start": 62.893,
-   "end": 63.138,
-   "orig_start": 69.1,
-   "orig_end": 69.36
+   "start": 68.264,
+   "end": 68.544
   },
   {
    "text": "минут.",
-   "start": 63.176,
-   "end": 63.497,
-   "orig_start": 69.4,
-   "orig_end": 69.74
+   "start": 68.604,
+   "end": 68.944
   },
   {
    "text": "Заходишь",
-   "start": 63.889,
-   "end": 64.304,
-   "orig_start": 70.02,
-   "orig_end": 70.46
+   "start": 69.3,
+   "end": 69.74
   },
   {
    "text": "в",
-   "start": 64.342,
-   "end": 64.36,
-   "orig_start": 70.5,
-   "orig_end": 70.52
+   "start": 69.78,
+   "end": 69.8
   },
   {
    "text": "Alfa",
-   "start": 64.417,
-   "end": 64.662,
-   "orig_start": 70.58,
-   "orig_end": 70.84
+   "start": 69.86,
+   "end": 70.06
   },
   {
    "text": "People,",
-   "start": 64.719,
-   "end": 65.002,
-   "orig_start": 70.9,
-   "orig_end": 71.2
+   "start": 70.16,
+   "end": 70.46
   },
   {
    "text": "открываешь",
-   "start": 65.228,
-   "end": 65.813,
-   "orig_start": 71.44,
-   "orig_end": 72.06
+   "start": 70.72,
+   "end": 71.2
   },
   {
    "text": "раздел",
-   "start": 65.883,
-   "end": 66.223,
-   "orig_start": 79.78,
-   "orig_end": 80.14
+   "start": 71.26,
+   "end": 71.6
   },
   {
    "text": "«Рабочее»,",
-   "start": 66.261,
-   "end": 66.808,
-   "orig_start": 80.18,
-   "orig_end": 80.76
+   "start": 71.66,
+   "end": 72.26
   },
   {
    "text": "дальше",
-   "start": 67.076,
-   "end": 67.528,
-   "orig_start": 73.52,
-   "orig_end": 74.0
+   "start": 72.58,
+   "end": 73.04
   },
   {
    "text": "AI-ментор",
-   "start": 67.604,
-   "end": 68.264,
-   "orig_start": 74.08,
-   "orig_end": 74.78
+   "start": 73.12,
+   "end": 73.8
   },
   {
    "text": "и",
-   "start": 68.566,
-   "end": 68.623,
-   "orig_start": 75.1,
-   "orig_end": 75.16
+   "start": 74.1,
+   "end": 74.16
   },
   {
    "text": "внутри",
-   "start": 68.661,
-   "end": 69.0,
-   "orig_start": 75.2,
-   "orig_end": 75.56
+   "start": 74.2,
+   "end": 74.52
   },
   {
    "text": "будет",
-   "start": 69.038,
-   "end": 69.359,
-   "orig_start": 75.6,
-   "orig_end": 75.94
+   "start": 74.6,
+   "end": 74.92
   },
   {
    "text": "AI-наставник.",
-   "start": 69.453,
-   "end": 70.283,
-   "orig_start": 76.04,
-   "orig_end": 76.92
+   "start": 75.02,
+   "end": 75.9
   },
   {
    "text": "В",
-   "start": 70.542,
-   "end": 70.561,
-   "orig_start": 86.56,
-   "orig_end": 86.58
+   "start": 76.273,
+   "end": 76.293
   },
   {
    "text": "общем,",
-   "start": 70.617,
-   "end": 70.919,
-   "orig_start": 86.64,
-   "orig_end": 86.96
+   "start": 76.333,
+   "end": 76.713
   },
   {
    "text": "если",
-   "start": 71.202,
-   "end": 71.391,
-   "orig_start": 87.26,
-   "orig_end": 87.46
+   "start": 76.853,
+   "end": 77.073
   },
   {
    "text": "чувствуешь,",
-   "start": 71.447,
-   "end": 71.844,
-   "orig_start": 87.52,
-   "orig_end": 87.94
+   "start": 77.133,
+   "end": 77.553
   },
   {
    "text": "что",
-   "start": 71.919,
-   "end": 72.013,
-   "orig_start": 88.02,
-   "orig_end": 88.12
+   "start": 77.593,
+   "end": 77.733
   },
   {
    "text": "в",
-   "start": 72.051,
-   "end": 72.07,
-   "orig_start": 88.16,
-   "orig_end": 88.18
+   "start": 77.773,
+   "end": 77.793
   },
   {
    "text": "какой-то",
-   "start": 72.108,
-   "end": 72.466,
-   "orig_start": 88.22,
-   "orig_end": 88.6
+   "start": 77.833,
+   "end": 78.233
   },
   {
    "text": "теме",
-   "start": 72.523,
-   "end": 72.768,
-   "orig_start": 88.66,
-   "orig_end": 88.92
+   "start": 78.273,
+   "end": 78.533
   },
   {
    "text": "есть",
-   "start": 72.844,
-   "end": 72.995,
-   "orig_start": 89.0,
-   "orig_end": 89.16
+   "start": 78.633,
+   "end": 78.813
   },
   {
    "text": "пробел,",
-   "start": 73.032,
-   "end": 73.41,
-   "orig_start": 89.2,
-   "orig_end": 89.6
+   "start": 78.833,
+   "end": 79.253
   },
   {
    "text": "не",
-   "start": 73.636,
-   "end": 73.712,
-   "orig_start": 89.84,
-   "orig_end": 89.92
+   "start": 79.493,
+   "end": 79.573
   },
   {
    "text": "откладывай,",
-   "start": 73.768,
-   "end": 74.391,
-   "orig_start": 89.98,
-   "orig_end": 90.64
+   "start": 79.613,
+   "end": 80.233
   },
   {
    "text": "потратишь",
-   "start": 74.512,
-   "end": 74.965,
-   "orig_start": 90.86,
-   "orig_end": 91.34
+   "start": 80.473,
+   "end": 80.933
   },
   {
    "text": "пять",
-   "start": 75.003,
-   "end": 75.154,
-   "orig_start": 91.38,
-   "orig_end": 91.54
+   "start": 80.973,
+   "end": 81.153
   },
   {
    "text": "минут,",
-   "start": 75.21,
-   "end": 75.493,
-   "orig_start": 91.6,
-   "orig_end": 91.9
+   "start": 81.193,
+   "end": 81.533
   },
   {
    "text": "зато",
-   "start": 75.739,
-   "end": 75.927,
-   "orig_start": 92.16,
-   "orig_end": 92.36
+   "start": 81.733,
+   "end": 81.953
   },
   {
    "text": "на",
-   "start": 75.965,
-   "end": 76.06,
-   "orig_start": 92.4,
-   "orig_end": 92.5
+   "start": 81.993,
+   "end": 82.093
   },
   {
    "text": "следующей",
-   "start": 76.097,
-   "end": 76.493,
-   "orig_start": 92.54,
-   "orig_end": 92.96
+   "start": 82.133,
+   "end": 82.553
   },
   {
    "text": "консультации",
-   "start": 76.531,
-   "end": 77.229,
-   "orig_start": 93.0,
-   "orig_end": 93.74
+   "start": 82.593,
+   "end": 83.313
   },
   {
    "text": "будешь",
-   "start": 77.286,
-   "end": 77.493,
-   "orig_start": 93.8,
-   "orig_end": 94.02
+   "start": 83.353,
+   "end": 83.593
   },
   {
    "text": "отвечать",
-   "start": 77.55,
-   "end": 77.909,
-   "orig_start": 94.08,
-   "orig_end": 94.46
+   "start": 83.653,
+   "end": 84.033
   },
   {
    "text": "спокойно",
-   "start": 78.003,
-   "end": 78.607,
-   "orig_start": 94.56,
-   "orig_end": 95.2
+   "start": 84.093,
+   "end": 84.773
   },
   {
    "text": "и",
-   "start": 78.663,
-   "end": 78.739,
-   "orig_start": 95.26,
-   "orig_end": 95.34
+   "start": 84.813,
+   "end": 84.893
   },
   {
    "text": "без",
-   "start": 78.776,
-   "end": 78.927,
-   "orig_start": 95.38,
-   "orig_end": 95.54
+   "start": 84.933,
+   "end": 85.133
   },
   {
    "text": "лишнего",
-   "start": 78.984,
-   "end": 79.361,
-   "orig_start": 95.6,
-   "orig_end": 96.0
+   "start": 85.173,
+   "end": 85.553
   },
   {
    "text": "стресса.",
-   "start": 79.437,
-   "end": 79.852,
-   "orig_start": 96.08,
-   "orig_end": 96.52
-  }
- ],
- "route_splice": [
-  {
-   "old": [
-    0.0,
-    65.86
-   ],
-   "new_start": 0.0
-  },
-  {
-   "old": [
-    73.11,
-    74.085
-   ],
-   "new_start": 65.86
-  },
-  {
-   "old": [
-    67.1,
-    70.6
-   ],
-   "new_start": 66.985
-  },
-  {
-   "old": [
-    79.25,
-    88.730227
-   ],
-   "new_start": 70.485
+   "start": 85.673,
+   "end": 86.113
   }
  ]
 }
