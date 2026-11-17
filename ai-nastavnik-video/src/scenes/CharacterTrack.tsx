@@ -1,7 +1,7 @@
 import React from "react";
-import { useCurrentFrame } from "remotion";
+import { interpolate, useCurrentFrame } from "remotion";
 import { Character, StickerId } from "../components/Elements";
-import { FPS, Hue, keyframes, VO_OFFSET } from "../lib/core";
+import { clamp, EASE, FPS, Hue, keyframes, VO_OFFSET } from "../lib/core";
 
 /** Emotion swaps, voice time. */
 export const STICKER_TIMELINE: [number, StickerId][] = [
@@ -21,11 +21,13 @@ export const STICKER_TIMELINE: [number, StickerId][] = [
   [40.1, "E12"],
   [47.42, "E13"],
   [51.37, "E14"],
-  [53.0, "E15"],
+  [53.0, "E12"],
+  [58.28, "E15"],
   [59.67, "E16"],
   [62.35, "E17"],
-  [63.89, "E18"],
+  [63.89, "E12"],
   [70.79, "E19"],
+  [73.4, "E12"],
   [79.31, "E20"],
   [82.4, "E21"],
   [86.31, "E22"],
@@ -34,47 +36,35 @@ export const STICKER_TIMELINE: [number, StickerId][] = [
 
 /** Where the character stands (x = centre, h = sticker height, b = bottom edge y, r = tilt). */
 const PLACES = [
-  { t: -0.5, x: 1240, h: 1000, b: 1080, r: 0 },
-  { t: 7.6, x: 1240, h: 1000, b: 1080, r: 0 },
-  { t: 8.3, x: 960, h: 800, b: 1080, r: 0 },
-  { t: 13.9, x: 960, h: 800, b: 1080, r: 0 },
-  { t: 14.6, x: 560, h: 900, b: 1080, r: 0 },
+  { t: -0.5, x: 1450, h: 1000, b: 1080, r: 0 },
+  { t: 7.6, x: 1450, h: 1000, b: 1080, r: 0 },
+  { t: 8.4, x: 960, h: 820, b: 1080, r: 0 },
+  { t: 13.9, x: 960, h: 820, b: 1080, r: 0 },
+  { t: 14.8, x: 560, h: 900, b: 1080, r: 0 },
   { t: 18.2, x: 560, h: 900, b: 1080, r: 0 },
-  { t: 18.9, x: 960, h: 980, b: 1100, r: 0 },
-  { t: 24.8, x: 960, h: 980, b: 1100, r: 0 },
-  { t: 25.3, x: 1330, h: 900, b: 1080, r: 0 },
+  { t: 19.0, x: 960, h: 960, b: 1090, r: 0 },
+  { t: 24.8, x: 960, h: 960, b: 1090, r: 0 },
+  { t: 25.5, x: 1330, h: 900, b: 1080, r: 0 },
   { t: 27.5, x: 1330, h: 900, b: 1080, r: 0 },
-  { t: 28.0, x: 1440, h: 860, b: 1080, r: 0 },
-  { t: 32.35, x: 1440, h: 860, b: 1080, r: 0 },
-  // sinks under the blue flood, re-surfaces peeking from the right edge
-  { t: 32.8, x: 1500, h: 860, b: 1980, r: 0 },
-  { t: 33.5, x: 1700, h: 820, b: 1980, r: -6 },
-  { t: 34.1, x: 1700, h: 820, b: 1330, r: -6 },
-  { t: 35.0, x: 1700, h: 820, b: 1330, r: -6 },
-  { t: 35.5, x: 960, h: 900, b: 1080, r: 0 },
+  { t: 28.2, x: 1440, h: 860, b: 1080, r: 0 },
+  { t: 32.4, x: 1440, h: 860, b: 1080, r: 0 },
+  { t: 33.4, x: 1520, h: 880, b: 1080, r: 0 },
+  { t: 35.0, x: 1520, h: 880, b: 1080, r: 0 },
+  { t: 35.7, x: 960, h: 900, b: 1080, r: 0 },
   { t: 39.9, x: 960, h: 900, b: 1080, r: 0 },
-  { t: 40.6, x: 470, h: 600, b: 1080, r: 0 },
-  { t: 47.1, x: 470, h: 600, b: 1080, r: 0 },
-  { t: 47.6, x: 760, h: 960, b: 1080, r: 0 },
-  { t: 52.9, x: 760, h: 960, b: 1080, r: 0 },
-  { t: 53.4, x: 1520, h: 820, b: 1080, r: 0 },
-  { t: 59.6, x: 1520, h: 820, b: 1080, r: 0 },
-  { t: 60.1, x: 960, h: 880, b: 1080, r: 0 },
+  { t: 40.7, x: 400, h: 820, b: 1080, r: 0 },
+  { t: 47.1, x: 400, h: 820, b: 1080, r: 0 },
+  { t: 47.8, x: 760, h: 960, b: 1080, r: 0 },
+  { t: 52.8, x: 760, h: 960, b: 1080, r: 0 },
+  { t: 53.5, x: 400, h: 820, b: 1080, r: 0 },
+  { t: 59.6, x: 400, h: 820, b: 1080, r: 0 },
+  { t: 60.3, x: 960, h: 880, b: 1080, r: 0 },
   { t: 62.2, x: 960, h: 880, b: 1080, r: 0 },
-  { t: 62.6, x: 720, h: 900, b: 1080, r: 0 },
-  { t: 63.5, x: 720, h: 900, b: 1080, r: 0 },
-  // dips out, pops up behind the window corner
-  { t: 63.75, x: 1200, h: 560, b: 1700, r: 0 },
-  { t: 64.0, x: 1590, h: 560, b: 1700, r: 4 },
-  { t: 64.5, x: 1590, h: 560, b: 1180, r: 4 },
-  { t: 70.5, x: 1590, h: 560, b: 1180, r: 4 },
-  { t: 70.8, x: 1200, h: 800, b: 1700, r: 0 },
-  { t: 71.0, x: 560, h: 1000, b: 1700, r: 0 },
-  { t: 71.5, x: 560, h: 1000, b: 1080, r: 0 },
-  { t: 79.0, x: 560, h: 1000, b: 1080, r: 0 },
-  { t: 79.7, x: 960, h: 980, b: 1080, r: 0 },
-  { t: 88.5, x: 960, h: 980, b: 1080, r: 0 },
-  { t: 89.2, x: 1730, h: 470, b: 1080, r: 0 },
+  { t: 62.8, x: 720, h: 900, b: 1080, r: 0 },
+  { t: 63.4, x: 720, h: 900, b: 1080, r: 0 },
+  { t: 64.1, x: 400, h: 820, b: 1080, r: 0 },
+  { t: 79.0, x: 400, h: 820, b: 1080, r: 0 },
+  { t: 79.8, x: 960, h: 980, b: 1080, r: 0 },
 ];
 
 const HUES: [number, Hue][] = [
@@ -91,9 +81,10 @@ export const CharacterTrack: React.FC = () => {
   const p = keyframes(t, PLACES);
   let hue: Hue = "red";
   for (const [ht, h] of HUES) if (t >= ht) hue = h;
-  const mirror = t >= 63.75 && t < 70.7;
-  // a hair of rgb-split jitter on "зависаешь"
-  const jitter = t > 7.35 && t < 7.47 ? (Math.floor(t * 60) % 2 === 0 ? 7 : -7) : 0;
+  const mirror = false;
+  const jitter = 0;
+  const vis = interpolate(t, [-0.3, 0.25], [0, 1], { ...clamp, easing: EASE }) * interpolate(t, [88.9, 89.5], [1, 0], { ...clamp, easing: EASE });
+  if (vis <= 0) return null;
   return (
     <div style={{ position: "absolute", inset: 0, translate: `${jitter}px 0` }}>
       <Character
@@ -106,6 +97,7 @@ export const CharacterTrack: React.FC = () => {
         enter={0.0}
         mirror={mirror}
         hue={hue}
+        opacity={vis}
       />
     </div>
   );

@@ -9,13 +9,13 @@ import {
 } from "remotion";
 import { loadFont } from "@remotion/fonts";
 
-export const FPS = 30;
+export const FPS = 60;
 export const W = 1920;
 export const H = 1080;
 /** Voiceover starts this many seconds into the video. */
-export const VO_OFFSET = 0.5;
+export const VO_OFFSET = 3.0;
 export const VOICE_DURATION = 88.73;
-export const TOTAL_SECONDS = 93.5;
+export const TOTAL_SECONDS = 96.0;
 export const TOTAL_FRAMES = Math.round(TOTAL_SECONDS * FPS);
 
 export const C = {
@@ -131,7 +131,7 @@ export const float = (t: number, seed: number, amp = 10, period = 4.5) => {
   return {
     x: Math.sin((t / (period * 1.37) + p) * Math.PI * 2) * amp * 0.6,
     y: Math.sin((t / period + p * 2.3) * Math.PI * 2) * amp,
-    r: Math.sin((t / (period * 1.21) + p * 3.1) * Math.PI * 2) * 1.4,
+    r: Math.sin((t / (period * 1.21) + p * 3.1) * Math.PI * 2) * 0.8,
   };
 };
 

@@ -11,8 +11,8 @@ const serveUrl = await bundle({ entryPoint: entry, publicDir: path.resolve("publ
 const composition = await selectComposition({ serveUrl, id: "AINastavnik", inputProps: {} });
 fs.mkdirSync("out/stills", { recursive: true });
 for (const t of times) {
-  const frame = Math.round((t + 0.5) * 30);
+  const frame = Math.round((t + 3.0) * 60);
   const output = `out/stills/t${t.toFixed(2)}.jpeg`;
-  await renderStill({ composition, serveUrl, frame, output, imageFormat: "jpeg", jpegQuality: 80, scale: 0.5, chromiumOptions: { gl: "swangle" } });
+  await renderStill({ composition, serveUrl, frame, output, imageFormat: "jpeg", jpegQuality: 80, scale: 0.4, chromiumOptions: { gl: "swangle" } });
   console.log("ok", t, frame, output);
 }

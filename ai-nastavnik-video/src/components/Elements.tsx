@@ -133,19 +133,19 @@ export const Character: React.FC<{
   const width = (height * 1024) / 1536;
   const swapDt = t - tSwap;
   const isFirst = idx === 0;
-  const pop = isFirst ? 1 : springAt(t, tSwap, { damping: 8, stiffness: 260, mass: 0.7 });
-  const squash = !isFirst && swapDt >= 0 && swapDt < 2 / 30;
-  const sX = squash ? 1.025 : 0.965 + 0.035 * pop;
-  const sY = squash ? 0.965 : 0.965 + 0.035 * pop;
-  const bright = isFirst ? 1 : interpolate(swapDt, [0, 0.15], [1.18, 1], clamp);
+  const pop = isFirst ? 1 : springAt(t, tSwap, { damping: 20, stiffness: 160 });
+  const squash = false;
+  const sX = squash ? 1 : 0.985 + 0.015 * pop;
+  const sY = squash ? 1 : 0.985 + 0.015 * pop;
+  const bright = isFirst ? 1 : interpolate(swapDt, [0, 0.2], [1.06, 1], clamp);
 
-  const e = enter === undefined ? 1 : springAt(t, enter, { damping: 15, stiffness: 90 });
+  const e = enter === undefined ? 1 : springAt(t, enter, { damping: 26, stiffness: 70 });
   const xOut = exit === undefined ? 0 : interpolate(t, [exit, exit + 0.5], [0, 1], { ...clamp, easing: EASE_IN });
   const enterY = from === "below" ? (1 - e) * height * 0.75 : 0;
   const enterScale = from === "focus" ? 0.85 + 0.15 * e : 1;
   const enterBlur = (1 - Math.min(1, e)) * 16;
   const breath = Math.sin(t * 1.9) * 0.006;
-  const sway = float(t, 7, 5, 5.5);
+  const sway = float(t, 7, 3, 6);
   const color = C[hue];
   return (
     <div
@@ -171,7 +171,7 @@ export const Character: React.FC<{
           filter: `brightness(${bright}) drop-shadow(0 0 28px rgba(0,0,0,.55)) drop-shadow(0 0 60px ${hexA(color, glow)}) blur(${enterBlur + blur}px)`,
         }}
       />
-      {!isFirst ? (
+      {false && !isFirst ? (
         <Droplets
           t={t}
           t0={tSwap}
@@ -218,40 +218,39 @@ export const Prop: React.FC<{
   seed = 1,
   rotate = 0,
   blur = 0,
-  amp = 12,
+  amp = 6,
   flip,
   opacity = 1,
   enterStyle = "focus",
   style,
 }) => {
   if (t < enter - 0.05) return null;
-  const e = springAt(t, enter, enterStyle === "pop" ? { damping: 10, stiffness: 180 } : { damping: 16, stiffness: 95 });
-  const x0 = exit === undefined ? 0 : interpolate(t, [exit, exit + 0.55], [0, 1], { ...clamp, easing: EASE_IN });
+  const e = springAt(t, enter, { damping: 26, stiffness: 70 });
+  const x0 = exit === undefined ? 0 : interpolate(t, [exit, exit + 0.6], [0, 1], { ...clamp, easing: EASE });
   if (x0 >= 1) return null;
   const f = float(t, seed, amp, 3.8 + (seed % 3) * 0.7);
-  let sc = enterStyle === "drop" ? 1 : 0.55 + 0.45 * e;
-  let bl = blur + (1 - Math.min(1, e)) * (enterStyle === "pop" ? 4 : 18);
+  let sc = enterStyle === "drop" ? 1 : 0.82 + 0.18 * e;
+  let bl = blur + (1 - Math.min(1, e)) * 10;
   let op = Math.min(1, e * 1.6) * opacity;
   let dx = 0;
-  let dy = enterStyle === "drop" ? -(1 - e) * 900 : 0;
-  let rot = rotate + f.r * 2 + (enterStyle === "drop" ? (1 - e) * 40 : 0);
+  let dy = enterStyle === "drop" ? -(1 - e) * 260 : 0;
+  let rot = rotate + f.r + (enterStyle === "drop" ? (1 - e) * 12 : 0);
   if (exitStyle === "focusOut") {
     sc *= 1 - 0.25 * x0;
     bl += 20 * x0;
     op *= 1 - x0;
   } else if (exitStyle === "fall") {
-    dy += 1300 * x0 * x0;
-    rot += 50 * x0;
-    bl += 8 * x0;
-  } else if (exitStyle === "pastCamera") {
-    sc *= 1 + 1.4 * x0;
-    bl += 26 * x0;
+    dy += 120 * x0;
     op *= 1 - x0;
-    dx += (x - 960) * 0.6 * x0;
-    dy += (y - 540) * 0.6 * x0;
+    bl += 10 * x0;
+  } else if (exitStyle === "pastCamera") {
+    sc *= 1 + 0.2 * x0;
+    bl += 14 * x0;
+    op *= 1 - x0;
   } else if (exitStyle === "shrink") {
-    sc *= 1 - x0;
-    bl += 6 * x0;
+    sc *= 1 - 0.3 * x0;
+    op *= 1 - x0;
+    bl += 8 * x0;
   }
   return (
     <Img
@@ -321,11 +320,11 @@ export const Word: React.FC<{
 }) => {
   if (t < t0 - 0.05) return null;
   const letters = Array.from(text);
-  const xo = exit === undefined ? 0 : interpolate(t, [exit, exit + 0.45], [0, 1], { ...clamp, easing: EASE_IN });
+  const xo = exit === undefined ? 0 : interpolate(t, [exit, exit + 0.5], [0, 1], { ...clamp, easing: EASE });
   if (xo >= 1) return null;
   const stretch = stretchAt === undefined ? 0 : interpolate(t, [stretchAt, stretchAt + 1.3], [0, 1], { ...clamp, easing: EASE });
   const droop = droopAt === undefined ? 0 : interpolate(t, [droopAt, droopAt + 0.9], [0, 1], { ...clamp, easing: EASE });
-  const flt = float(t, seed, 6, 5);
+  const flt = float(t, seed, 2, 6);
   const anchor = align === "left" ? "0%" : align === "center" ? "-50%" : "-100%";
   return (
     <div
@@ -352,38 +351,35 @@ export const Word: React.FC<{
         const ti = t0 + i * stagger;
         const rnd = noise2D(`k${seed}`, i, 0);
         let p: number;
-        if (mode === "slam") p = springAt(t, ti, { damping: 30, stiffness: 320 });
-        else if (mode === "drop" || mode === "freeze") p = springAt(t, ti, { damping: 11, stiffness: 140 });
-        else p = springAt(t, ti, { damping: 17, stiffness: 120 });
+        p = springAt(t, ti, { damping: 26, stiffness: mode === "freeze" ? 110 : 90 });
         let ty = 0;
         let rot = 0;
         let sc = 1;
         if (mode === "slam") {
-          sc = 1.7 - 0.7 * p;
+          ty = (1 - p) * size * 0.3;
         } else if (mode === "drop") {
-          ty = -(1 - p) * size * 1.6;
+          ty = (1 - p) * size * 0.3;
         } else if (mode === "freeze") {
           const stuck = 0.35 + 0.55 * Math.abs(rnd);
           const pf = freezeAt !== undefined && t >= freezeAt ? Math.min(p, stuck) : p;
-          ty = -(1 - pf) * size * 1.6;
-          rot = freezeAt !== undefined && t >= freezeAt ? rnd * 9 : 0;
+          ty = -(1 - pf) * size * 0.7;
+          rot = freezeAt !== undefined && t >= freezeAt ? rnd * 6 : 0;
         } else if (mode === "rise") {
-          ty = (1 - p) * size * 0.7;
+          ty = (1 - p) * size * 0.3;
         }
         if (mode === "buoy") {
-          ty = (1 - p) * size * 0.6 + Math.sin(t * 2.4 + i * 0.7) * size * 0.05;
-          rot = Math.sin(t * 1.8 + i * 0.9) * 3;
+          ty = (1 - p) * size * 0.3 + Math.sin(t * 1.6 + i * 0.7) * size * 0.025;
+          rot = Math.sin(t * 1.2 + i * 0.9) * 1.5;
         }
         if (droop > 0) {
           ty += droop * size * (0.08 + 0.18 * Math.abs(rnd));
           rot += droop * rnd * 14;
         }
         if (exitStyle === "fall" && xo > 0) {
-          ty += xo * xo * 900 * (0.7 + Math.abs(rnd));
-          rot += xo * rnd * 60;
+          ty += xo * size * 0.4;
         }
-        const op = mode === "slam" ? Math.min(1, p * 3) : Math.min(1, p * 1.4);
-        const bl = (1 - Math.min(1, p)) * 10;
+        const op = Math.min(1, p * 1.3) * (exitStyle === "fall" ? 1 - xo : 1);
+        const bl = (1 - Math.min(1, p)) * 8;
         const col = droop > 0 ? mix(color, "#5A5A60", droop) : color;
         return (
           <span

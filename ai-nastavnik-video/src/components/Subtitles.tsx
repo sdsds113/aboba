@@ -55,12 +55,12 @@ export const Subtitles: React.FC = () => {
         position: "absolute",
         left: 0,
         right: 0,
-        bottom: 54,
+        bottom: 48,
         display: "flex",
         justifyContent: "center",
         pointerEvents: "none",
         opacity: inP * (1 - outP),
-        translate: `0 ${(1 - inP) * 14}px`,
+        translate: `0 ${(1 - inP) * 6}px`,
       }}
     >
       <div
@@ -69,15 +69,18 @@ export const Subtitles: React.FC = () => {
           textAlign: "center",
           fontFamily: FONT_A,
           fontWeight: 700,
-          fontSize: 44,
-          lineHeight: 1.15,
+          fontSize: 40,
+          lineHeight: 1.2,
           letterSpacing: "-0.01em",
           color: "#fff",
-          textShadow: "0 2px 3px rgba(0,0,0,.85), 0 0 22px rgba(0,0,0,.75), 0 0 46px rgba(0,0,0,.5)",
+          background: "rgba(11,11,14,.8)",
+          padding: "12px 28px 14px",
+          borderRadius: 16,
+          boxShadow: "0 10px 30px rgba(0,0,0,.35)",
         }}
       >
         {tokens.map((tok, i) => {
-          const lit = interpolate(t, [starts[i] - 0.02, starts[i] + 0.12], [0.5, 1], clamp);
+          const lit = interpolate(t, [starts[i] - 0.02, starts[i] + 0.12], [0.55, 1], clamp);
           return (
             <span key={i} style={{ opacity: lit }}>
               {tok}

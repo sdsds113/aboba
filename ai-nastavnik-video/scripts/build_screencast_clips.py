@@ -1,12 +1,12 @@
 """Retime the screencast into per-scene clips that match the voiceover.
 
 Each clip is a list of segments in VOICE time: (v_start, v_end, src_start, src_end).
-src_start == src_end means a freeze frame. Output: 30 fps, cropped x 370..1520.
+src_start == src_end means a freeze frame. Output: 60 fps, cropped x 370..1520.
 Usage: python build_screencast_clips.py <frames_dir (60fps jpg, 1-based)> <out_dir>
 """
 import os, subprocess, sys, tempfile
 
-FPS_OUT, FPS_SRC = 30, 60
+FPS_OUT, FPS_SRC = 60, 60
 CLIPS = {
     # scene 7: mode -> rubric (fast) -> topic typing -> freeze on stepper
     "sc07_setup": (40.00, 48.00, [

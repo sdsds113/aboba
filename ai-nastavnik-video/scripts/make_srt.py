@@ -2,7 +2,7 @@
 Times are shifted by the voiceover offset (0.5 s) so they match the rendered video."""
 import json, re, sys
 
-VO_OFFSET = 0.5
+VO_OFFSET = 3.0
 MAX_CHARS = 46
 
 def cues(words):
