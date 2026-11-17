@@ -2,7 +2,7 @@ import React from "react";
 import { Img, interpolate, useCurrentFrame } from "remotion";
 import { prop, Word } from "../components/Elements";
 import { Thread, wavyThrough } from "../components/Thread";
-import { C, clamp, EASE, float, FPS, springAt, TOTAL_SECONDS, VO_OFFSET } from "../lib/core";
+import { C, clamp, EASE, float, FPS, springAt, TOTAL_SECONDS, VO_OFFSET, VOICE_DURATION } from "../lib/core";
 
 const ringPath = (x: number, y: number, r: number) => {
   const pts: string[] = [];
@@ -64,7 +64,7 @@ const TitleCard: React.FC<{ lt: number; opacity: number }> = ({ lt, opacity }) =
 export const TitleIntroOutro: React.FC = () => {
   const s = useCurrentFrame() / FPS;
   const introOut = interpolate(s, [VO_OFFSET - 0.6, VO_OFFSET - 0.05], [1, 0], { ...clamp, easing: EASE });
-  const outroStart = VO_OFFSET + 89.0;
+  const outroStart = VO_OFFSET + VOICE_DURATION + 0.28;
   const outroIn = interpolate(s, [outroStart, outroStart + 0.8], [0, 1], { ...clamp, easing: EASE });
   const black = interpolate(s, [TOTAL_SECONDS - 1.3, TOTAL_SECONDS - 0.1], [0, 1], { ...clamp, easing: EASE });
   return (

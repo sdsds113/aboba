@@ -11,7 +11,7 @@ import { C, clamp, EASE, EASE_IN_OUT, float, FONT_A, keyframes, ramp, springAt, 
 export const WIN = { cx: 1000, cy: 500, scale: 0.8 };
 const winW = 1920 * WIN.scale;
 const winH = 1080 * WIN.scale + 40;
-const CORNER = { x: WIN.cx - winW / 2 - 105, y: WIN.cy - winH / 2 + 110 };
+const CORNER = { x: WIN.cx - winW / 2 - 105, y: WIN.cy - winH / 2 + 240 };
 
 /** The hero icon pinned to the window's top-left corner. */
 const HeroBadge: React.FC<{ t: number; t0: number; opacity: number }> = ({ t, t0, opacity }) => {
@@ -167,82 +167,57 @@ const Stopwatch: React.FC<{ t: number }> = ({ t }) => {
   );
 };
 
-/* ---------- S11: the route Alfa People → AI-ассистенты → AI-ментор → AI-наставник (voice 63.6 … 70.9) ---------- */
-const LOGO = srcBox(405, 35, 580, 80);
-const TAB = srcBox(1020, 146, 1136, 180);
-const CHIP = srcBox(658, 343, 792, 395);
-const CARD = srcBox(430, 492, 678, 796);
+/* ---------- S11: fastest route — Alfa People → «Рабочее» → AI-ментор → AI-наставник (voice 63.5 … 70.6) ---------- */
+// boxes in 1920×1080 coords of the two screenshots (taken at 2000×1125, scaled by 0.96)
+const k = 0.96;
+const sb = (x0: number, y0: number, x1: number, y1: number): Box => [x0 * k, y0 * k, x1 * k, y1 * k];
+const LOGO = sb(458, 34, 630, 78);
+const NAV_WORK = sb(1070, 38, 1144, 74);
+const MENU_MENTOR = sb(490, 418, 568, 444);
+const CHIP_MENTOR = sb(704, 427, 837, 482);
+const CARD = sb(482, 575, 725, 872);
 const mid = (b: number[]): [number, number] => [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2];
-const seg = (a: [number, number], b: [number, number], seed: number) => wavyThrough([a, b], 30, seed);
+const seg = (a: [number, number], b: [number, number], seed: number) => wavyThrough([a, b], 26, seed);
 
 export const SceneRoute: React.FC = () => {
   const t = useVT();
   const cam = keyframes(t, [
     { t: 63.4, zoom: 1, fx: 960, fy: 540 },
-    { t: 63.9, zoom: 1, fx: 960, fy: 540 },
-    { t: 64.6, zoom: 1.7, fx: 560, fy: 120 },
-    { t: 65.2, zoom: 1.7, fx: 560, fy: 120 },
-    { t: 65.85, zoom: 1.7, fx: 1000, fy: 200 },
-    { t: 67.15, zoom: 1.7, fx: 1000, fy: 200 },
-    { t: 67.8, zoom: 1.6, fx: 760, fy: 380 },
-    { t: 68.65, zoom: 1.6, fx: 760, fy: 380 },
-    { t: 69.3, zoom: 1.35, fx: 640, fy: 640 },
+    { t: 63.85, zoom: 1, fx: 960, fy: 540 },
+    { t: 64.5, zoom: 1.55, fx: 760, fy: 200 },
+    { t: 65.8, zoom: 1.55, fx: 760, fy: 200 },
+    { t: 66.3, zoom: 1.55, fx: 900, fy: 230 },
+    { t: 67.4, zoom: 1.55, fx: 900, fy: 230 },
+    { t: 67.9, zoom: 1.5, fx: 760, fy: 330 },
+    { t: 68.35, zoom: 1.5, fx: 760, fy: 330 },
+    { t: 68.5, zoom: 1.3, fx: 760, fy: 520 },
+    { t: 69.3, zoom: 1.3, fx: 760, fy: 520 },
+    { t: 69.8, zoom: 1.4, fx: 640, fy: 640 },
   ]);
+  const second = interpolate(t, [68.3, 68.6], [0, 1], { ...clamp, easing: EASE });
   const w = 4.2 / cam.zoom;
-  const pCard: [number, number] = [mid(CARD)[0], CARD[1] + 10];
+  const first = 1 - second;
   return (
-    <Win t={t} cam={cam} inAt={63.5} outAt={70.55}>
-      {video("sc11_route.mp4")}
-      <Spotlight id="f1" t={t} t0={63.95} t1={65.25} box={LOGO} />
-      <LoopMark t={t} t0={64.1} box={LOGO} zoom={cam.zoom} seed={21} t1={69.9} />
-      <Thread d={seg(mid(LOGO), mid(TAB), 1)} to={ramp(t, 65.2, 65.9, EASE_IN_OUT)} from={ramp(t, 69.9, 70.3)} width={w} w={1920} h={1080} />
-      <Spotlight id="f2" t={t} t0={65.25} t1={67.2} box={TAB} />
-      <LoopMark t={t} t0={65.85} box={TAB} zoom={cam.zoom} seed={22} t1={69.9} />
-      <Thread d={seg(mid(TAB), mid(CHIP), 2)} to={ramp(t, 67.15, 67.85, EASE_IN_OUT)} from={ramp(t, 69.9, 70.3)} width={w} w={1920} h={1080} />
-      <Spotlight id="f3" t={t} t0={67.2} t1={68.7} box={CHIP} />
-      <LoopMark t={t} t0={67.8} box={CHIP} zoom={cam.zoom} seed={23} t1={69.9} />
-      <Thread d={seg(mid(CHIP), pCard, 3)} to={ramp(t, 68.65, 69.3, EASE_IN_OUT)} from={ramp(t, 69.9, 70.3)} width={w} w={1920} h={1080} />
-      <Spotlight id="f4" t={t} t0={68.7} t1={70.25} box={CARD} />
-      <LoopMark t={t} t0={69.3} box={CARD} zoom={cam.zoom} seed={24} t1={69.9} />
-      <ClickRipple t={t} t0={70.15} x={535} y={765} zoom={cam.zoom} />
+    <Win t={t} cam={cam} inAt={63.5} outAt={70.45}>
+      <Img src={staticFile("stills/route_work_menu.png")} style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080 }} />
+      <div style={{ position: "absolute", inset: 0, opacity: first }}>
+        <Spotlight id="r1" t={t} t0={63.95} t1={65.85} box={LOGO} />
+        <LoopMark t={t} t0={64.1} t1={68.3} box={LOGO} zoom={cam.zoom} seed={21} />
+        <Thread d={seg(mid(LOGO), mid(NAV_WORK), 1)} to={ramp(t, 65.6, 66.2, EASE_IN_OUT)} from={0} width={w} w={1920} h={1080} />
+        <Spotlight id="r2" t={t} t0={65.9} t1={67.5} box={NAV_WORK} pad={10} />
+        <LoopMark t={t} t0={66.2} t1={68.3} box={NAV_WORK} zoom={cam.zoom} seed={22} pad={10} />
+        <Thread d={seg(mid(NAV_WORK), mid(MENU_MENTOR), 2)} to={ramp(t, 67.05, 67.7, EASE_IN_OUT)} from={0} width={w} w={1920} h={1080} />
+        <Spotlight id="r3" t={t} t0={67.55} t1={68.35} box={MENU_MENTOR} pad={12} />
+        <LoopMark t={t} t0={67.65} t1={68.3} box={MENU_MENTOR} zoom={cam.zoom} seed={23} pad={12} />
+        <ClickRipple t={t} t0={68.1} x={mid(MENU_MENTOR)[0]} y={mid(MENU_MENTOR)[1]} zoom={cam.zoom} />
+      </div>
+      <div style={{ position: "absolute", inset: 0, opacity: second }}>
+        <Img src={staticFile("stills/route_catalog.png")} style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080 }} />
+        <LoopMark t={t} t0={68.55} t1={69.4} box={CHIP_MENTOR} zoom={cam.zoom} seed={24} pad={8} />
+        <Spotlight id="r4" t={t} t0={69.4} box={CARD} />
+        <LoopMark t={t} t0={69.45} box={CARD} zoom={cam.zoom} seed={25} />
+        <ClickRipple t={t} t0={70.1} x={582 * k} y={834 * k} zoom={cam.zoom} />
+      </div>
     </Win>
-  );
-};
-
-/* ---------- S12: faster — «Рабочее» and the widget (voice 70.8 … 79.3) ---------- */
-const NAV = srcBox(1030, 44, 1092, 70);
-
-export const SceneWidget: React.FC = () => {
-  const t = useVT();
-  const cam = keyframes(t, [
-    { t: 70.8, zoom: 1, fx: 960, fy: 540 },
-    { t: 72.6, zoom: 1, fx: 960, fy: 540 },
-    { t: 73.3, zoom: 2.0, fx: 1060, fy: 90 },
-  ]);
-  const X = 960;
-  const Y = 470;
-  const cur = keyframes(t, [
-    { t: 77.2, x: 1560, y: 920 },
-    { t: 78.2, x: X + 40, y: Y + 80 },
-  ]);
-  const sceneOut = interpolate(t, [78.9, 79.4], [1, 0], { ...clamp, easing: EASE });
-  return (
-    <div style={{ position: "absolute", inset: 0, opacity: sceneOut }}>
-      <Win t={t} cam={cam} inAt={70.8} outAt={75.1}>
-        <Img src={staticFile("stills/src_1_20.jpg")} style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080 }} />
-        <Spotlight id="g1" t={t} t0={73.45} box={NAV} pad={10} />
-        <LoopMark t={t} t0={73.51} box={NAV} zoom={cam.zoom} seed={31} pad={10} />
-      </Win>
-      {/* stand-in for the widget until the «Рабочее» recording arrives */}
-      <Prop t={t} src={prop("P10_ai_nastavnik_icon_hd")} x={X} y={Y} size={400} enter={75.4} seed={134} amp={4} />
-      {t > 77.15 ? <Img src={prop("P18_cursor_hand")} style={{ position: "absolute", left: cur.x - 70, top: cur.y - 20, width: 220, height: 220, rotate: "-10deg", scale: t > 78.3 && t < 78.5 ? 0.94 : 1, opacity: ramp(t, 77.15, 77.5), filter: "drop-shadow(0 20px 26px rgba(0,0,0,.45))" }} /> : null}
-      <svg width={1920} height={1080} style={{ position: "absolute", inset: 0, overflow: "visible" }}>
-        {[0, 0.12].map((d, i) => {
-          const p = interpolate(t, [78.32 + d, 78.95 + d], [0, 1], { ...clamp, easing: EASE });
-          if (p <= 0 || p >= 1) return null;
-          return <circle key={i} cx={X + 40} cy={Y + 80} r={20 + 160 * p} fill="none" stroke={C.blue} strokeWidth={6 - 4 * p} opacity={1 - p} />;
-        })}
-      </svg>
-    </div>
   );
 };

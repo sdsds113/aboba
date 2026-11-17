@@ -14,8 +14,8 @@ export const W = 1920;
 export const H = 1080;
 /** Voiceover starts this many seconds into the video. */
 export const VO_OFFSET = 3.0;
-export const VOICE_DURATION = 88.73;
-export const TOTAL_SECONDS = 96.0;
+export const VOICE_DURATION = 79.97;
+export const TOTAL_SECONDS = 87.3;
 export const TOTAL_FRAMES = Math.round(TOTAL_SECONDS * FPS);
 
 export const C = {

@@ -228,8 +228,11 @@ export const SceneTea: React.FC = () => {
 };
 
 /* ---------------- S13: finale ---------------- */
+/** The widget lines were cut from the voice: the finale keeps its original timings, shifted back. */
+const FINALE_SHIFT = 79.25 - 70.485;
+
 export const SceneFinale: React.FC = () => {
-  const t = useVT();
+  const t = useVT() + FINALE_SHIFT;
   const op = fade(t, 79.3, 79.8, 88.6, 89.2);
   const headsetIn = 84.7;
   return (
@@ -240,7 +243,7 @@ export const SceneFinale: React.FC = () => {
       <Prop t={t} src={prop("P17_stopwatch")} x={960} y={470} size={360} enter={83.3} exit={84.6} seed={102} />
       {/* next consultation — calm, no stress */}
       <Prop t={t} src={propOr("N01_headset", "P01_bubble_blue")} x={960} y={470} size={420} enter={headsetIn} seed={103} />
-      <Prop t={t} src={propOr("N05_check_badge", "P10_ai_nastavnik_icon_hd")} x={1170} y={330} size={200} enter={86.77} seed={104} amp={4} />
+      <Prop t={t} src={propOr("N05_check_badge", "P10_ai_nastavnik_icon_hd")} x={1110} y={340} size={180} enter={86.77} seed={104} amp={4} />
       <Thread d={loopCircle(960, 470, 300, 1.08)} to={ramp(t, 87.4, 88.2)} width={6} />
     </div>
   );

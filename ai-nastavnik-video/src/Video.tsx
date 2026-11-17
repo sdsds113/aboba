@@ -4,15 +4,16 @@ import { Audio } from "@remotion/media";
 import { Backdrop, Grain } from "./components/Backdrop";
 import { SidePools } from "./components/Pools";
 import { Subtitles } from "./components/Subtitles";
-import { FPS, Scene, TOTAL_SECONDS, VO_OFFSET } from "./lib/core";
-import { SceneAnswer, SceneChat, SceneRoute, SceneSetup, SceneWidget } from "./scenes/Screens";
+import { FPS, Scene, TOTAL_SECONDS, VO_OFFSET, VOICE_DURATION } from "./lib/core";
+import { SceneAnswer, SceneChat, SceneRoute, SceneSetup } from "./scenes/Screens";
+import { SivLogo } from "./components/Logo";
 import { SceneFinale, SceneHero, ScenePile, ScenePuzzle, SceneQuestions, SceneTea } from "./scenes/Story";
 import { TitleIntroOutro } from "./scenes/Title";
 
 /** Music: full on the title, ducked under the voice, back up on the end title, fades out. */
 const musicVolume = (f: number) => {
   const s = f / FPS;
-  const voEnd = VO_OFFSET + 88.75;
+  const voEnd = VO_OFFSET + VOICE_DURATION + 0.02;
   return interpolate(
     s,
     [0, VO_OFFSET - 0.4, VO_OFFSET + 0.2, voEnd, voEnd + 0.6, TOTAL_SECONDS - 1.6, TOTAL_SECONDS - 0.05],
@@ -51,16 +52,14 @@ export const AINastavnik: React.FC<{ subtitles?: boolean }> = ({ subtitles = tru
       <Scene name="S10 chat" start={59.6} end={64.0}>
         <SceneChat />
       </Scene>
-      <Scene name="S11 route" start={63.4} end={71.1}>
+      <Scene name="S11 route" start={63.4} end={70.9}>
         <SceneRoute />
       </Scene>
-      <Scene name="S12 widget" start={70.7} end={79.5}>
-        <SceneWidget />
-      </Scene>
-      <Scene name="S13 finale" start={79.2} end={89.3}>
+      <Scene name="S13 finale" start={70.3} end={80.6}>
         <SceneFinale />
       </Scene>
 
+      <SivLogo />
       <TitleIntroOutro />
       {subtitles ? <Subtitles /> : null}
       <Grain />
