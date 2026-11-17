@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, interpolate, Sequence, staticFile } from "remotion";
+import { AbsoluteFill, interpolate, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { Audio } from "@remotion/media";
 import { Backdrop, Grain } from "./components/Backdrop";
 import { Subtitles } from "./components/Subtitles";
@@ -76,6 +76,7 @@ export const AINastavnik: React.FC<{ subtitles?: boolean }> = ({ subtitles = tru
 
       {subtitles ? <Subtitles /> : null}
       <Grain />
+      <AbsoluteFill style={{ background: "#0B0B0E", pointerEvents: "none", opacity: interpolate(useCurrentFrame(), [TOTAL_FRAMES - 20, TOTAL_FRAMES - 2], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) }} />
 
       <Sequence name="Voice" from={Math.round(VO_OFFSET * FPS)}>
         <Audio src={staticFile("audio/voice_edit.wav")} />
