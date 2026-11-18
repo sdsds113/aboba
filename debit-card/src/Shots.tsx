@@ -1,7 +1,7 @@
 // Слой «планов» поверх ведущего плана (Макс справа, элементы слева).
 // Каждый план закрывает кадр своим фоном: крупный Макс, инфографика на весь кадр,
-// сплит-экран, Макс в полный рост. Плюс крупные слова, переходы через объект
-// (карта, телефон, монета), кинетические заголовки и финальная плашка.
+// сплит-экран, Макс в полный рост. Плюс мягкие акценты, переходы через объект
+// (карта, телефон, монета), кинетические заголовки и повтор заставки в конце.
 // Время везде в секундах озвучки (vo.m4a), как в timeline.ts.
 import { Audio } from "@remotion/media";
 import React from "react";
@@ -17,6 +17,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { LEAD_IN } from "./timeline";
+import { IntroContent } from "./Intro";
 
 const RED = "#EF3124";
 const INK = "#1B1B21";
@@ -84,7 +85,7 @@ export const Head: React.FC<{
   width?: number;
   align?: "left" | "center";
   z?: number;
-}> = ({ text, x, y, at, until = 9999, color = "#FFFFFF", size = 64, width, align = "left", z = 9 }) => {
+}> = ({ text, x, y, at, until = 9999, color = "#FFFFFF", size = 74, width, align = "left", z = 9 }) => {
   const t = useT();
   if (t < at - 0.02 || t > until + 0.3) return null;
   const leave = interpolate(t, [until, until + 0.26], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
@@ -163,6 +164,8 @@ const Shot: React.FC<{
       <AbsoluteFill
         style={{
           zIndex: 90,
+          // фон плана увеличен на 10%: без обрезки его край торчит на переходе
+          overflow: "hidden",
           clipPath: clip,
           opacity: (enter === "fade" || enter === "cut" ? p : 1) * fadeOut,
           translate: `${tx}px 0px`,
@@ -197,6 +200,9 @@ const Shot: React.FC<{
     </>
   );
 };
+
+// Все предметы планов чуть меньше исходной раскладки (центр на месте)
+const SPRITE_SCALE = 0.86;
 
 // Картинка: появление со своим характером, плавание, тень, блик, размытие на скорости
 const Sprite: React.FC<{
@@ -235,7 +241,7 @@ const Sprite: React.FC<{
   const lt = t - at;
   const ph = (x * 7 + y * 3) % 6.28;
   const vel = Math.abs(e - ePrev) * dist;
-  const sc = (s0 + (1 - s0) * e) * extraScale * (1 - 0.1 * leave);
+  const sc = (s0 + (1 - s0) * e) * extraScale * (1 - 0.1 * leave) * SPRITE_SCALE;
   const filters = [
     vel > 4 ? `blur(${Math.min(12, vel * 0.28)}px)` : "",
     shadow ? "drop-shadow(0 26px 24px rgba(20, 0, 40, 0.2))" : "",
@@ -265,30 +271,14 @@ const Sprite: React.FC<{
   );
 };
 
-// Размытый объект на переднем плане: даёт глубину и параллакс
-const Fore: React.FC<{ src: string; x: number; y: number; size: number; blur?: number; drift?: [number, number]; rot?: number }> = ({ src, x, y, size, blur = 10, drift = [-14, -6], rot = 0 }) => {
-  const t = useT();
-  return (
-    <Img
-      src={staticFile(src)}
-      style={{
-        position: "absolute",
-        left: x,
-        top: y,
-        width: size,
-        height: size,
-        zIndex: 20,
-        filter: `blur(${blur}px)`,
-        translate: `${Math.sin(t * 0.5 + y) * drift[0] * 2}px ${Math.cos(t * 0.6 + x) * drift[1] * 3}px`,
-        rotate: `${rot + Math.sin(t * 0.7 + y) * 4}deg`,
-      }}
-    />
-  );
-};
+// Макс на планах чуть меньше, чем раньше
+const CHAR_SCALE = 0.9;
 
 // Крупный Макс: низ картинки всегда ниже кадра
-const BigMax: React.FC<{ src: string; left: number; size: number; at: number; flip?: boolean }> = ({ src, left, size, at, flip }) => {
+const BigMax: React.FC<{ src: string; left: number; size: number; at: number; flip?: boolean }> = ({ src, left: left0, size: size0, at, flip }) => {
   const t = useT();
+  const size = size0 * CHAR_SCALE;
+  const left = left0 + (size0 - size) / 2;
   const pop = usePop();
   const e = pop(at, "pop");
   const lt = t - at;
@@ -314,8 +304,10 @@ const BigMax: React.FC<{ src: string; left: number; size: number; at: number; fl
 };
 
 // Макс в полный рост: ступни у нижнего края, тень под ногами
-const FullMax: React.FC<{ src: string; left: number; size: number; at: number; until?: number; flip?: boolean; air?: boolean }> = ({ src, left, size, at, until = 9999, flip, air }) => {
+const FullMax: React.FC<{ src: string; left: number; size: number; at: number; until?: number; flip?: boolean; air?: boolean }> = ({ src, left: left0, size: size0, at, until = 9999, flip, air }) => {
   const t = useT();
+  const size = size0 * CHAR_SCALE;
+  const left = left0 + (size0 - size) / 2;
   const pop = usePop();
   if (t < at - 0.02 || t > until + 0.3) return null;
   const e = pop(at, "bouncy");
@@ -418,40 +410,6 @@ const CoinStream: React.FC<{ pts: [number, number][]; from: number; until: numbe
               scale: String(0.75 + 0.35 * Math.sin(u * Math.PI)),
               filter: "blur(1.2px) drop-shadow(0 10px 10px rgba(60,30,0,0.25))",
               zIndex: 4,
-            }}
-          />
-        );
-      })}
-    </>
-  );
-};
-
-// Дождь из монет
-const CoinRain: React.FC<{ from: number; x0: number; x1: number; n?: number }> = ({ from, x0, x1, n = 14 }) => {
-  const t = useT();
-  if (t < from) return null;
-  return (
-    <>
-      {Array.from({ length: n }).map((_, k) => {
-        const r = Math.abs(Math.sin(k * 12.9898 + 4.1) * 43758.5453) % 1;
-        const delay = (Math.abs(Math.sin(k * 78.233) * 437.585) % 1) * 1.6;
-        const life = (t - from - delay) * (0.55 + r * 0.25);
-        if (life < 0) return null;
-        const u = life % 1.0;
-        const near = r > 0.7;
-        return (
-          <Img
-            key={k}
-            src={staticFile("el/el_30_coin.png")}
-            style={{
-              position: "absolute",
-              left: x0 + r * (x1 - x0),
-              top: -160 + u * 1380,
-              width: near ? 170 : 70 + r * 50,
-              height: near ? 170 : 70 + r * 50,
-              rotate: `${u * 400 + k * 30}deg`,
-              filter: near ? "blur(7px)" : "blur(1px)",
-              zIndex: near ? 20 : 3,
             }}
           />
         );
@@ -692,11 +650,8 @@ export const Shots: React.FC = () => {
           <>
             <Head text="Твоя первая карта" x={110} y={90} at={0.0} />
             <Sprite src="el/el_01_card.png" x={110} y={250} size={600} at={-0.3} rot={-8} from="left" feel="snappy" shine />
-            <Sprite src="el/el_02_sparkles.png" x={560} y={170} size={260} at={1.0} feel="bouncy" shadow={false} glow="rgba(255,255,255,0.6)" />
             <Sprite src="el/el_41_question.png" x={640} y={560} size={260} at={2.24} rot={10} feel="bouncy" />
             <BigMax src="max_cu_card" left={840} size={1060} at={-0.4} />
-            <Fore src="el/el_30_coin.png" x={-110} y={810} size={380} />
-            <Fore src="el/el_30_coin.png" x={700} y={-150} size={260} blur={7} drift={[8, 4]} />
           </>
         )}
       </Shot>
@@ -711,7 +666,6 @@ export const Shots: React.FC = () => {
             <Sprite src="el/el_06_remote.png" x={1260} y={330} size={560} at={24.0} from="right" feel="snappy" />
             <CoinStream pts={[[440, 600], [700, 330], [1000, 760], [1420, 600]]} from={22.3} until={27.4} />
             <Label text="карта и смартфон: пульт" x={1150} y={250} at={25.2} />
-            <Fore src="el/el_30_coin.png" x={-130} y={830} size={380} drift={[10, -5]} />
           </>
         )}
       </Shot>
@@ -728,7 +682,7 @@ export const Shots: React.FC = () => {
               <div style={{ position: "absolute", right: 0, top: 0, width: 960 * split, height: 1080, overflow: "hidden" }}>
                 <Img src={staticFile("bg_lime.png")} style={{ position: "absolute", right: 0, width: 1920, height: 1080, objectFit: "cover" }} />
               </div>
-              <Head text="Наличка против карты" x={110} y={90} at={28.3} />
+              <Head text="Наличка против карты" x={110} y={90} at={28.3} size={62} />
               <Label text="Наличка" x={110} y={260} at={29.36} bg="#FFFFFF" color={INK} size={46} />
               <Label text="Карта" x={1560} y={260} at={30.16} bg={RED} size={46} />
               <Sprite src="el/el_07_cash_crumpled.png" x={120} y={330} size={360} at={28.9} rot={-6} feel="bouncy" />
@@ -772,7 +726,7 @@ export const Shots: React.FC = () => {
             <>
               <BigMax src="max_cu_shrug" left={-40} size={1060} at={51.1} />
               <Head text="Потерял купюру?" x={1040} y={150} at={51.4} color={INK} />
-              <Head text="Прощай" x={1040} y={236} at={53.22} color={RED} />
+              <Head text="Прощай" x={1040} y={246} at={53.22} color={RED} />
               <Sprite src="el/el_31_banknote.png" x={1180} y={400} size={420} at={51.8} rot={-8 - 40 * fly} dx={700 * fly} dy={-760 * fly} feel="bouncy" />
             </>
           );
@@ -787,19 +741,19 @@ export const Shots: React.FC = () => {
           const shake = t > 59.3 && t < 59.9 ? Math.sin((t - 59.3) * 60) * 10 * (1 - (t - 59.3) / 0.6) : 0;
           return (
             <>
-              <div style={{ position: "absolute", left: 180, top: 40, width: 1000, height: 1000, translate: `${shake}px 0px`, filter: "drop-shadow(0 40px 50px rgba(0,0,0,0.45))" }}>
-                <Img src={staticFile("el/el_37_phone_front.png")} style={{ position: "absolute", width: 1000, height: 1000, opacity: 1 - locked }} />
-                <Img src={staticFile("el/el_36_phone_lock.png")} style={{ position: "absolute", width: 1000, height: 1000, opacity: locked }} />
+              <div style={{ position: "absolute", left: 230, top: 90, width: 900, height: 900, translate: `${shake}px 0px`, filter: "drop-shadow(0 40px 50px rgba(0,0,0,0.45))" }}>
+                <Img src={staticFile("el/el_37_phone_front.png")} style={{ position: "absolute", width: 900, height: 900, opacity: 1 - locked }} />
+                <Img src={staticFile("el/el_36_phone_lock.png")} style={{ position: "absolute", width: 900, height: 900, opacity: locked }} />
               </div>
               {t > 56.1 && t < 58.6 ? (
-                <Img src={staticFile("el/el_35_finger.png")} style={{ position: "absolute", left: 560, top: 300 + tap, width: 420, height: 420, zIndex: 6, opacity: interpolate(t, [56.1, 56.3, 58.2, 58.6], [0, 1, 1, 0], clamp), filter: "drop-shadow(0 20px 20px rgba(0,0,0,0.35))" }} />
+                <Img src={staticFile("el/el_35_finger.png")} style={{ position: "absolute", left: 572, top: 324 + tap, width: 378, height: 378, zIndex: 6, opacity: interpolate(t, [56.1, 56.3, 58.2, 58.6], [0, 1, 1, 0], clamp), filter: "drop-shadow(0 20px 20px rgba(0,0,0,0.35))" }} />
               ) : null}
               <Ring cx={680} cy={560} at={56.85} size={420} />
               <Ring cx={680} cy={520} at={59.45} />
               <Ring cx={680} cy={520} at={61.0} />
               <Head text="Потерял карту?" x={1040} y={150} at={55.24} until={60.7} />
-              <Head text="Блок в один тап" x={1040} y={236} at={56.8} until={60.7} color={LIME} />
-              <Head text="Деньги целы на счёте" x={1000} y={80} at={61.0} size={56} />
+              <Head text="Блок в один тап" x={1040} y={246} at={56.8} until={60.7} color={LIME} />
+              <Head text="Деньги целы на счёте" x={1000} y={80} at={61.0} size={64} />
               <FullMax src="max_fb_shield_card" left={1130} size={940} at={61.0} />
             </>
           );
@@ -843,7 +797,6 @@ export const Shots: React.FC = () => {
               );
             })}
             <FullMax src="max_fb_jump" left={1060} size={960} at={63.6} air />
-            <Fore src="el/el_02_sparkles.png" x={-120} y={760} size={420} blur={8} drift={[6, -4]} />
           </>
         )}
       </Shot>
@@ -857,7 +810,7 @@ export const Shots: React.FC = () => {
               <Head text="Плюс 2: кэшбэк" x={110} y={90} at={80.75} color={INK} />
               <Sprite src="el/el_38_cart.png" x={250} y={430} size={560} at={78.8} from="left" feel="heavy" />
               {t < 83.8 ? (
-                <Sprite src="el/el_17_snacks.png" x={120} y={60} size={820} at={80.3} dy={330 * intoCart} extraScale={1 - 0.6 * intoCart} opacity={1 - intoCart} feel="bouncy" />
+                <Sprite src="el/el_17_snacks.png" x={170} y={190} size={700} at={80.3} dy={330 * intoCart} extraScale={1 - 0.6 * intoCart} opacity={1 - intoCart} feel="bouncy" />
               ) : null}
               <Sprite src="el/el_01_card.png" x={1220} y={250} size={520} at={84.3} rot={6} from="right" feel="snappy" shine />
               <CoinStream pts={[[560, 640], [760, 260], [1100, 200], [1460, 470]]} from={84.46} until={87.4} n={8} speed={0.7} />
@@ -871,8 +824,15 @@ export const Shots: React.FC = () => {
       <Shot start={88.0} end={90.5} bg="bg_violet.png" enter="whip" exit="whip" exitDir={-1}>
         {() => (
           <>
-            <CoinRain from={88.05} x0={40} x1={760} />
-            <Head text={"Бонус\nза обычные траты"} x={110} y={380} at={88.15} size={60} z={25} />
+            {[
+              [150, 170, 130, 88.1],
+              [520, 230, 104, 88.25],
+              [190, 660, 116, 88.4],
+              [560, 620, 140, 88.55],
+            ].map(([x, y, size, at], i) => (
+              <Sprite key={i} src="el/el_30_coin.png" x={x} y={y} size={size} at={at} rot={i * 25 - 20} feel="bouncy" />
+            ))}
+            <Head text={"Бонус\nза обычные траты"} x={110} y={400} at={88.15} size={70} z={25} />
             <BigMax src="max_cu_wow" left={760} size={1060} at={88.05} />
           </>
         )}
@@ -884,8 +844,8 @@ export const Shots: React.FC = () => {
           const done = t > 107.0;
           return (
             <>
-              <Head text="Плюс 3: цели и автокопилки" x={110} y={84} at={90.9} until={100.5} size={58} />
-              <Head text="Копится само, понемногу" x={110} y={84} at={100.84} size={58} />
+              <Head text="Плюс 3: цели и автокопилки" x={110} y={84} at={90.9} until={100.5} size={66} />
+              <Head text="Копится само, понемногу" x={110} y={84} at={100.84} size={66} />
               <FullMax src="max_fb_sit_piggy" left={-60} size={900} at={90.9} />
               <Sprite src="el/el_39_podium.png" x={760} y={520} size={420} at={93.2} float={0} from="bottom" feel="heavy" beat={false} />
               <Sprite src="el/el_39_podium.png" x={1260} y={520} size={420} at={93.5} float={0} from="bottom" feel="heavy" beat={false} />
@@ -893,7 +853,6 @@ export const Shots: React.FC = () => {
               <Sprite src="el/el_19_sneakers.png" x={1290} y={300} size={380} at={95.42} from="top" float={5} feel="bouncy" />
               <GoalBar at={96.9} from={100.84} to={107.0} />
               {done ? <Sprite src="el/el_34_check.png" x={1390} y={220} size={170} at={107.0} feel="bouncy" glow="rgba(182,240,58,0.9)" /> : null}
-              {done ? <Sprite src="el/el_29_confetti.png" x={540} y={-40} size={1100} at={107.05} from="top" float={0} shadow={false} beat={false} /> : null}
             </>
           );
         }}
@@ -939,46 +898,21 @@ export const Shots: React.FC = () => {
       <Shot start={127.0} end={OUTRO_AT} bg="bg_lime.png" enter="coin" origin={[70, 50]}>
         {() => (
           <>
-            <Head text="Основа финансовой грамотности" x={110} y={90} at={127.3} until={131.7} color={INK} size={58} />
+            <Head text="Основа финансовой грамотности" x={110} y={90} at={127.3} until={131.7} color={INK} size={66} />
             <Head text="Пользуйся с умом" x={110} y={90} at={132.02} color={INK} />
             <Sprite src="el/el_27_skill.png" x={120} y={330} size={480} at={128.96} from="bottom" feel="heavy" />
             <Sprite src="el/el_28_trophy.png" x={600} y={290} size={450} at={132.02} feel="bouncy" glow="rgba(255,210,80,0.6)" />
-            <Sprite src="el/el_29_confetti.png" x={20} y={-60} size={1150} at={132.1} from="top" float={0} shadow={false} beat={false} />
+            <Sprite src="el/el_02_sparkles.png" x={940} y={300} size={200} at={132.3} feel="bouncy" shadow={false} glow="rgba(255,255,255,0.6)" />
             <FullMax src="max_fb_wave" left={1120} size={980} at={127.1} />
           </>
         )}
       </Shot>
 
-      {/* 14. Финальная плашка: логотипы и призыв подписаться */}
+      {/* 14. В конце ещё раз заставка, затем затемнение */}
       <Shot start={OUTRO_AT} end={999} bg="bg_red.png" enter="coin" origin={[50, 50]}>
-        {(lt) => (
-          <>
-            <div
-              style={{
-                position: "absolute",
-                left: 130,
-                top: 150,
-                height: 96,
-                display: "flex",
-                alignItems: "center",
-                gap: 30,
-                opacity: interpolate(lt, [1.5, 1.9], [0, 1], clamp),
-                translate: `0px ${interpolate(lt, [1.5, 1.9], [-14, 0], { ...clamp, easing: smooth })}px`,
-              }}
-            >
-              <Img src={staticFile("logo_siv_white.png")} style={{ height: 72 }} />
-              <Img src={staticFile("logo_alfa_white.png")} style={{ height: 94 }} />
-            </div>
-            <Head text={"Подписывайся\nна канал"} x={120} y={340} at={OUTRO_AT + 0.5} size={132} />
-            <Sprite src="el/el_01_card.png" x={-40} y={720} size={460} at={OUTRO_AT + 0.4} rot={-14} from="left" feel="snappy" shine />
-            <Sprite src="el/el_08_coins_fall.png" x={470} y={760} size={300} at={OUTRO_AT + 0.7} rot={8} feel="bouncy" />
-            <Sprite src="el/el_02_sparkles.png" x={900} y={150} size={240} at={OUTRO_AT + 1.0} feel="bouncy" shadow={false} glow="rgba(255,255,255,0.6)" />
-            <FullMax src="max_fb_jump" left={1080} size={960} at={OUTRO_AT + 0.5} air />
-          </>
-        )}
+        {(lt) => <IntroContent lt={lt + 0.2} />}
       </Shot>
 
-      {/* Крупные слова на весь кадр */}
       {/* Мягкие акценты на ключевых словах */}
       <Accent
         start={17.75}

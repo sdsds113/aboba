@@ -27,6 +27,7 @@ import {
 } from "./timeline";
 import { CAPTIONS } from "./captions";
 import { FEEL, Feel, Head, Shine, SHOT_RANGES, Shots, ShotsAudio } from "./Shots";
+import { IntroContent, MAX_BOX } from "./Intro";
 
 const RED = "#EF3124";
 const INK = "#1B1B21";
@@ -124,6 +125,8 @@ const BOUNCY = ["el_02_sparkles", "el_05_piggy", "el_08_coins_fall", "el_07_cash
 const feelOf = (el: El): Feel =>
   el.text !== undefined ? "bouncy" : HEAVY.includes(el.src ?? "") ? "heavy" : BOUNCY.includes(el.src ?? "") ? "bouncy" : "snappy";
 
+const EL_SCALE = 0.86;
+
 const Element: React.FC<{ el: El; index: number }> = ({ el, index }) => {
   const { fps } = useVideoConfig();
   const t = useT();
@@ -157,10 +160,13 @@ const Element: React.FC<{ el: El; index: number }> = ({ el, index }) => {
   const scale = (startScale + (1 - startScale) * enter) * (1 - 0.08 * exitP);
   const opacity = Math.min(1, local / 0.18) * (1 - exitP);
 
+  // предметы чуть меньше исходной раскладки, центр на месте
+  const k = el.text !== undefined ? 1 : EL_SCALE;
+  const sz = el.size * k;
   const style: React.CSSProperties = {
     position: "absolute",
-    left: el.x,
-    top: el.y,
+    left: el.x + (el.size - sz) / 2,
+    top: el.y + (el.size - sz) / 2,
     translate: `${dx + flyX}px ${dy + floatY + flyY}px`,
     rotate: `${(el.rot ?? 0) + floatR + flyR}deg`,
     scale: String(scale),
@@ -202,8 +208,8 @@ const Element: React.FC<{ el: El; index: number }> = ({ el, index }) => {
     <div
       style={{
         ...style,
-        width: el.size,
-        height: el.size,
+        width: sz,
+        height: sz,
         filter: `${el.dim ? "grayscale(0.75) brightness(1.08) " : ""}drop-shadow(0 26px 24px rgba(20, 0, 40, 0.2))`,
       }}
     >
@@ -230,11 +236,11 @@ const Max: React.FC = () => {
             src={staticFile(`char/${r.value}.png`)}
             style={{
               position: "absolute",
-              left: 1035,
+              left: MAX_BOX.left,
               // низ картинки на 40 px ниже кадра: при подпрыге и «дыхании» срез не виден
-              top: 236,
-              width: 884,
-              height: 884,
+              top: MAX_BOX.top,
+              width: MAX_BOX.size,
+              height: MAX_BOX.size,
               opacity: fadeIn * fadeOut,
               translate: `0px ${hop + breathe}px`,
               zIndex: 5,
@@ -320,7 +326,7 @@ const Subtitles: React.FC = () => {
                 boxShadow: "0 14px 34px rgba(0, 0, 0, 0.22)",
                 fontFamily: FONT,
                 fontWeight: 700,
-                fontSize: 37,
+                fontSize: 40,
                 lineHeight: 1.1,
                 whiteSpace: "nowrap",
                 flexShrink: 0,
@@ -350,110 +356,16 @@ const Subtitles: React.FC = () => {
   );
 };
 
-// Заставка: красный фон из ролика, по краям плавают 3D-элементы, слева название,
-// справа Макс машет рукой. Потом всё мягко уходит, и начинается первая сцена.
-// Справа сверху белые логотипы СиВ и Альфа-Банка.
-const LOGO_SIV: string | null = "logo_siv_white.png"; // белый логотип СиВ
-const INTRO_ITEMS: { src: string; x: number; y: number; size: number; at: number; rot: number }[] = [
-  { src: "el_01_card", x: -40, y: 700, size: 460, at: 0.0, rot: -14 },
-  { src: "el_08_coins_fall", x: 440, y: 780, size: 300, at: 0.5, rot: 8 },
-  { src: "el_02_sparkles", x: 860, y: 150, size: 240, at: 1.5, rot: 0 },
-  { src: "el_05_piggy", x: 790, y: 640, size: 300, at: 1.0, rot: -8 },
-];
+// Заставка в начале ролика, потом мягко уходит, и начинается первая сцена
 const Intro: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
   if (t > INTRO_S + 0.6) return null;
   const out = interpolate(t, [INTRO_S - 0.3, INTRO_S + 0.25], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
-  const titleLines = ["Твоя первая", "карта"];
   return (
     <AbsoluteFill style={{ zIndex: 120 }}>
-      {INTRO_ITEMS.map((it, i) => {
-        const local = t - it.at;
-        const enter = spring({ frame: Math.round(local * fps), fps, config: FEEL.bouncy });
-        const fl = Math.sin(local * 1.7 + i) * 9;
-        return (
-          <Img
-            key={it.src}
-            src={staticFile(`el/${it.src}.png`)}
-            style={{
-              position: "absolute",
-              left: it.x,
-              top: it.y,
-              width: it.size,
-              height: it.size,
-              opacity: Math.min(1, Math.max(0, local / 0.2)) * (1 - out),
-              scale: String((0.6 + 0.4 * enter) * (1 - 0.15 * out)),
-              filter: "drop-shadow(0 26px 24px rgba(60, 0, 0, 0.25))",
-              translate: `0px ${fl + 40 * (1 - enter) - 60 * out}px`,
-              rotate: `${it.rot + Math.sin(local * 1.3 + i) * 2}deg`,
-            }}
-          />
-        );
-      })}
-
-      <div
-        style={{
-          position: "absolute",
-          left: 120,
-          top: 330,
-          width: 900,
-          // название по центру свободной части кадра, слева от Макса
-          textAlign: "center",
-          fontFamily: FONT,
-          fontWeight: 900,
-          fontSize: 132,
-          lineHeight: 1.0,
-          letterSpacing: "-0.02em",
-          color: "#FFFFFF",
-          textShadow: "0 18px 50px rgba(90, 0, 0, 0.35)",
-          opacity: 1 - out,
-          translate: `0px ${-30 * out}px`,
-        }}
-      >
-        {titleLines.map((line, li) => {
-          const p = interpolate(t, [0.5 + li * 0.5, 1.0 + li * 0.5], [0, 1], { ...clamp, easing: smooth });
-          return (
-            <div key={li} style={{ opacity: p, translate: `0px ${50 * (1 - p)}px`, scale: String(0.94 + 0.06 * p) }}>
-              {line}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* логотипы: белые, справа сверху, СиВ и Альфа рядом */}
-      <div
-        style={{
-          position: "absolute",
-          right: 96,
-          top: 76,
-          height: 92,
-          display: "flex",
-          alignItems: "center",
-          gap: 28,
-          opacity: interpolate(t, [2.0, 2.4], [0, 1], clamp) * (1 - out),
-          translate: `0px ${interpolate(t, [2.0, 2.4], [-12, 0], { ...clamp, easing: smooth })}px`,
-        }}
-      >
-        {LOGO_SIV ? (
-<Img src={staticFile(LOGO_SIV)} style={{ height: 64 }} />
-        ) : null}
-        <Img src={staticFile("logo_alfa_white.png")} style={{ height: 84 }} />
-      </div>
-
-      <Img
-        src={staticFile("char/max_09_bye.png")}
-        style={{
-          position: "absolute",
-          left: 1035,
-          top: 236,
-          width: 884,
-          height: 884,
-          opacity: interpolate(t, [1.5, 1.7], [0, 1], clamp) * (1 - out),
-          translate: `0px ${interpolate(t, [1.5, 1.65, 1.9], [30, -14, 0], { ...clamp, easing: Easing.inOut(Easing.quad) }) + Math.sin(t * 1.6) * 3}px`,
-        }}
-      />
+      <IntroContent lt={t} out={out} />
     </AbsoluteFill>
   );
 };
@@ -488,11 +400,11 @@ const VO_GAPS: [number, number][] = (() => {
 })();
 const musicVolume = (videoT: number, total: number) => {
   const t = videoT - LEAD_IN;
-  const duck = interpolate(t, [-0.5, 0.15], [0.3, 0.115], clamp);
+  const duck = interpolate(t, [-0.5, 0.15], [0.26, 0.115], clamp);
   const gap = Math.max(0, ...VO_GAPS.map(([a, b]) => Math.min(interpolate(t, [a, a + 0.25], [0, 1], clamp), interpolate(t, [b - 0.2, b + 0.05], [1, 0], clamp))));
   const finale = interpolate(t, [VO_END + 0.1, VO_END + 0.9], [0, 1], clamp);
   const base = duck + 0.05 * gap * (t > 0 ? 1 : 0);
-  return (base + (0.32 - base) * finale) * interpolate(videoT, [total - 0.35, total], [1, 0], clamp);
+  return (base + (0.32 - base) * finale) * interpolate(videoT, [total - 1.1, total], [1, 0], clamp);
 };
 
 const AudioTrack: React.FC = () => {
@@ -509,7 +421,7 @@ const AudioTrack: React.FC = () => {
       <Sequence name="Озвучка" from={f(0)}>
         <Audio src={staticFile("vo.m4a")} />
       </Sequence>
-      <Audio src={staticFile("music_ext.m4a")} volume={(fr) => musicVolume(fr / fps, durationInFrames / fps)} />
+      <Audio src={staticFile("music_v3.m4a")} volume={(fr) => musicVolume(fr / fps, durationInFrames / fps)} />
       {SFX_ON
         ? sfx.map((s, i) => (
             <Sequence key={i} name={`sfx ${s.sfx}`} from={f(s.t)} durationInFrames={fps * 3}>
@@ -524,8 +436,9 @@ const AudioTrack: React.FC = () => {
 const FadeOut: React.FC = () => {
   const frame = useCurrentFrame();
   const { durationInFrames, fps } = useVideoConfig();
-  const o = interpolate(frame, [durationInFrames - fps * 0.4, durationInFrames - 1], [0, 1], clamp);
-  return <AbsoluteFill style={{ background: "#FFFFFF", opacity: o, zIndex: 200 }} />;
+  // в конце затемнение в чёрный
+  const o = interpolate(frame, [durationInFrames - fps * 1.0, durationInFrames - 1], [0, 1], { ...clamp, easing: Easing.inOut(Easing.quad) });
+  return <AbsoluteFill style={{ background: "#000000", opacity: o, zIndex: 200 }} />;
 };
 
 // Камера ведущего плана: медленное покачивание и наезд, чтобы кадр не стоял

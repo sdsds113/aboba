@@ -84,7 +84,7 @@ export type El = {
 export const ELEMENTS: El[] = [
   // 1. Вступление
   { id: "card", src: "el_01_card", x: 150, y: 250, size: 640, in: 0.18, out: 9.39, from: "bottom", rot: -6, sfx: "whoosh_soft" },
-  { id: "spark1", src: "el_02_sparkles", x: 620, y: 200, size: 300, in: 1.66, out: 9.39, from: "pop", sfx: "sparkle" },
+  { id: "spark1", src: "el_02_sparkles", x: 640, y: 260, size: 300, in: 1.66, out: 9.39, from: "pop", sfx: "sparkle" },
   { id: "p1", text: "Как устроена", x: 96, y: 860, size: 0, in: 4.02, out: 9.39, from: "pop", sfx: "pop_soft" },
   { id: "p2", text: "Зачем нужна", x: 436, y: 860, size: 0, in: 5.12, out: 9.39, from: "pop", sfx: "pop_soft_2" },
   { id: "p3", text: "Чем удобнее", x: 770, y: 860, size: 0, in: 6.08, out: 9.39, from: "pop", sfx: "pop_soft" },
