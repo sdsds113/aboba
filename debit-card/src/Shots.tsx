@@ -918,7 +918,7 @@ export const Shots: React.FC = () => {
         start={17.75}
         end={20.6}
         phrases={[
-          { at: 17.75, text: "Карта не деньги", hi: "не деньги", obj: "el/el_31_banknote.png" },
+          { at: 17.75, text: "Карта — не деньги", hi: "не деньги", obj: "el/el_31_banknote.png" },
           { at: 19.2, text: "Карта = ключ к счёту", hi: "ключ", obj: "el/el_04_key.png" },
         ]}
       />
